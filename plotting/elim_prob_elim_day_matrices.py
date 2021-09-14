@@ -6,13 +6,13 @@ import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
 # -------- Setup params/datasets
-wi_names_ls = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
-               # '',
-               # '',
-               # ''
+wi_names_ls = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+               'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+               'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+               'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
                ]
-num_sweep_vars_ls = [4]
-drive_types_ls = ['classic']
+num_sweep_vars_ls = [4, 4, 4, 6]
+drive_types_ls = ['classic', 'integral', 'integral', 'classic']
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
 num_seeds = 20  # num of seeds per sim
@@ -29,6 +29,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                           'd': [1, 0.95, 0.9],
                           'rr0': [0, 0.001, 0.01, 0.1],
                           'sne': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5],
+                          # 'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
                           'rd': [180, 240, 300, 360, 420, 480, 545],
                           'nn': [6, 12]}
     elif num_sweep_vars == 4:
@@ -37,45 +38,64 @@ for iwi, wi_name in enumerate(wi_names_ls):
             allvarvals = {'rc': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
                           'd': [1, 0.95, 0.9],
                           'rr0': [0, 0.001, 0.01, 0.1],
-                          'sne': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          # 'sne': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
         elif drive_type == 'integral':
             allvardefs = {'rc': 1, 'd1': 1, 'se2': 0, 'rr20': 0}
             allvarvals = {'rc': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
                           'd1': [1, 0.95, 0.9],
                           'rr20': [0, 0.001, 0.01, 0.1],
-                          'se2': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          # 'se2': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          'se2': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
 
     ##
     # -------- Load data
-    dfi = pd.read_csv(os.path.join(data_dir, 'dfi_' + wi_name + '.csv'))
-    dfa = pd.read_csv(os.path.join(data_dir, 'dfa_' + wi_name + '.csv'))
+    # dfi = pd.read_csv(os.path.join(data_dir, 'dfi_' + wi_name + '.csv'))
+    # dfa = pd.read_csv(os.path.join(data_dir, 'dfa_' + wi_name + '.csv'))
     dfe = pd.read_csv(os.path.join(data_dir, 'dfe_' + wi_name + '.csv'))
-    dfed = pd.read_csv(os.path.join(data_dir, 'dfed_' + wi_name + '.csv'))
+    # dfed = pd.read_csv(os.path.join(data_dir, 'dfed_' + wi_name + '.csv'))
+
+    if num_sweep_vars == 6:
+        dfe['rd'] = dfe['rd'].fillna(allvardefs['rd'])
+        dfe['nn'] = dfe['nn'].fillna(allvardefs['nn'])
+        dfe = dfe[dfe['rd'] == allvardefs['rd']]
+        dfe = dfe[dfe['nn'] == allvardefs['nn']]
 
     ##
     # -------- Create plot
-
     # - Set matrix x/y vars, overall x/y vars
-    mat_xvar = 'rr0'
-    mat_yvar = 'sne'
-    ov_xvar = 'rc'
-    ov_yvar = 'd'
-    ov_xvar_vals = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-    ov_yvar_vals = [1, 0.95, 0.9]
+    if drive_type == 'classic':
+        mat_xvar = 'rr0'
+        mat_yvar = 'sne'
+        ov_xvar = 'rc'
+        ov_yvar = 'd'
+    elif drive_type == 'integral':
+        mat_xvar = 'rr20'
+        mat_yvar = 'se2'
+        ov_xvar = 'rc'
+        ov_yvar = 'd1'
+
+    ov_xvar_vals = allvarvals[ov_xvar]
+    ov_yvar_vals = allvarvals[ov_yvar]
 
     # - Initialize subplots/axes
     iaxis = 1
     subplots = []
+
+    dfesm = dfe[dfe[mat_xvar].isin(allvarvals[mat_xvar]) &
+                dfe[mat_yvar].isin(allvarvals[mat_yvar])]
 
     for ov_yvar_val in ov_yvar_vals:
         for ov_xvar_val in ov_xvar_vals:
 
             # - Compute heatmap values
             allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
-            dfenow = dfe
-            for k, v in allvardefsnow.items():
-                dfenow = dfenow[dfenow[k] == v]
-                dfenow.drop(columns=[k], inplace=True)
+            if len(allvardefsnow) == 0:
+                dfenow = dfesm
+            else:
+                for k, v in allvardefsnow.items():
+                    dfenow = dfesm[dfesm[k] == v]
+                    dfenow.drop(columns=[k], inplace=True)
             dfenow = dfenow[dfenow[ov_xvar] == ov_xvar_val]
             dfenow = dfenow[dfenow[ov_yvar] == ov_yvar_val]
             dfenow.drop(columns=[ov_xvar, ov_yvar], inplace=True)
