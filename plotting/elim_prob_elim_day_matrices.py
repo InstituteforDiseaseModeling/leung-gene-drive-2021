@@ -13,7 +13,7 @@ wi_names_ls = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne
                ]
 num_sweep_vars_ls = [4]
 drive_types_ls = ['classic']
-data_dir = 'csvs'
+data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
 num_seeds = 20  # num of seeds per sim
 
@@ -137,4 +137,5 @@ for iwi, wi_name in enumerate(wi_names_ls):
     fig.update_layout(margin=dict(l=60, r=50, b=50, t=30))
 
     fig.show()
-    fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=8*300, height=5*300, scale=1)
+    fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7*300, height=4*300, scale=5)
+    fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7*300, height=4*300, scale=5)
