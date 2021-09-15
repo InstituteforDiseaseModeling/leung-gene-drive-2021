@@ -6,12 +6,26 @@ import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
 # -------- Setup params/datasets
-wi_names_ls = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-               'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-               'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-               'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne']
-num_sweep_vars_ls = [4, 4, 4, 6]
-drive_types_ls = ['classic', 'integral', 'integral', 'classic']
+wi_names_ls = [
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
+    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+]
+num_sweep_vars_ls = [
+    # 4, 4, 4, 6,
+    4, 4, 4, 6, 6, 4
+    ]
+drive_types_ls = [
+    # 'classic', 'integral', 'integral', 'classic',
+    'classic', 'integral', 'integral', 'classic', 'classic', 'integral'
+]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
 num_seeds = 20  # num of seeds per sim
