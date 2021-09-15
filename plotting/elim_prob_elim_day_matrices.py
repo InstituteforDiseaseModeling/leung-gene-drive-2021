@@ -9,8 +9,7 @@ from plotly.subplots import make_subplots
 wi_names_ls = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
                'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
                'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-               'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-               ]
+               'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne']
 num_sweep_vars_ls = [4, 4, 4, 6]
 drive_types_ls = ['classic', 'integral', 'integral', 'classic']
 data_dir = '..\\csvs'
