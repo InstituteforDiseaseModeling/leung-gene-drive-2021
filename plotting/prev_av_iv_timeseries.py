@@ -47,11 +47,15 @@ os.makedirs(fig_dir, exist_ok=True)
 # -------- Load data
 dfifull = pd.read_csv(os.path.join(data_dir, 'dfi_' + wi_name + '.csv'))
 dfafull = pd.read_csv(os.path.join(data_dir, 'dfa_' + wi_name + '.csv'))
+dfefull = pd.read_csv(os.path.join(data_dir, 'dfe_' + wi_name + '.csv'))
+dfedfull = pd.read_csv(os.path.join(data_dir, 'dfed_' + wi_name + '.csv'))
 
 ##
 # -------- Subset data
 dfi = dfifull
 dfa = dfafull
+dfe = dfefull
+dfed = dfedfull
 allvardefsnow = {k: v for k, v in const_var_vals.items() if k not in [fc_var]}
 file_prefix = ''
 for k, v in allvardefsnow.items():
@@ -59,6 +63,10 @@ for k, v in allvardefsnow.items():
     dfi.drop(columns=[k], inplace=True)
     dfa = dfa[dfa[k] == v]
     dfa.drop(columns=[k], inplace=True)
+    dfe = dfe[dfe[k] == v]
+    dfe.drop(columns=[k], inplace=True)
+    dfed = dfed[dfed[k] == v]
+    dfed.drop(columns=[k], inplace=True)
     file_prefix = file_prefix + k + str(v) + '_'
 file_prefix = fc_type + '_' + file_prefix
 # if drive_type == 'classic':
@@ -78,61 +86,74 @@ for iax, ax in enumerate(axes):
     fcnow = fc_vals[iax]
     dfinow = dfi[dfi[fc_var] == fcnow]
     dfanow = dfa[dfa[fc_var] == fcnow]
+    dfenow = dfe[dfe[fc_var] == fcnow]
+    dfednow = dfed[(dfed[fc_var] == fcnow) & (dfed['True_Prevalence_elim'] == True)]
+    epnow = dfenow['True_Prevalence_elim'].sum() / num_seeds
+    ednow = dfednow['True_Prevalence_elim_day'].mean()
 
     twin1 = ax.twinx()
     twin2 = ax.twinx()
     twin3 = ax.twinx()
+    twin4 = ax.twinx()
 
     # Offset the right spine of twin2.  The ticks and label have already been
     # placed on the right by twinx above.
-    twin2.spines['right'].set_position(("axes", 1.07))
-    twin3.spines['right'].set_position(("axes", 1.15))
+    twin2.spines['right'].set_position(("axes", 1.1))
+    twin3.spines['right'].set_position(("axes", 1.2))
+    twin4.spines['right'].set_position(("axes", 1.3))
 
-    p1, = ax.plot(dfinow['Time'], dfinow['PfHRP2 Prevalence'], "k-", label="Prev")
+    p1, = ax.plot(dfinow['Time'], dfinow['PfHRP2 Prevalence'], color='k', label='Prev')
     ax.fill_between(dfinow['Time'],
                     dfinow['PfHRP2 Prevalence'] - 1.96 * dfinow['PfHRP2 Prevalence_std'] / np.sqrt(num_seeds),
                     dfinow['PfHRP2 Prevalence'] + 1.96 * dfinow['PfHRP2 Prevalence_std'] / np.sqrt(num_seeds),
                     alpha=0.3, color='k')
-    p2, = twin1.plot(dfinow['Time'], dfinow['Adult Vectors'], "r-", label="AV")
+    p2, = twin1.plot(dfinow['Time'], dfinow['Adult Vectors'], color='tab:orange', label="AV")
     twin1.fill_between(dfinow['Time'],
                        dfinow['Adult Vectors'] - 1.96 * dfinow['Adult Vectors_std'] / np.sqrt(num_seeds),
                        dfinow['Adult Vectors'] + 1.96 * dfinow['Adult Vectors_std'] / np.sqrt(num_seeds),
-                       alpha=0.3, color='r')
-    p3, = twin2.plot(dfinow['Time'], dfinow['Infectious Vectors'], "g-", label="IVF")
+                       alpha=0.3, color='tab:orange')
+    p3, = twin2.plot(dfinow['Time'], dfinow['Infectious Vectors'], color='tab:green', label="IVF")
     twin2.fill_between(dfinow['Time'],
                        dfinow['Infectious Vectors'] - 1.96 * dfinow['Infectious Vectors_std'] / np.sqrt(num_seeds),
                        dfinow['Infectious Vectors'] + 1.96 * dfinow['Infectious Vectors_std'] / np.sqrt(num_seeds),
-                       alpha=0.3, color='g')
-    p4, = twin3.plot(dfanow['Time'], dfanow[eff_allele], "b-", label="EF")
-    twin3.fill_between(dfanow['Time'],
+                       alpha=0.3, color='tab:green')
+    p4, = twin3.plot(dfinow['Time'], dfinow['Infectious Vectors']*dfinow['Adult Vectors'], color='tab:red', label="IVN")
+    p5, = twin4.plot(dfanow['Time'], dfanow[eff_allele], color='tab:blue', label="EF")
+    twin4.fill_between(dfanow['Time'],
                        dfanow[eff_allele] - 1.96 * dfanow[eff_allele + '_std'] / np.sqrt(num_seeds),
                        dfanow[eff_allele] + 1.96 * dfanow[eff_allele + '_std'] / np.sqrt(num_seeds),
-                       alpha=0.3, color='b')
+                       alpha=0.3, color='tab:blue')
 
     ax.set_xlim(0, 365 * num_yrs)
     ax.set_ylim(0, 0.6)
     twin1.set_ylim(0, 4000)
     twin2.set_ylim(0, 0.1)
-    twin3.set_ylim(0, 1)
+    twin3.set_ylim(0, 100)
+    twin4.set_ylim(0, 1)
 
     ax.set_xlabel("Time")
     ax.set_ylabel("PfHRP2 Prevalence")
     twin1.set_ylabel("Adult Vectors")
     twin2.set_ylabel("Infectious Vectors")
-    twin3.set_ylabel("Effector Freq")
+    twin3.set_ylabel("Infectious Vectors #")
+    twin4.set_ylabel("Effector Freq")
 
     ax.yaxis.label.set_color(p1.get_color())
     twin1.yaxis.label.set_color(p2.get_color())
     twin2.yaxis.label.set_color(p3.get_color())
     twin3.yaxis.label.set_color(p4.get_color())
+    twin4.yaxis.label.set_color(p5.get_color())
 
-    ax.set_title(fc_var + ' = ' + str(fcnow))
+    ax.set_title(fc_var + ' = ' + str(fcnow) +
+                 ', ' + 'ep = ' + str(epnow) +
+                 ', ' + 'ed = ' + "{:.1f}".format(ednow))
 
     tkw = dict(size=4, width=1.5)
     ax.tick_params(axis='y', colors=p1.get_color(), **tkw)
     twin1.tick_params(axis='y', colors=p2.get_color(), **tkw)
     twin2.tick_params(axis='y', colors=p3.get_color(), **tkw)
     twin3.tick_params(axis='y', colors=p4.get_color(), **tkw)
+    twin4.tick_params(axis='y', colors=p5.get_color(), **tkw)
     ax.tick_params(axis='x', **tkw)
 
     # ax.legend(handles=[p1, p2, p3, p4])
@@ -148,4 +169,3 @@ fig.tight_layout()
 fig_file_png = os.path.join(fig_dir, file_prefix + 'prev_av_ivf_ef.png')
 plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
 plt.show()
-
