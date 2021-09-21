@@ -6,7 +6,7 @@ import pandas as pd
 # -------- Set experiments/work items to load
 
 # -- spatial, classic, GM only, EIR = 10
-# NOTE THAT THIS WORK ITEM/EXP DOESN'T HAVE ALLELE FREQS
+# NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
 # wi_name = 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, GM only, EIR = 10'
 # wi_names = ['spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_release_node_num',
@@ -55,7 +55,7 @@ import pandas as pd
 # drive_type = 'integral'
 
 # -- spatial, classic, GM only, EIR = 30
-# NOTE THAT THIS WORK ITEM/EXP DOESN'T HAVE ALLELE FREQS
+# NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
 # wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, GM only, EIR = 30'
 # wi_names = ['spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_release_day_release_node_num',
@@ -80,16 +80,21 @@ import pandas as pd
 # drive_type = 'integral'
 
 # -- spatial, classic, VC and GM, EIR = 30
-# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
-# wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 30'
-# wi_names = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-#             'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0',
-#             'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne']
+wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
+wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 30'
+wi_names = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+            'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0',
+            'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne']
+# BEFORE ADDING IN MORE INSET CHART VARS
 # data_dirs = ['Y:\\home\\sleung\\workitems\\a82\\f7d\\335\\a82f7d33-5705-ec11-a9ed-b88303911bc1',
 #              'Y:\\home\\sleung\\workitems\\8b9\\2f1\\679\\8b92f167-950b-ec11-a9ed-b88303911bc1',
 #              'Y:\\home\\sleung\\workitems\\aba\\769\\f07\\aba769f0-7312-ec11-a9ed-b88303911bc1']
-# num_sweep_vars = 4
-# drive_type = 'classic'
+# AFTER ADDING IN MORE INSET CHART VARS
+data_dirs = ['Y:\\home\\sleung\\workitems\\a46\\048\\996\\a4604899-6f1a-ec11-a9ed-b88303911bc1',
+             'Y:\\home\\sleung\\workitems\\24c\\b36\\fc6\\24cb36fc-6f1a-ec11-a9ed-b88303911bc1',
+             'Y:\\home\\sleung\\workitems\\f67\\e3c\\d56\\f67e3cd5-6f1a-ec11-a9ed-b88303911bc1']
+num_sweep_vars = 4
+drive_type = 'classic'
 
 # -- spatial, integral, VC and GM, EIR = 30
 # wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2'
@@ -104,7 +109,7 @@ import pandas as pd
 # drive_type = 'integral'
 
 # -- spatial, classic, VC and GM, EIR = 80
-# NOTE THAT THIS WORK ITEM/EXP DOESN'T HAVE ALLELE FREQS
+# NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 80'
 # wi_names = ['spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_release_node_num',
@@ -117,16 +122,16 @@ import pandas as pd
 # drive_type = 'classic'
 
 # -- spatial, integral, VC and GM, EIR = 80
-wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
-wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
-wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
-            'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20',
-            'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2']
-data_dirs = ['Y:\\home\\sleung\\workitems\\41d\\361\\795\\41d36179-5605-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\53c\\966\\d41\\53c966d4-1014-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\d5b\\c7a\\230\\d5bc7a23-0c14-ec11-a9ed-b88303911bc1']
-num_sweep_vars = 4
-drive_type = 'integral'
+# wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+# wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
+# wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
+#             'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20',
+#             'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2']
+# data_dirs = ['Y:\\home\\sleung\\workitems\\41d\\361\\795\\41d36179-5605-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\53c\\966\\d41\\53c966d4-1014-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\d5b\\c7a\\230\\d5bc7a23-0c14-ec11-a9ed-b88303911bc1']
+# num_sweep_vars = 4
+# drive_type = 'integral'
 
 elim_day = 2555  # day on which elim fraction is calculated
 
@@ -220,8 +225,8 @@ if drive_type == 'integral':
         dfi = dfi[['Time', 'rc', 'd1', 'rr20', 'se2',
                    'PfHRP2 Prevalence', 'PfHRP2 Prevalence_std',
                    'True Prevalence', 'True Prevalence_std',
-                   # 'Adult Vectors', 'Adult Vectors_std',
-                   # 'Infectious Vectors', 'Infectious Vectors_std',
+                   'Adult Vectors', 'Adult Vectors_std',
+                   'Infectious Vectors', 'Infectious Vectors_std',
                    # 'Daily EIR', 'Daily EIR_std'
                    ]]
 elif drive_type == 'classic':
@@ -237,16 +242,16 @@ elif drive_type == 'classic':
         dfi = dfi[['Time', 'rc', 'd', 'rr0', 'sne', 'rd', 'nn',
                    'PfHRP2 Prevalence', 'PfHRP2 Prevalence_std',
                    'True Prevalence', 'True Prevalence_std',
-                   # 'Adult Vectors', 'Adult Vectors_std',
-                   # 'Infectious Vectors', 'Infectious Vectors_std',
+                   'Adult Vectors', 'Adult Vectors_std',
+                   'Infectious Vectors', 'Infectious Vectors_std',
                    # 'Daily EIR', 'Daily EIR_std'
                    ]]
     elif num_sweep_vars == 4:
         dfi = dfi[['Time', 'rc', 'd', 'rr0', 'sne',
                    'PfHRP2 Prevalence', 'PfHRP2 Prevalence_std',
                    'True Prevalence', 'True Prevalence_std',
-                   # 'Adult Vectors', 'Adult Vectors_std',
-                   # 'Infectious Vectors', 'Infectious Vectors_std',
+                   'Adult Vectors', 'Adult Vectors_std',
+                   'Infectious Vectors', 'Infectious Vectors_std',
                    # 'Daily EIR', 'Daily EIR_std'
                    ]]
 
