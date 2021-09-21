@@ -112,12 +112,11 @@ for iwi, wi_name in enumerate(wi_names_ls):
             for ov_xvar_val in ov_xvar_vals:
 
                 # - Compute heatmap values
+                dfenow = dfesm
                 allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
-                if len(allvardefsnow) == 0:
-                    dfenow = dfesm
-                else:
+                if len(allvardefsnow) > 0:
                     for k, v in allvardefsnow.items():
-                        dfenow = dfesm[dfesm[k] == v]
+                        dfenow = dfenow[dfenow[k] == v]
                         dfenow.drop(columns=[k], inplace=True)
                 dfenow = dfenow[dfenow[ov_xvar] == ov_xvar_val]
                 dfenow = dfenow[dfenow[ov_yvar] == ov_yvar_val]
@@ -197,12 +196,11 @@ for iwi, wi_name in enumerate(wi_names_ls):
             for ov_xvar_val in ov_xvar_vals:
 
                 # - Compute heatmap values
+                dfednow = dfedsm
                 allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
-                if len(allvardefsnow) == 0:
-                    dfednow = dfedsm
-                else:
+                if len(allvardefsnow) > 0:
                     for k, v in allvardefsnow.items():
-                        dfednow = dfedsm[dfedsm[k] == v]
+                        dfednow = dfednow[dfednow[k] == v]
                         dfednow.drop(columns=[k], inplace=True)
                 dfednow = dfednow[dfednow[ov_xvar] == ov_xvar_val]
                 dfednow = dfednow[dfednow[ov_yvar] == ov_yvar_val]
