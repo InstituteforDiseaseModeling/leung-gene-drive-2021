@@ -44,9 +44,11 @@ wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
 # const_var_vals = {'rr0': 0.001, 'd': 1.0, 'rc': 0.7}
 # fc_type = 'decrease'
 # const_var_vals = {'rr0': 0.01, 'd': 0.9, 'rc': 0.9}
+# const_var_vals = {'rr0': 0.1, 'd': 1.0, 'rc': 1.0}
 fc_type = 'incdec'
 # const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.9}
-const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.9}
+# const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.9}
+const_var_vals = {'rr0': 0.01, 'd': 1.0, 'rc': 0.8}
 # --- integral exps
 
 ##
