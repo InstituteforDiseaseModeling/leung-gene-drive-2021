@@ -17,26 +17,37 @@ released_day = 180
 itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 fc_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
-# -- classic exps
+# --- classic exps
 drive_type = 'classic'
 eff_allele = 'a1'
 fc_var = 'sne'
+# -- EIR = 30
 # - VC and GM
-distrib_itns = True
-wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
+# distrib_itns = True
+# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
 # fc_type = 'increase'
 # const_var_vals = {'rr0': 0.0, 'd': 1.0, 'rc': 0.5}
 # const_var_vals = {'rr0': 0.0, 'd': 0.95, 'rc': 0.5}
 # fc_type = 'decrease'
 # const_var_vals = {'rr0': 0.0, 'd': 0.9, 'rc': 0.9}
 # const_var_vals = {'rr0': 0.1, 'd': 0.9, 'rc': 0.8}
-fc_type = 'incdec'
+# fc_type = 'incdec'
 # const_var_vals = {'rr0': 0.001, 'd': 0.95, 'rc': 0.7}
 # const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.7}
-const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.6}
+# const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.6}
+# const_var_vals = {'rr0': 0, 'd': 0.95, 'rc': 0.6}
 # - GM only
-# distrib_itns = False
-# -- integral exps
+distrib_itns = False
+wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+# fc_type = 'increase'
+# const_var_vals = {'rr0': 0.001, 'd': 1.0, 'rc': 0.8}
+# const_var_vals = {'rr0': 0.001, 'd': 1.0, 'rc': 0.7}
+# fc_type = 'decrease'
+# const_var_vals = {'rr0': 0.01, 'd': 0.9, 'rc': 0.9}
+fc_type = 'incdec'
+# const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.9}
+const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.9}
+# --- integral exps
 
 ##
 # -------- Set fig dir
