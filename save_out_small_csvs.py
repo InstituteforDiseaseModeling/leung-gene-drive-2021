@@ -117,7 +117,7 @@ import pandas as pd
 # num_sweep_vars = 4
 # drive_type = 'integral'
 
-# -- spatial, classic, VC and GM, EIR = 80 --> DONE
+# ---- spatial, classic, VC and GM, EIR = 80 --> DONE
 # NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 80'
@@ -134,7 +134,7 @@ import pandas as pd
 # num_sweep_vars = 4  # 6
 # drive_type = 'classic'
 
-# -- spatial, integral, VC and GM, EIR = 80
+# ---- spatial, integral, VC and GM, EIR = 80
 wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
 wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
@@ -173,47 +173,6 @@ elif (wi_name == 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_s
     # - 1st, 2nd, and 3rd work items have no partition vars
     for i in range(3):
         file_suffixes.append([])
-# if wi_name == 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2':
-#     for i in range(3):
-#         file_suffixes.append([])
-#     # - 1st work item
-#     partition_vars = ['d1']
-#     partition_vars_vals = [[1, 0.95, 0.9]]
-#     for partition_vars_val0 in partition_vars_vals[0]:
-#         fsbegtemp = partition_vars[0] + str(partition_vars_val0)
-#         file_suffixes[0].append(fsbegtemp)
-#     # - 2nd and 3rd work items have no partition vars
-# elif (wi_name == 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne') \
-#         or (wi_name == 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne'):
-#     for i in range(3):
-#         file_suffixes.append([])
-#     # - 1st work item
-#     partition_vars = ['num_nodes', 'd', 'rr0']
-#     partition_vars_vals = [[12, 6], [1, 0.95, 0.9], [0, 0.1, 0.2]]
-#     for partition_vars_val0 in partition_vars_vals[0]:
-#         fsbegtemp = partition_vars[0] + str(partition_vars_val0)
-#         for partition_vars_val1 in partition_vars_vals[1]:
-#             fsmidtemp = partition_vars[1] + str(partition_vars_val1)
-#             for partition_vars_val2 in partition_vars_vals[2]:
-#                 fsendtemp = partition_vars[2] + str(partition_vars_val2)
-#                 file_suffixes[0].append(fsbegtemp + '_' + fsmidtemp + '_' + fsendtemp)
-#     # - 2nd and 3rd work items have no partition vars
-# elif wi_name == 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne':
-#     for i in range(3):
-#         file_suffixes.append([])
-#     # - 1st work item
-#     partition_vars = ['num_nodes', 'd', 'rr0', 'sne']
-#     partition_vars_vals = [[12, 6], [1, 0.95, 0.9], [0, 0.1, 0.2], [0, 0.05, 0.1, 0.15, 0.2]]
-#     for partition_vars_val0 in partition_vars_vals[0]:
-#         fsbegtemp = partition_vars[0] + str(partition_vars_val0)
-#         for partition_vars_val1 in partition_vars_vals[1]:
-#             fsmidtemp = partition_vars[1] + str(partition_vars_val1)
-#             for partition_vars_val2 in partition_vars_vals[2]:
-#                 fsendtemp = partition_vars[2] + str(partition_vars_val2)
-#                 for partition_vars_val3 in partition_vars_vals[3]:
-#                     fsend1temp = partition_vars[3] + str(partition_vars_val3)
-#                     file_suffixes[0].append(fsbegtemp + '_' + fsmidtemp + '_' + fsendtemp + '_' + fsend1temp)
-#     # - 2nd and 3rd work items have no partition vars
 
 # -------- Load data
 dfi = pd.DataFrame()
