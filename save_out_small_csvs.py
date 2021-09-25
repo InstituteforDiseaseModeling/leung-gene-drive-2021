@@ -78,18 +78,18 @@ import pandas as pd
 # num_sweep_vars = 4  # 6
 # drive_type = 'classic'
 
-# ---- spatial, integral, GM only, EIR = 30 --> STILL NEED TO DO!!!
-# wi_name = 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2'
-# wi_name_sh = 'spatial, integral drive, GM only, EIR = 30'
-# wi_names = ['spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-#             'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20',
-#             'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2']
-# # AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
-# data_dirs = ['ANALYZING!!',
-#              'Y:\\home\\sleung\\workitems\\6c9\\89e\\ae7\\6c989eae-701a-ec11-a9ed-b88303911bc1',
-#              'Y:\\home\\sleung\\workitems\\fae\\724\\d97\\fae724d9-701a-ec11-a9ed-b88303911bc1']
-# num_sweep_vars = 4
-# drive_type = 'integral'
+# ---- spatial, integral, GM only, EIR = 30 --> DONE
+wi_name = 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2'
+wi_name_sh = 'spatial, integral drive, GM only, EIR = 30'
+wi_names = ['spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+            'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20',
+            'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2']
+# AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
+data_dirs = ['Z:\\home\\sleung\\workitems\\7a1\\d07\\d90\\7a1d07d9-0a1d-ec11-9ecd-9440c9bee941',
+             'Y:\\home\\sleung\\workitems\\6c9\\89e\\ae7\\6c989eae-701a-ec11-a9ed-b88303911bc1',
+             'Y:\\home\\sleung\\workitems\\fae\\724\\d97\\fae724d9-701a-ec11-a9ed-b88303911bc1']
+num_sweep_vars = 4
+drive_type = 'integral'
 
 # ---- spatial, classic, VC and GM, EIR = 30 --> DONE
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
@@ -135,17 +135,17 @@ import pandas as pd
 # drive_type = 'classic'
 
 # ---- spatial, integral, VC and GM, EIR = 80
-wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
-wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
-wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
-            'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20',
-            'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2']
-# AFTER ADDING IN MORE INSET CHART VARS
-data_dirs = ['Y:\\home\\sleung\\workitems\\e49\\e74\\0e0\\e49e740e-071b-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\a9e\\e4c\\440\\a9ee4c44-071b-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\2a1\\4de\\7c0\\2a14de7c-071b-ec11-a9ed-b88303911bc1']
-num_sweep_vars = 4
-drive_type = 'integral'
+# wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+# wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
+# wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
+#             'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20',
+#             'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2']
+# # AFTER ADDING IN MORE INSET CHART VARS
+# data_dirs = ['Y:\\home\\sleung\\workitems\\e49\\e74\\0e0\\e49e740e-071b-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\a9e\\e4c\\440\\a9ee4c44-071b-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\2a1\\4de\\7c0\\2a14de7c-071b-ec11-a9ed-b88303911bc1']
+# num_sweep_vars = 4
+# drive_type = 'integral'
 
 elim_day = 2555  # day on which elim fraction is calculated
 
