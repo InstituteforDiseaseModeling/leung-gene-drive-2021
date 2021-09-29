@@ -134,7 +134,7 @@ drive_type = 'integral'
 # num_sweep_vars = 4  # 6
 # drive_type = 'classic'
 
-# ---- spatial, integral, VC and GM, EIR = 80
+# ---- spatial, integral, VC and GM, EIR = 80 --> DONE
 # wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
 # wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
