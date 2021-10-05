@@ -5,24 +5,24 @@ import pandas as pd
 ##
 # -------- Set experiments/work items to load
 
-# ---- spatial, classic, GM only, EIR = 10 --> DONE + REDONE
+# ---- spatial, classic, GM only, EIR = 10 --> DONE + REDONE + REDONE
 # NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
-# wi_name = 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne'
-# wi_name_sh = 'spatial, classic drive, GM only, EIR = 10'
-# wi_names = [
-#     # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_release_node_num',
-#     'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-#     'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newrr0',
-#     'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne'
-# ]
-# # AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
-# data_dirs = ['Y:\\home\\sleung\\workitems\\dc0\\9b9\\f06\\dc09b9f0-6c25-ec11-9ecd-9440c9bee941',
-#              'Y:\\home\\sleung\\workitems\\a3e\\2a3\\080\\a3e2a308-031b-ec11-a9ed-b88303911bc1',
-#              'Y:\\home\\sleung\\workitems\\a93\\a13\\440\\a93a1344-031b-ec11-a9ed-b88303911bc1']
-# num_sweep_vars = 4  # 6
-# drive_type = 'classic'
+wi_name = 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne'
+wi_name_sh = 'spatial, classic drive, GM only, EIR = 10'
+wi_names = [
+    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_release_node_num',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newrr0',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne'
+]
+# AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
+data_dirs = ['Y:\\home\\sleung\\workitems\\dc0\\9b9\\f06\\dc09b9f0-6c25-ec11-9ecd-9440c9bee941',
+             'Y:\\home\\sleung\\workitems\\091\\bd2\\ac1\\091bd2ac-1826-ec11-9ecd-9440c9bee941',
+             'Y:\\home\\sleung\\workitems\\1c6\\834\\260\\1c683426-0e26-ec11-9ecd-9440c9bee941']
+num_sweep_vars = 4  # 6
+drive_type = 'classic'
 
-# ---- spatial, integral, GM only, EIR = 10 --> DONE + REDONE
+# ---- spatial, integral, GM only, EIR = 10 --> DONE + REDONE + DONE
 # wi_name = 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, GM only, EIR = 10'
 # wi_names = ['spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
@@ -35,7 +35,7 @@ import pandas as pd
 # num_sweep_vars = 4
 # drive_type = 'integral'
 
-# ---- spatial, classic, VC and GM, EIR = 10 --> DONE DONE
+# ---- spatial, classic, VC and GM, EIR = 10 --> DONE + DONE
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 10'
 # wi_names = ['spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
@@ -48,7 +48,7 @@ import pandas as pd
 # num_sweep_vars = 4
 # drive_type = 'classic'
 
-# ---- spatial, integral, VC and GM, EIR = 10 --> DONE DONE
+# ---- spatial, integral, VC and GM, EIR = 10 --> DONE + DONE
 # wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 10'
 # wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
@@ -61,7 +61,7 @@ import pandas as pd
 # num_sweep_vars = 4
 # drive_type = 'integral'
 
-# ---- spatial, classic, GM only, EIR = 30 --> DONE + REDONE
+# ---- spatial, classic, GM only, EIR = 30 --> DONE + REDONE + REDONE
 # NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
 # wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, GM only, EIR = 30'
@@ -74,24 +74,24 @@ import pandas as pd
 # # AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
 # data_dirs = ['Y:\\home\\sleung\\workitems\\d40\\1fd\\e85\\d401fde8-5a25-ec11-9ecd-9440c9bee941',
 #              'Y:\\home\\sleung\\workitems\\244\\8a9\\816\\2448a981-6e1a-ec11-a9ed-b88303911bc1',
-#              'Y:\\home\\sleung\\workitems\\7c4\\563\\fc6\\7c4563fc-6e1a-ec11-a9ed-b88303911bc1']
+#              'Y:\\home\\sleung\\workitems\\9b7\\3b3\\9c0\\9b73b39c-0c26-ec11-9ecd-9440c9bee941']
 # num_sweep_vars = 4  # 6
 # drive_type = 'classic'
 
-# ---- spatial, integral, GM only, EIR = 30 --> DONE + REDONE
+# ---- spatial, integral, GM only, EIR = 30 --> DONE + REDONE + REDONE
 # wi_name = 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, GM only, EIR = 30'
 # wi_names = ['spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
 #             'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20',
 #             'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2']
 # # AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
-# data_dirs = ['Z:\\home\\sleung\\workitems\\7a1\\d07\\d90\\7a1d07d9-0a1d-ec11-9ecd-9440c9bee941',
+# data_dirs = ['Y:\\home\\sleung\\workitems\\c5c\\376\\3d0\\c5c3763d-0d26-ec11-9ecd-9440c9bee941',
 #              'Y:\\home\\sleung\\workitems\\6c9\\89e\\ae7\\6c989eae-701a-ec11-a9ed-b88303911bc1',
 #              'Y:\\home\\sleung\\workitems\\380\\e9d\\ac5\\380e9dac-5b25-ec11-9ecd-9440c9bee941']
 # num_sweep_vars = 4
 # drive_type = 'integral'
 
-# ---- spatial, classic, VC and GM, EIR = 30 --> DONE DONE
+# ---- spatial, classic, VC and GM, EIR = 30 --> DONE + DONE + REDONE
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
 # wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 30'
 # wi_names = ['spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
@@ -100,11 +100,11 @@ import pandas as pd
 # # AFTER ADDING IN MORE INSET CHART VARS
 # data_dirs = ['Y:\\home\\sleung\\workitems\\a46\\048\\996\\a4604899-6f1a-ec11-a9ed-b88303911bc1',
 #              'Y:\\home\\sleung\\workitems\\24c\\b36\\fc6\\24cb36fc-6f1a-ec11-a9ed-b88303911bc1',
-#              'Y:\\home\\sleung\\workitems\\f67\\e3c\\d56\\f67e3cd5-6f1a-ec11-a9ed-b88303911bc1']
+#              'Y:\\home\\sleung\\workitems\\89c\\c04\\a20\\89cc04a2-0d26-ec11-9ecd-9440c9bee941']
 # num_sweep_vars = 4
 # drive_type = 'classic'
 
-# ---- spatial, integral, VC and GM, EIR = 30 --> DONE + REDONE
+# ---- spatial, integral, VC and GM, EIR = 30 --> DONE + REDONE + DONE
 # wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 30'
 # wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
@@ -119,22 +119,22 @@ import pandas as pd
 
 # ---- spatial, classic, VC and GM, EIR = 80 --> DONE
 # NOTE THAT THE 6 SWEEP VAR WORK ITEM DOESN'T HAVE ALLELE FREQS (EXP DOES)
-wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne'
-wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 80'
-wi_names = [
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_release_node_num',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne'
-]
-# AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
-data_dirs = ['Y:\\home\\sleung\\workitems\\c36\\e72\\a70\\c36e72a7-051b-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\39d\\815\\c40\\39d815c4-061b-ec11-a9ed-b88303911bc1',
-             'Y:\\home\\sleung\\workitems\\d0e\\42f\\140\\d0e42f14-061b-ec11-a9ed-b88303911bc1']
-num_sweep_vars = 4  # 6
-drive_type = 'classic'
+# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne'
+# wi_name_sh = 'spatial, classic drive, VC and GM, EIR = 80'
+# wi_names = [
+#     # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_release_node_num',
+#     'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+#     'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0',
+#     'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne'
+# ]
+# # AFTER ADDING IN MORE INSET CHART VARS AND RE-RUNNING THE 1ST EXP W/ 4 VARS
+# data_dirs = ['Y:\\home\\sleung\\workitems\\c36\\e72\\a70\\c36e72a7-051b-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\39d\\815\\c40\\39d815c4-061b-ec11-a9ed-b88303911bc1',
+#              'Y:\\home\\sleung\\workitems\\d0e\\42f\\140\\d0e42f14-061b-ec11-a9ed-b88303911bc1']
+# num_sweep_vars = 4  # 6
+# drive_type = 'classic'
 
-# ---- spatial, integral, VC and GM, EIR = 80 --> DONE DONE
+# ---- spatial, integral, VC and GM, EIR = 80 --> DONE + DONE
 # wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 # wi_name_sh = 'spatial, integral drive, VC and GM, EIR = 80'
 # wi_names = ['spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2',
@@ -153,7 +153,6 @@ file_suffixes = []
 for i in range(3):
     file_suffixes.append([])
 if (wi_name == 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2') \
-        or (wi_name == 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2') \
         or (wi_name == 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2') \
         or (wi_name == 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'):
     # - 1st and 3rd work items
@@ -164,7 +163,8 @@ if (wi_name == 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2
         file_suffixes[0].append(fsbegtemp)
         file_suffixes[2].append(fsbegtemp)
     # - 2nd work item has no partition vars
-elif (wi_name == 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2'):
+elif (wi_name == 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2') \
+        or (wi_name == 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2'):
     # - 3rd work item
     partition_vars = ['d1']
     partition_vars_vals = [[1, 0.95, 0.9]]
