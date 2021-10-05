@@ -3,3 +3,4 @@ venv/
 .idea/
 COMPS_log.log
 csvs/
+csvs_mixedgaussianconstantincubation/
