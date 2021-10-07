@@ -5,29 +5,29 @@ import plotly.express as px
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
-plot_elim_probs = 0
-plot_elim_days = 1
+plot_elim_probs = 1
+plot_elim_days = 0
 
 # -------- Setup params/datasets
 wi_names_ls = [
-    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
-    4, 4, 4, 6,
-    4, 4, 4, 6, 6, 4
-    ]
+    4,  # 4, 4, 4,
+    # 4, 4, 4, 4, 4, 4
+]
 drive_types_ls = [
-    'classic', 'integral', 'integral', 'classic',
-    'classic', 'integral', 'integral', 'classic', 'classic', 'integral'
+    'classic',  # 'integral', 'classic', 'integral',
+    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
@@ -39,35 +39,36 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
     if num_sweep_vars == 6:
         if drive_type == 'classic':
-            allvardefs = {'rc': 1, 'd': 1, 'rr0': 0, 'sne': 0,
+            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
+                          'rr0 (initial resistance)': 0, 'sne (fitness cost)': 0,
                           'rd': 180, 'nn': 6}
-            allvarvals = {'rc': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd': [1, 0.95, 0.9],
-                          'rr0': [0, 0.001, 0.01, 0.1],
-                          'sne': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5],
-                          # 'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
+                          'd (drive efficiency)': [1, 0.95, 0.9],
+                          'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                          # 'sne (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5],
+                          'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
                           'rd': [180, 240, 300, 360, 420, 480, 545],
                           'nn': [6, 12]}
     elif num_sweep_vars == 4:
         if drive_type == 'classic':
-            allvardefs = {'rc': 1, 'd': 1, 'sne': 0, 'rr0': 0}
-            allvarvals = {'rc': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd': [1, 0.95, 0.9],
-                          'rr0': [0, 0.001, 0.01, 0.1],
-                          'sne': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
-                          # 'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
+            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
+                          'sne (fitness cost)': 0, 'rr0 (initial resistance)': 0}
+            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
+                          'd (drive efficiency)': [1, 0.95, 0.9],
+                          'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                          # 'sne (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
         elif drive_type == 'integral':
-            allvardefs = {'rc': 1, 'd1': 1, 'se2': 0, 'rr20': 0}
-            allvarvals = {'rc': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd1': [1, 0.95, 0.9],
-                          'rr20': [0, 0.001, 0.01, 0.1],
-                          'se2': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
-                          # 'se2': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
+            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd1 (drive efficiency)': 1,
+                          'se2 (fitness cost)': 0, 'rr20 (initial resistance)': 0}
+            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
+                          'd1 (drive efficiency)': [1, 0.95, 0.9],
+                          'rr20 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                          # 'se2 (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
+                          'se2 (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
 
     ##
     # -------- Load data
-    # dfi = pd.read_csv(os.path.join(data_dir, 'dfi_' + wi_name + '.csv'))
-    # dfa = pd.read_csv(os.path.join(data_dir, 'dfa_' + wi_name + '.csv'))
     dfe = pd.read_csv(os.path.join(data_dir, 'dfe_' + wi_name + '.csv'))
     dfed = pd.read_csv(os.path.join(data_dir, 'dfed_' + wi_name + '.csv'))
 
@@ -81,19 +82,42 @@ for iwi, wi_name in enumerate(wi_names_ls):
         dfed = dfed[dfed['rd'] == allvardefs['rd']]
         dfed = dfed[dfed['nn'] == allvardefs['nn']]
 
+    if drive_type == 'classic':
+        dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+                            'd': 'd (drive efficiency)',
+                            'rr0': 'rr0 (initial resistance)',
+                            'sne': 'sne (fitness cost)',
+                            }, inplace=True)
+        dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+                             'd': 'd (drive efficiency)',
+                             'rr0': 'rr0 (initial resistance)',
+                             'sne': 'sne (fitness cost)',
+                             }, inplace=True)
+    elif drive_type == 'integral':
+        dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+                            'd1': 'd1 (drive efficiency)',
+                            'rr20': 'rr20 (initial resistance)',
+                            'se2': 'se2 (fitness cost)',
+                            }, inplace=True)
+        dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+                             'd1': 'd1 (drive efficiency)',
+                             'rr20': 'rr20 (initial resistance)',
+                             'se2': 'se2 (fitness cost)',
+                             }, inplace=True)
+
     ##
     # -------- Set up x/y axes
     # - Set matrix x/y vars, overall x/y vars
     if drive_type == 'classic':
-        mat_xvar = 'rr0'
-        mat_yvar = 'sne'
-        ov_xvar = 'rc'
-        ov_yvar = 'd'
+        mat_xvar = 'rr0 (initial resistance)'
+        mat_yvar = 'sne (fitness cost)'
+        ov_xvar = 'rc (phenotypic effectiveness)'
+        ov_yvar = 'd (drive efficiency)'
     elif drive_type == 'integral':
-        mat_xvar = 'rr20'
-        mat_yvar = 'se2'
-        ov_xvar = 'rc'
-        ov_yvar = 'd1'
+        mat_xvar = 'rr20 (initial resistance)'
+        mat_yvar = 'se2 (fitness cost)'
+        ov_xvar = 'rc (phenotypic effectiveness)'
+        ov_yvar = 'd1 (drive efficiency)'
 
     ov_xvar_vals = allvarvals[ov_xvar]
     ov_yvar_vals = allvarvals[ov_yvar]
@@ -121,7 +145,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 dfenow = dfenow[dfenow[ov_xvar] == ov_xvar_val]
                 dfenow = dfenow[dfenow[ov_yvar] == ov_yvar_val]
                 dfenow.drop(columns=[ov_xvar, ov_yvar], inplace=True)
-                dfenownow = (dfenow.groupby([mat_xvar, mat_yvar])['True_Prevalence_elim'].sum() / num_seeds).reset_index()
+                dfenownow = (dfenow.groupby([mat_xvar, mat_yvar])[
+                                 'True_Prevalence_elim'].sum() / num_seeds).reset_index()
                 matnow = dfenownow.pivot_table(index=[mat_yvar], columns=[mat_xvar], values='True_Prevalence_elim')
 
                 # - Create annotated heatmap
@@ -132,7 +157,9 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     zmin=0,
                     zmax=1,
                     showscale=True,
-                    colorscale='YlOrBr_r')
+                    colorscale='Greens')
+                    # colorscale='Viridis')
+                    # colorscale='YlOrBr_r')
                 )
 
                 # - Update annotation axes
@@ -179,8 +206,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
         fig.update_layout(margin=dict(l=60, r=50, b=50, t=30))
 
         fig.show()
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7*300, height=4*300, scale=5)
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7*300, height=4*300, scale=5)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7 * 300, height=4 * 300, scale=5)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7 * 300, height=4 * 300, scale=5)
 
     # -------- Create elim day matrix
     if plot_elim_days == 1:
@@ -270,5 +297,5 @@ for iwi, wi_name in enumerate(wi_names_ls):
         fig.update_layout(margin=dict(l=60, r=50, b=50, t=30))
 
         fig.show()
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.pdf', width=7*300, height=4*300, scale=5)
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.png', width=7*300, height=4*300, scale=5)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.pdf', width=7 * 300, height=4 * 300, scale=5)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.png', width=7 * 300, height=4 * 300, scale=5)
