@@ -13,6 +13,8 @@ anno_ep_all_rows = 1  # 0 = don't annotate, 1 = only annotate left square, 2 = a
 
 plot_elim_days = 1
 
+outer_axes = 'rr0orrr20_sneorse2'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
+
 ##
 # -------- Define fxns and colormaps
 greens_full = colors.get_colorscale('greens')
@@ -48,26 +50,27 @@ def wiggly(x):
 # -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
-    4,  # 4, 4, 4,
-    # 4, 4, 4, 4, 4, 4
+    4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
-    'classic',  # 'integral', 'classic', 'integral',
-    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'classic', 'integral', 'classic', 'integral',
+    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
-fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures\\elim_prob_day_matrices'
+fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
+          'gene_drive_paper\\figures\\elim_prob_day_matrices\\' + outer_axes + '_outside'
 num_seeds = 20  # num of seeds per sim
 
 for iwi, wi_name in enumerate(wi_names_ls):
@@ -149,27 +152,31 @@ for iwi, wi_name in enumerate(wi_names_ls):
     # -------- Set up x/y axes
     # - Set matrix x/y vars, overall x/y vars
     if drive_type == 'classic':
-        # - rc/d on outer axes
-        mat_xvar = 'rr0 (initial resistance)'
-        mat_yvar = 'sne (fitness cost)'
-        ov_xvar = 'rc (phenotypic effectiveness)'
-        ov_yvar = 'd (drive efficiency)'
-        # - rr0/sne on outer axes
-        # mat_xvar = 'rc (phenotypic effectiveness)'
-        # mat_yvar = 'd (drive efficiency)'
-        # ov_xvar = 'sne (fitness cost)'
-        # ov_yvar = 'rr0 (initial resistance)'
+        if outer_axes == 'rc_dord1':
+            # - rc/d on outer axes
+            mat_xvar = 'rr0 (initial resistance)'
+            mat_yvar = 'sne (fitness cost)'
+            ov_xvar = 'rc (phenotypic effectiveness)'
+            ov_yvar = 'd (drive efficiency)'
+        elif outer_axes == 'rr0orrr20_sneorse2':
+            # - rr0/sne on outer axes
+            mat_xvar = 'rc (phenotypic effectiveness)'
+            mat_yvar = 'd (drive efficiency)'
+            ov_xvar = 'sne (fitness cost)'
+            ov_yvar = 'rr0 (initial resistance)'
     elif drive_type == 'integral':
-        # - rc/d1 on outer axes
-        mat_xvar = 'rr20 (initial resistance)'
-        mat_yvar = 'se2 (fitness cost)'
-        ov_xvar = 'rc (phenotypic effectiveness)'
-        ov_yvar = 'd1 (drive efficiency)'
-        # - rr0/sne on outer axes
-        # mat_xvar = 'rc (phenotypic effectiveness)'
-        # mat_yvar = 'd1 (drive efficiency)'
-        # ov_xvar = 'se2 (fitness cost)'
-        # ov_yvar = 'rr20 (initial resistance)'
+        if outer_axes == 'rc_dord1':
+            # - rc/d1 on outer axes
+            mat_xvar = 'rr20 (initial resistance)'
+            mat_yvar = 'se2 (fitness cost)'
+            ov_xvar = 'rc (phenotypic effectiveness)'
+            ov_yvar = 'd1 (drive efficiency)'
+        elif outer_axes == 'rr0orrr20_sneorse2':
+            # - rr0/sne on outer axes
+            mat_xvar = 'rc (phenotypic effectiveness)'
+            mat_yvar = 'd1 (drive efficiency)'
+            ov_xvar = 'se2 (fitness cost)'
+            ov_yvar = 'rr20 (initial resistance)'
 
     ov_xvar_vals = allvarvals[ov_xvar]
     ov_yvar_vals = allvarvals[ov_yvar]
