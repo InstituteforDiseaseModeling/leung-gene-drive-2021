@@ -10,29 +10,54 @@ greens = greens_full[1:]
 for i in range(0, len(greens)):
     greens[i][0] = i / (len(greens) - 1)
 
+
+def monotonic_increasing(x):
+    if len(np.unique(x)) > 1:
+        dx = np.diff(x)
+        return np.all(dx >= 0)
+    else:
+        return False
+
+
+def monotonic_decreasing(x):
+    if len(np.unique(x)) > 1:
+        dx = np.diff(x)
+        return np.all(dx <= 0)
+    else:
+        return False
+
+
+def wiggly(x):
+    dx = np.diff(x)
+    if (len(np.unique(x)) > 1) & \
+            ~(np.all(dx <= 0)) & \
+            ~(np.all(dx >= 0)):
+        return True
+
+
 plot_elim_probs = 1
-plot_elim_days = 1
+plot_elim_days = 0
 
 # -------- Setup params/datasets
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
-    4, 4, 4, 4,
-    4, 4, 4, 4, 4, 4
+    4,  # 4, 4, 4,
+    # 4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
-    'classic', 'integral', 'classic', 'integral',
-    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'classic',  # 'integral', 'classic', 'integral',
+    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures\\elim_prob_day_matrices'
@@ -145,9 +170,12 @@ for iwi, wi_name in enumerate(wi_names_ls):
     # -------- Create elim prob matrix
     if plot_elim_probs == 1:
 
-        # - Initialize subplots/axes
+        # - Initialize subplots/axes/lists
         iaxis = 1
         subplots = []
+        incr_cols = []
+        decr_cols = []
+        wiggly_cols = []
 
         dfesm = dfe[dfe[mat_xvar].isin(allvarvals[mat_xvar]) &
                     dfe[mat_yvar].isin(allvarvals[mat_yvar])]
@@ -169,9 +197,23 @@ for iwi, wi_name in enumerate(wi_names_ls):
                                  'True_Prevalence_elim'].sum() / num_seeds).reset_index()
                 matnow = dfenownow.pivot_table(index=[mat_yvar], columns=[mat_xvar], values='True_Prevalence_elim')
 
+                # - try something - Compute monotonic increasing columns
+                matnow = matnow.values
+                incr_colsnow = []
+                decr_colsnow = []
+                wiggly_colsnow = []
+                for icol in range(0, matnow.shape[1]):
+                    colnow = matnow[:, icol]
+                    incr_colsnow.append(monotonic_increasing(colnow))
+                    decr_colsnow.append(monotonic_decreasing(colnow))
+                    wiggly_colsnow.append(wiggly(colnow))
+                incr_cols.append(incr_colsnow)
+                decr_cols.append(decr_colsnow)
+                wiggly_cols.append(wiggly_colsnow)
+
                 # - Create annotated heatmap
                 subplots.append(ff.create_annotated_heatmap(
-                    z=matnow.values,
+                    z=matnow,
                     x=list(range(len(allvarvals[mat_xvar]))),
                     y=list(range(len(allvarvals[mat_yvar]))),
                     zmin=0,
@@ -209,6 +251,37 @@ for iwi, wi_name in enumerate(wi_names_ls):
         # - Update annotations for all subplots
         for isp, subplot in enumerate(subplots):
             fig.layout.annotations += subplots[isp].layout.annotations
+            # - try something - Annotate monotonically increasing/decreasing columns
+            mono_decr_xs = np.where(decr_cols[isp])[0]
+            mono_incr_xs = np.where(incr_cols[isp])[0]
+            wiggly_xs = np.where(wiggly_cols[isp])[0]
+            if len(mono_decr_xs) > 0:
+                for anno_x in mono_decr_xs:
+                    for anno_y in range(0, len(allvarvals[mat_yvar])):
+                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                        # fig.add_annotation(x=anno_x, y=-0.3,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=14, color='red'),
+                                           # font=dict(size=16, color='red'),
+                                           text=r'$\triangledown$', showarrow=False)
+            if len(mono_incr_xs) > 0:
+                for anno_x in mono_incr_xs:
+                    for anno_y in range(0, len(allvarvals[mat_yvar])):
+                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                        # fig.add_annotation(x=anno_x, y=-0.3,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=11, color='red'),
+                                           # font=dict(size=12, color='red'),
+                                           text=r'$\triangle$', showarrow=False)
+            if len(wiggly_xs) > 0:
+                for anno_x in wiggly_xs:
+                    for anno_y in range(0, len(allvarvals[mat_yvar])):
+                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                        # fig.add_annotation(x=anno_x, y=-0.3,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=14, color='red'),
+                                           # font=dict(size=16, color='red'),
+                                           text='~', showarrow=False)
 
         # - Update fig layout and subplot axes
         fig.update_xaxes(
