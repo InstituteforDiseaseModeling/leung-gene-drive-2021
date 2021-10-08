@@ -28,21 +28,6 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 
 # -- EIR = 30
 
-# - VC and GM
-# distrib_itns = True
-# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
-# sweep_type = 'increase'
-# const_var_vals = {'rr0': 0.0, 'd': 1.0, 'rc': 0.5}
-# const_var_vals = {'rr0': 0.0, 'd': 0.95, 'rc': 0.5}
-# sweep_type = 'decrease'
-# const_var_vals = {'rr0': 0.0, 'd': 0.9, 'rc': 0.9}
-# const_var_vals = {'rr0': 0.1, 'd': 0.9, 'rc': 0.8}
-# sweep_type = 'incdec'
-# const_var_vals = {'rr0': 0.001, 'd': 0.95, 'rc': 0.7}
-# const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.7}
-# const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.6}
-# const_var_vals = {'rr0': 0, 'd': 0.95, 'rc': 0.6}
-
 # - GM only
 # distrib_itns = False
 # wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
@@ -62,57 +47,94 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 #     {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
 # ]
 
-# --- integral exps
-
 
 # ---- INITIAL RESISTANCE ----
 
 # --- classic exps
+# drive_type = 'classic'
+# eff_allele = 'a1'
+# sweep_var = 'rr0'
+# sweep_vals = [0.0, 0.001, 0.01, 0.1]
+
+# -- EIR = 30
+
+# - GM only
+# distrib_itns = False
+# wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+# sweep_type_ls = ['decinc', 'decinc',
+#                  'incdec', 'incdec',
+#                  'decrease', 'decrease', 'decrease']
+# const_var_vals_ls = [
+#     # - decinc
+#     {'d': 0.9, 'rc': 0.9, 'sne': 0},
+#     {'d': 0.9, 'rc': 0.9, 'sne': 0.1},
+#     # - incdec
+#     {'d': 1, 'rc': 0.6, 'sne': 0.4},
+#     {'d': 0.9, 'rc': 1, 'sne': 0.3},
+#     # - decrease
+#     {'d': 1, 'rc': 0.6, 'sne': 0.5},
+#     {'d': 1, 'rc': 0.7, 'sne': 0.3},
+#     {'d': 0.9, 'rc': 0.9, 'sne': 0.2}
+# ]
+
+
+# ---- DRIVE EFFICIENCY ----
+
+# # --- integral exps
+# drive_type = 'integral'
+# eff_allele = 'b1'
+# sweep_var = 'd1'
+# sweep_vals = [0.9, 0.95, 1]
+#
+# # -- EIR = 30
+#
+# # - VC and GM
+# distrib_itns = True
+# wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2'
+# sweep_type_ls = ['increase', 'increase', 'increase',
+#                  'decrease', 'decrease', 'decrease',
+#                  'wiggle', 'wiggle', 'wiggle', 'wiggle', 'wiggle']
+# const_var_vals_ls = [
+#     # - increase
+#     {'rc': 0.7, 'se2': 0.2, 'rr20': 0.1},
+#     {'rc': 0.7, 'se2': 0.5, 'rr20': 0.1},
+#     {'rc': 0.6, 'se2': 0.5, 'rr20': 0.01},
+#     # - decrease
+#     {'rc': 0.7, 'se2': 0.0, 'rr20': 0.0},
+#     {'rc': 0.7, 'se2': 0.1, 'rr20': 0.0},
+#     {'rc': 0.7, 'se2': 0.3, 'rr20': 0.1},
+#     # - wiggle
+#     {'rc': 0.5, 'se2': 0.2, 'rr20': 0.0},
+#     {'rc': 0.6, 'se2': 0.1, 'rr20': 0.001},
+#     {'rc': 0.5, 'se2': 0.2, 'rr20': 0.001},
+#     {'rc': 0.6, 'se2': 0.1, 'rr20': 0.01},
+#     {'rc': 0.7, 'se2': 0.0, 'rr20': 0.01}
+# ]
+
+# --- classic exps
 drive_type = 'classic'
 eff_allele = 'a1'
-sweep_var = 'rr0'
-sweep_vals = [0.0, 0.001, 0.01, 0.1]
+sweep_var = 'd'
+sweep_vals = [0.9, 0.95, 1]
 
 # -- EIR = 30
 
 # - VC and GM
-# distrib_itns = True
-# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
-# sweep_type_ls = ['decinc', 'decinc',
-#                  'incdec', 'incdec', 'incdec', 'incdec',
-#                  'decrease', 'decrease', 'decrease']
-# const_var_vals_ls = [
-#     # - decinc
-#     {'d': 1, 'rc': 0.7, 'sne': 0},
-#     {'d': 1, 'rc': 0.7, 'sne': 0.1},
-#     # - incdec
-#     {'d': 0.9, 'rc': 0.9, 'sne': 0.5},
-#     {'d': 0.9, 'rc': 0.7, 'sne': 0.5},
-#     {'d': 0.9, 'rc': 0.6, 'sne': 0.3},
-#     {'d': 0.95, 'rc': 0.6, 'sne': 0.3},
-#     # - decrease
-#     {'d': 0.9, 'rc': 1, 'sne': 0.5},
-#     {'d': 1, 'rc': 0.7, 'sne': 0.2},
-#     {'d': 0.95, 'rc': 0.6, 'sne': 0.4}
-# ]
-
-# - GM only
-distrib_itns = False
-wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-sweep_type_ls = ['decinc', 'decinc',
-                 'incdec', 'incdec',
-                 'decrease', 'decrease', 'decrease']
+distrib_itns = True
+wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
+sweep_type_ls = ['increase', 'increase',
+                 'decrease', 'decrease',
+                 'wiggle', 'wiggle']
 const_var_vals_ls = [
-    # - decinc
-    {'d': 0.9, 'rc': 0.9, 'sne': 0},
-    {'d': 0.9, 'rc': 0.9, 'sne': 0.1},
-    # - incdec
-    {'d': 1, 'rc': 0.6, 'sne': 0.4},
-    {'d': 0.9, 'rc': 1, 'sne': 0.3},
+    # - increase
+    {'rc': 0.7, 'sne': 0.1, 'rr0': 0.1},
+    {'rc': 0.5, 'sne': 0.3, 'rr0': 0.001},
     # - decrease
-    {'d': 1, 'rc': 0.6, 'sne': 0.5},
-    {'d': 1, 'rc': 0.7, 'sne': 0.3},
-    {'d': 0.9, 'rc': 0.9, 'sne': 0.2}
+    {'rc': 0.7, 'sne': 0, 'rr0': 0.001},
+    {'rc': 0.7, 'sne': 0, 'rr0': 0.1},
+    # - wiggle
+    {'rc': 0.7, 'sne': 0.2, 'rr0': 0},
+    {'rc': 0.9, 'sne': 0.5, 'rr0': 0.1}
 ]
 
 ##
