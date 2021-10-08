@@ -1,36 +1,41 @@
 import numpy as np
 import os
 import pandas as pd
-import plotly.express as px
+import plotly.colors as colors
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
+greens_full = colors.get_colorscale('greens')
+greens = greens_full[1:]
+for i in range(0, len(greens)):
+    greens[i][0] = i / (len(greens) - 1)
+
 plot_elim_probs = 1
-plot_elim_days = 0
+plot_elim_days = 1
 
 # -------- Setup params/datasets
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
-    4,  # 4, 4, 4,
-    # 4, 4, 4, 4, 4, 4
+    4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
-    'classic',  # 'integral', 'classic', 'integral',
-    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'classic', 'integral', 'classic', 'integral',
+    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
-fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
+fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures\\elim_prob_day_matrices'
 num_seeds = 20  # num of seeds per sim
 
 for iwi, wi_name in enumerate(wi_names_ls):
@@ -42,30 +47,33 @@ for iwi, wi_name in enumerate(wi_names_ls):
             allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
                           'rr0 (initial resistance)': 0, 'sne (fitness cost)': 0,
                           'rd': 180, 'nn': 6}
-            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd (drive efficiency)': [1, 0.95, 0.9],
-                          'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                          # 'sne (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5],
-                          'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
-                          'rd': [180, 240, 300, 360, 420, 480, 545],
-                          'nn': [6, 12]}
+            allvarvals = {
+                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd (drive efficiency)': [0.9, 0.95, 1],
+                'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+                'rd': [180, 240, 300, 360, 420, 480, 545],
+                'nn': [6, 12]
+            }
     elif num_sweep_vars == 4:
         if drive_type == 'classic':
             allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
                           'sne (fitness cost)': 0, 'rr0 (initial resistance)': 0}
-            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd (drive efficiency)': [1, 0.95, 0.9],
-                          'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                          # 'sne (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
-                          'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
+            allvarvals = {
+                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd (drive efficiency)': [0.9, 0.95, 1],
+                'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+            }
         elif drive_type == 'integral':
             allvardefs = {'rc (phenotypic effectiveness)': 1, 'd1 (drive efficiency)': 1,
                           'se2 (fitness cost)': 0, 'rr20 (initial resistance)': 0}
-            allvarvals = {'rc (phenotypic effectiveness)': [1, 0.9, 0.8, 0.7, 0.6, 0.5],
-                          'd1 (drive efficiency)': [1, 0.95, 0.9],
-                          'rr20 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                          # 'se2 (fitness cost)': [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]}
-                          'se2 (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]}
+            allvarvals = {
+                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd1 (drive efficiency)': [0.9, 0.95, 1],
+                'rr20 (initial resistance)': [0, 0.001, 0.01, 0.1],
+                'se2 (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+            }
 
     ##
     # -------- Load data
@@ -109,15 +117,27 @@ for iwi, wi_name in enumerate(wi_names_ls):
     # -------- Set up x/y axes
     # - Set matrix x/y vars, overall x/y vars
     if drive_type == 'classic':
+        # - rc/d on outer axes
         mat_xvar = 'rr0 (initial resistance)'
         mat_yvar = 'sne (fitness cost)'
         ov_xvar = 'rc (phenotypic effectiveness)'
         ov_yvar = 'd (drive efficiency)'
+        # - rr0/sne on outer axes
+        # mat_xvar = 'rc (phenotypic effectiveness)'
+        # mat_yvar = 'd (drive efficiency)'
+        # ov_xvar = 'sne (fitness cost)'
+        # ov_yvar = 'rr0 (initial resistance)'
     elif drive_type == 'integral':
+        # - rc/d1 on outer axes
         mat_xvar = 'rr20 (initial resistance)'
         mat_yvar = 'se2 (fitness cost)'
         ov_xvar = 'rc (phenotypic effectiveness)'
         ov_yvar = 'd1 (drive efficiency)'
+        # - rr0/sne on outer axes
+        # mat_xvar = 'rc (phenotypic effectiveness)'
+        # mat_yvar = 'd1 (drive efficiency)'
+        # ov_xvar = 'se2 (fitness cost)'
+        # ov_yvar = 'rr20 (initial resistance)'
 
     ov_xvar_vals = allvarvals[ov_xvar]
     ov_yvar_vals = allvarvals[ov_yvar]
@@ -136,8 +156,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
             for ov_xvar_val in ov_xvar_vals:
 
                 # - Compute heatmap values
-                dfenow = dfesm
                 allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
+                dfenow = dfesm
                 if len(allvardefsnow) > 0:
                     for k, v in allvardefsnow.items():
                         dfenow = dfenow[dfenow[k] == v]
@@ -157,9 +177,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     zmin=0,
                     zmax=1,
                     showscale=True,
-                    colorscale='Greens')
-                    # colorscale='Viridis')
-                    # colorscale='YlOrBr_r')
+                    colorscale=greens)
                 )
 
                 # - Update annotation axes
@@ -223,8 +241,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
             for ov_xvar_val in ov_xvar_vals:
 
                 # - Compute heatmap values
-                dfednow = dfedsm
                 allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
+                dfednow = dfedsm
                 if len(allvardefsnow) > 0:
                     for k, v in allvardefsnow.items():
                         dfednow = dfednow[dfednow[k] == v]
@@ -248,7 +266,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     zmin=(dfed['True_Prevalence_elim_day'] / 365).min(),
                     zmax=(dfed['True_Prevalence_elim_day'] / 365).max(),
                     showscale=True,
-                    colorscale='YlOrBr')
+                    colorscale=greens)
                 )
 
                 # - Update annotation axes
