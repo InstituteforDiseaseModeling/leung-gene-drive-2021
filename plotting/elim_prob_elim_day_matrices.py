@@ -5,6 +5,16 @@ import plotly.colors as colors
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
+##
+# -------- Set figures to plot
+plot_elim_probs = 1
+anno_ep_all_cols = 1  # 0 = don't annotate, 1 = only annotate bottom square, 2 = annotate all squares in column
+anno_ep_all_rows = 1  # 0 = don't annotate, 1 = only annotate left square, 2 = annotate all squares in row
+
+plot_elim_days = 1
+
+##
+# -------- Define fxns and colormaps
 greens_full = colors.get_colorscale('greens')
 greens = greens_full[1:]
 for i in range(0, len(greens)):
@@ -34,11 +44,8 @@ def wiggly(x):
             ~(np.all(dx >= 0)):
         return True
 
-
-plot_elim_probs = 1
-plot_elim_days = 0
-
-# -------- Setup params/datasets
+##
+# -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
     # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
@@ -176,6 +183,9 @@ for iwi, wi_name in enumerate(wi_names_ls):
         incr_cols = []
         decr_cols = []
         wiggly_cols = []
+        incr_rows = []
+        decr_rows = []
+        wiggly_rows = []
 
         dfesm = dfe[dfe[mat_xvar].isin(allvarvals[mat_xvar]) &
                     dfe[mat_yvar].isin(allvarvals[mat_yvar])]
@@ -197,7 +207,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                                  'True_Prevalence_elim'].sum() / num_seeds).reset_index()
                 matnow = dfenownow.pivot_table(index=[mat_yvar], columns=[mat_xvar], values='True_Prevalence_elim')
 
-                # - try something - Compute monotonic increasing columns
+                # - Categorize columns into monotonic increasing, mt decreasing, wiggly
                 matnow = matnow.values
                 incr_colsnow = []
                 decr_colsnow = []
@@ -210,6 +220,19 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 incr_cols.append(incr_colsnow)
                 decr_cols.append(decr_colsnow)
                 wiggly_cols.append(wiggly_colsnow)
+
+                # - Categorize rows into monotonic increasing, mt decreasing, wiggly
+                incr_rowsnow = []
+                decr_rowsnow = []
+                wiggly_rowsnow = []
+                for irow in range(0, matnow.shape[0]):
+                    rownow = matnow[irow, :]
+                    incr_rowsnow.append(monotonic_increasing(rownow))
+                    decr_rowsnow.append(monotonic_decreasing(rownow))
+                    wiggly_rowsnow.append(wiggly(rownow))
+                incr_rows.append(incr_rowsnow)
+                decr_rows.append(decr_rowsnow)
+                wiggly_rows.append(wiggly_rowsnow)
 
                 # - Create annotated heatmap
                 subplots.append(ff.create_annotated_heatmap(
@@ -237,8 +260,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
             row_titles=[ov_yvar + '=' + str(val) for val in ov_yvar_vals],
             x_title=mat_xvar,
             y_title=mat_yvar,
-            horizontal_spacing=0.03,
-            vertical_spacing=0.03
+            horizontal_spacing=0.015,
+            vertical_spacing=0.02
         )
 
         # - Create each subplot
@@ -249,39 +272,101 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 isp = isp + 1
 
         # - Update annotations for all subplots
+        symbol_anno_color = 'orange'
         for isp, subplot in enumerate(subplots):
             fig.layout.annotations += subplots[isp].layout.annotations
-            # - try something - Annotate monotonically increasing/decreasing columns
+
+            # - Annotate columns (mt increasing, mt decreasing, wiggly)
             mono_decr_xs = np.where(decr_cols[isp])[0]
             mono_incr_xs = np.where(incr_cols[isp])[0]
             wiggly_xs = np.where(wiggly_cols[isp])[0]
-            if len(mono_decr_xs) > 0:
-                for anno_x in mono_decr_xs:
-                    for anno_y in range(0, len(allvarvals[mat_yvar])):
-                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
-                        # fig.add_annotation(x=anno_x, y=-0.3,
+            if anno_ep_all_cols == 1:
+                if len(mono_decr_xs) > 0:
+                    for anno_x in mono_decr_xs:
+                        fig.add_annotation(x=anno_x, y=-0.3,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=14, color='red'),
-                                           # font=dict(size=16, color='red'),
-                                           text=r'$\triangledown$', showarrow=False)
-            if len(mono_incr_xs) > 0:
-                for anno_x in mono_incr_xs:
-                    for anno_y in range(0, len(allvarvals[mat_yvar])):
-                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
-                        # fig.add_annotation(x=anno_x, y=-0.3,
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text=r'$\blacktriangledown$', showarrow=False)
+                if len(mono_incr_xs) > 0:
+                    for anno_x in mono_incr_xs:
+                        fig.add_annotation(x=anno_x, y=-0.3,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=11, color='red'),
-                                           # font=dict(size=12, color='red'),
-                                           text=r'$\triangle$', showarrow=False)
-            if len(wiggly_xs) > 0:
-                for anno_x in wiggly_xs:
-                    for anno_y in range(0, len(allvarvals[mat_yvar])):
-                        fig.add_annotation(x=anno_x, y=anno_y-0.3,
-                        # fig.add_annotation(x=anno_x, y=-0.3,
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text=r'$\blacktriangle$', showarrow=False)
+                if len(wiggly_xs) > 0:
+                    for anno_x in wiggly_xs:
+                        fig.add_annotation(x=anno_x, y=-0.3,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=14, color='red'),
-                                           # font=dict(size=16, color='red'),
-                                           text='~', showarrow=False)
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text='<b>~</b>', showarrow=False)
+            elif anno_ep_all_cols == 2:
+                if len(mono_decr_xs) > 0:
+                    for anno_x in mono_decr_xs:
+                        for anno_y in range(0, len(allvarvals[mat_yvar])):
+                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text=r'$\blacktriangledown$', showarrow=False)
+                if len(mono_incr_xs) > 0:
+                    for anno_x in mono_incr_xs:
+                        for anno_y in range(0, len(allvarvals[mat_yvar])):
+                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text=r'$\blacktriangle$', showarrow=False)
+                if len(wiggly_xs) > 0:
+                    for anno_x in wiggly_xs:
+                        for anno_y in range(0, len(allvarvals[mat_yvar])):
+                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text='<b>~</b>', showarrow=False)
+
+            # - Annotate rows (mt increasing, mt decreasing, wiggly)
+            mono_decr_ys = np.where(decr_rows[isp])[0]
+            mono_incr_ys = np.where(incr_rows[isp])[0]
+            wiggly_ys = np.where(wiggly_rows[isp])[0]
+            if anno_ep_all_rows == 1:
+                if len(mono_decr_ys) > 0:
+                    for anno_y in mono_decr_ys:
+                        fig.add_annotation(x=-0.35, y=anno_y,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text=r'$\blacktriangledown$', showarrow=False)
+                if len(mono_incr_ys) > 0:
+                    for anno_y in mono_incr_ys:
+                        fig.add_annotation(x=-0.35, y=anno_y,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text=r'$\blacktriangle$', showarrow=False)
+                if len(wiggly_ys) > 0:
+                    for anno_y in wiggly_ys:
+                        fig.add_annotation(x=-0.35, y=anno_y,
+                                           xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                           font=dict(size=16, color=symbol_anno_color),
+                                           text='<b>~</b>', showarrow=False)
+            elif anno_ep_all_rows == 2:
+                if len(mono_decr_ys) > 0:
+                    for anno_y in mono_decr_ys:
+                        for anno_x in range(0, len(allvarvals[mat_xvar])):
+                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text=r'$\blacktriangledown$', showarrow=False)
+                if len(mono_incr_ys) > 0:
+                    for anno_y in mono_incr_ys:
+                        for anno_x in range(0, len(allvarvals[mat_xvar])):
+                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text=r'$\blacktriangle$', showarrow=False)
+                if len(wiggly_ys) > 0:
+                    for anno_y in wiggly_ys:
+                        for anno_x in range(0, len(allvarvals[mat_xvar])):
+                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                                               xref='x' + str(isp+1), yref='y' + str(isp+1),
+                                               font=dict(size=14, color=symbol_anno_color),
+                                               text='<b>~</b>', showarrow=False)
 
         # - Update fig layout and subplot axes
         fig.update_xaxes(
@@ -357,8 +442,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
             row_titles=[ov_yvar + '=' + str(val) for val in ov_yvar_vals],
             x_title=mat_xvar,
             y_title=mat_yvar,
-            horizontal_spacing=0.03,
-            vertical_spacing=0.03
+            horizontal_spacing=0.015,
+            vertical_spacing=0.02
         )
 
         # - Create each subplot
