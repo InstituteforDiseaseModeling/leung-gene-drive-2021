@@ -9,20 +9,25 @@ mpl.rcParams['pdf.fonttype'] = 42
 
 # -------- Setup params/datasets
 data_dir = '..\\csvs'
-base_fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
+base_fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
+               'gene_drive_paper\\figures\\prev_av_iv_timeseries'
 num_seeds = 20  # num of seeds per sim
 num_yrs = 8
 released_mosqs = True
 released_day = 180
 itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 
+
 # ---- FITNESS COST ----
+
 # --- classic exps
 # drive_type = 'classic'
 # eff_allele = 'a1'
 # sweep_var = 'sne'
 # sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+
 # -- EIR = 30
+
 # - VC and GM
 # distrib_itns = True
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
@@ -37,28 +42,39 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.7}
 # const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.6}
 # const_var_vals = {'rr0': 0, 'd': 0.95, 'rc': 0.6}
+
 # - GM only
 # distrib_itns = False
 # wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-# sweep_type = 'increase'
-# const_var_vals = {'rr0': 0.001, 'd': 1.0, 'rc': 0.8}
-# const_var_vals = {'rr0': 0.001, 'd': 1.0, 'rc': 0.7}
-# sweep_type = 'decrease'
-# const_var_vals = {'rr0': 0.01, 'd': 0.9, 'rc': 0.9}
-# const_var_vals = {'rr0': 0.1, 'd': 1.0, 'rc': 1.0}
-# sweep_type = 'incdec'
-# const_var_vals = {'rr0': 0.01, 'd': 0.95, 'rc': 0.9}
-# const_var_vals = {'rr0': 0, 'd': 0.9, 'rc': 0.9}
-# const_var_vals = {'rr0': 0.01, 'd': 1.0, 'rc': 0.8}
+# sweep_type_ls = ['increase', 'increase',
+#                  'decrease', 'decrease',
+#                  'incdec', 'incdec', 'incdec']
+# const_var_vals_ls = [
+#     # - increase
+#     {'rr0': 0.0, 'd': 1.0, 'rc': 0.8},
+#     {'rr0': 0.001, 'd': 1.0, 'rc': 0.7},
+#     # - decrease
+#     {'rr0': 0.01, 'd': 0.9, 'rc': 0.9},
+#     {'rr0': 0.1, 'd': 1.0, 'rc': 1.0},
+#     # - incdec
+#     {'rr0': 0.01, 'd': 0.95, 'rc': 0.9},
+#     {'rr0': 0, 'd': 0.9, 'rc': 0.9},
+#     {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
+# ]
+
 # --- integral exps
 
+
 # ---- INITIAL RESISTANCE ----
+
 # --- classic exps
 drive_type = 'classic'
 eff_allele = 'a1'
 sweep_var = 'rr0'
 sweep_vals = [0.0, 0.001, 0.01, 0.1]
+
 # -- EIR = 30
+
 # - VC and GM
 # distrib_itns = True
 # wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
@@ -79,25 +95,24 @@ sweep_vals = [0.0, 0.001, 0.01, 0.1]
 #     {'d': 1, 'rc': 0.7, 'sne': 0.2},
 #     {'d': 0.95, 'rc': 0.6, 'sne': 0.4}
 # ]
+
 # - GM only
 distrib_itns = False
 wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
 sweep_type_ls = ['decinc', 'decinc',
-                 'incdec', 'incdec', 'incdec', 'incdec', 'incdec',
-                 'decrease', 'decrease']
+                 'incdec', 'incdec',
+                 'decrease', 'decrease', 'decrease']
 const_var_vals_ls = [
     # - decinc
     {'d': 0.9, 'rc': 0.9, 'sne': 0},
     {'d': 0.9, 'rc': 0.9, 'sne': 0.1},
     # - incdec
-    {'d': 0.9, 'rc': 0.9, 'sne': 0.2},
-    {'d': 0.9, 'rc': 0.9, 'sne': 0.3},
-    {'d': 0.95, 'rc': 0.9, 'sne': 0.3},
-    {'d': 0.95, 'rc': 0.9, 'sne': 0.4},
-    {'d': 0.95, 'rc': 0.9, 'sne': 0.5},
+    {'d': 1, 'rc': 0.6, 'sne': 0.4},
+    {'d': 0.9, 'rc': 1, 'sne': 0.3},
     # - decrease
-    {'d': 1, 'rc': 0.8, 'sne': 0.2},
-    {'d': 1, 'rc': 0.8, 'sne': 0.3}
+    {'d': 1, 'rc': 0.6, 'sne': 0.5},
+    {'d': 1, 'rc': 0.7, 'sne': 0.3},
+    {'d': 0.9, 'rc': 0.9, 'sne': 0.2}
 ]
 
 ##
@@ -135,13 +150,6 @@ for isweep in range(0, len(sweep_type_ls)):
         dfed.drop(columns=[k], inplace=True)
         file_prefix = file_prefix + k + str(v) + '_'
     file_prefix = sweep_type + '_' + file_prefix
-    # if drive_type == 'classic':
-    #     dfi = dfifull[(dfifull['rc'] == const_var_vals['rc']) &
-    #                   (dfifull['rr0'] == const_var_vals['rr0']) &
-    #                   (dfifull['d'] == const_var_vals['d'])]
-    #     dfa = dfafull[(dfafull['rc'] == const_var_vals['rc']) &
-    #                   (dfafull['rr0'] == const_var_vals['rr0']) &
-    #                   (dfafull['d'] == const_var_vals['d'])]
 
     ##
     # ---- Plot
@@ -225,7 +233,7 @@ for isweep in range(0, len(sweep_type_ls)):
         # ax.legend(handles=[p1, p2, p3, p4])
 
         if released_mosqs == True:
-            ax.axvline(x=released_day, color='k', linestyle='--')  # mosq release date
+            ax.axvline(x=released_day, color='k', linestyle='--')
 
         if distrib_itns == True:
             for itn_day in itn_distrib_days:
