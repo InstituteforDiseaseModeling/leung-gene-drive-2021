@@ -112,30 +112,59 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # ]
 
 # --- classic exps
-drive_type = 'classic'
-eff_allele = 'a1'
-sweep_var = 'd'
-sweep_vals = [0.9, 0.95, 1]
+# drive_type = 'classic'
+# eff_allele = 'a1'
+# sweep_var = 'd'
+# sweep_vals = [0.9, 0.95, 1]
 
 # -- EIR = 30
 
+# - GM only
+# distrib_itns = False
+# wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+# sweep_type_ls = ['increase']
+# const_var_vals_ls = [
+#     # - increase
+#     {'rc': 0.9, 'sne': 0.3, 'rr0': 0.01}
+# ]
+
 # - VC and GM
-distrib_itns = True
-wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
-sweep_type_ls = ['increase', 'increase',
-                 'decrease', 'decrease',
-                 'wiggle', 'wiggle']
+# distrib_itns = True
+# wi_name = 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne'
+# sweep_type_ls = ['increase', 'increase',
+#                  'decrease', 'decrease',
+#                  'wiggle', 'wiggle']
+# const_var_vals_ls = [
+#     # - increase
+#     {'rc': 0.7, 'sne': 0.1, 'rr0': 0.1},
+#     {'rc': 0.5, 'sne': 0.3, 'rr0': 0.001},
+#     # - decrease
+#     {'rc': 0.7, 'sne': 0, 'rr0': 0.001},
+#     {'rc': 0.7, 'sne': 0, 'rr0': 0.1},
+#     # - wiggle
+#     {'rc': 0.7, 'sne': 0.2, 'rr0': 0},
+#     {'rc': 0.9, 'sne': 0.5, 'rr0': 0.1}
+# ]
+
+# ---- PHENOTYPIC EFFECTIVENESS ----
+
+# --- classic exps
+drive_type = 'classic'
+eff_allele = 'a1'
+sweep_var = 'rc'
+sweep_vals = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+# -- EIR = 30
+
+# - GM only
+distrib_itns = False
+wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+sweep_type_ls = ['increase']
 const_var_vals_ls = [
     # - increase
-    {'rc': 0.7, 'sne': 0.1, 'rr0': 0.1},
-    {'rc': 0.5, 'sne': 0.3, 'rr0': 0.001},
-    # - decrease
-    {'rc': 0.7, 'sne': 0, 'rr0': 0.001},
-    {'rc': 0.7, 'sne': 0, 'rr0': 0.1},
-    # - wiggle
-    {'rc': 0.7, 'sne': 0.2, 'rr0': 0},
-    {'rc': 0.9, 'sne': 0.5, 'rr0': 0.1}
+    {'d': 1, 'sne': 0.4, 'rr0': 0.01}
 ]
+
 
 ##
 # -------- Set fig dir
