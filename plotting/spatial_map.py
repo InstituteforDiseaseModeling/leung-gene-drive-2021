@@ -86,7 +86,7 @@ roads = features_within_polygon(road_shapefile_path, lngmin=lngmin, lngmax=lngma
 # ------ Plot population on spatial grid
 
 # - Set color map
-cmap = cm.plasma
+cmap = cm.viridis
 
 fig, ax = plt.subplots(1, 1, figsize=(12, 12))
 
@@ -106,12 +106,16 @@ ax.set_ylim([minmaxes[2], minmaxes[3]])
 ax.set_xlim([minmaxes[0], minmaxes[1]])
 
 # - Color grid cells by population
-norm = colors.Normalize(vmin=dfg['pop'].min(), vmax=dfg['pop'].max())
-m = cm.ScalarMappable(norm=norm, cmap=cmap)
-dfg['colors'] = dfg['pop'].apply(lambda x: m.to_rgba(x))
-ax.scatter(dfg['lon'], dfg['lat'], zorder=2, marker='s', s=805, c=dfg['colors'], edgecolor='silver')
+scatter_size = 690
+sc = ax.scatter(dfg['lon'], dfg['lat'], zorder=2, marker='s',
+                s=scatter_size, c=dfg['pop'], cmap=cmap, edgecolor='silver')
+fig.colorbar(sc, ax=ax, fraction=0.033, pad=0.04)
 
 # - Highlight gene drive release nodes
+dfg_rn = dfg.sort_values(by=['pop'], ascending=False)
+dfg_rn = dfg_rn[0:6]
+ax.scatter(dfg_rn['lon'], dfg_rn['lat'], zorder=2, marker='s',
+           s=scatter_size-20, facecolor='None', edgecolor='red', linewidth=3)
 
 # - Annotate each grid cell w/ pop numbers
 # for irow in range(0, len(dfg)):
