@@ -50,9 +50,9 @@ def wiggly(x):
 # -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
     # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
     # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
     # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
     # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
@@ -61,15 +61,17 @@ wi_names_ls = [
     # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
-    4, 4,
-    # 4,
     4,
+    # 4,
+    # 4,
+    # 4,
     # 4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
-    'classic', 'integral',
+    'classic',
+    # 'integral',
     # 'classic',
-    'integral',
+    # 'integral',
     # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
@@ -83,35 +85,35 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
     if num_sweep_vars == 6:
         if drive_type == 'classic':
-            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
-                          'rr0 (initial resistance)': 0, 'sne (fitness cost)': 0,
+            allvardefs = {'rc': 1, 'd': 1,
+                          'rr0': 0, 'sne': 0,
                           'rd': 180, 'nn': 6}
             allvarvals = {
-                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
-                'd (drive efficiency)': [0.9, 0.95, 1],
-                'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+                'rc': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd': [0.9, 0.95, 1],
+                'rr0': [0, 0.001, 0.01, 0.1],
+                'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5],
                 'rd': [180, 240, 300, 360, 420, 480, 545],
                 'nn': [6, 12]
             }
     elif num_sweep_vars == 4:
         if drive_type == 'classic':
-            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd (drive efficiency)': 1,
-                          'sne (fitness cost)': 0, 'rr0 (initial resistance)': 0}
+            allvardefs = {'rc': 1, 'd': 1,
+                          'sne': 0, 'rr0': 0}
             allvarvals = {
-                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
-                'd (drive efficiency)': [0.9, 0.95, 1],
-                'rr0 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                'sne (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+                'rc': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd': [0.9, 0.95, 1],
+                'rr0': [0, 0.001, 0.01, 0.1],
+                'sne': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
             }
         elif drive_type == 'integral':
-            allvardefs = {'rc (phenotypic effectiveness)': 1, 'd1 (drive efficiency)': 1,
-                          'se2 (fitness cost)': 0, 'rr20 (initial resistance)': 0}
+            allvardefs = {'rc': 1, 'd1': 1,
+                          'se2': 0, 'rr20': 0}
             allvarvals = {
-                'rc (phenotypic effectiveness)': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
-                'd1 (drive efficiency)': [0.9, 0.95, 1],
-                'rr20 (initial resistance)': [0, 0.001, 0.01, 0.1],
-                'se2 (fitness cost)': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+                'rc': [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                'd1': [0.9, 0.95, 1],
+                'rr20': [0, 0.001, 0.01, 0.1],
+                'se2': [0, 0.1, 0.2, 0.3, 0.4, 0.5]
             }
 
     ##
@@ -129,28 +131,28 @@ for iwi, wi_name in enumerate(wi_names_ls):
         dfed = dfed[dfed['rd'] == allvardefs['rd']]
         dfed = dfed[dfed['nn'] == allvardefs['nn']]
 
-    if drive_type == 'classic':
-        dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-                            'd': 'd (drive efficiency)',
-                            'rr0': 'rr0 (initial resistance)',
-                            'sne': 'sne (fitness cost)',
-                            }, inplace=True)
-        dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-                             'd': 'd (drive efficiency)',
-                             'rr0': 'rr0 (initial resistance)',
-                             'sne': 'sne (fitness cost)',
-                             }, inplace=True)
-    elif drive_type == 'integral':
-        dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-                            'd1': 'd1 (drive efficiency)',
-                            'rr20': 'rr20 (initial resistance)',
-                            'se2': 'se2 (fitness cost)',
-                            }, inplace=True)
-        dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-                             'd1': 'd1 (drive efficiency)',
-                             'rr20': 'rr20 (initial resistance)',
-                             'se2': 'se2 (fitness cost)',
-                             }, inplace=True)
+    # if drive_type == 'classic':
+    #     dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+    #                         'd': 'd (drive efficiency)',
+    #                         'rr0': 'rr0 (initial resistance)',
+    #                         'sne': 'sne (fitness cost)',
+    #                         }, inplace=True)
+    #     dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+    #                          'd': 'd (drive efficiency)',
+    #                          'rr0': 'rr0 (initial resistance)',
+    #                          'sne': 'sne (fitness cost)',
+    #                          }, inplace=True)
+    # elif drive_type == 'integral':
+    #     dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+    #                         'd1': 'd1 (drive efficiency)',
+    #                         'rr20': 'rr20 (initial resistance)',
+    #                         'se2': 'se2 (fitness cost)',
+    #                         }, inplace=True)
+    #     dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
+    #                          'd1': 'd1 (drive efficiency)',
+    #                          'rr20': 'rr20 (initial resistance)',
+    #                          'se2': 'se2 (fitness cost)',
+    #                          }, inplace=True)
 
     ##
     # -------- Set up x/y axes
@@ -158,30 +160,76 @@ for iwi, wi_name in enumerate(wi_names_ls):
     if drive_type == 'classic':
         if outer_axes == 'rc_dord1':
             # - rc/d on outer axes
-            mat_xvar = 'rr0 (initial resistance)'
-            mat_yvar = 'sne (fitness cost)'
-            ov_xvar = 'rc (phenotypic effectiveness)'
-            ov_yvar = 'd (drive efficiency)'
+            mat_xvar = 'rr0'
+            mat_yvar = 'sne'
+            ov_xvar = 'rc'
+            ov_yvar = 'd'
         elif outer_axes == 'rr0orrr20_sneorse2':
             # - rr0/sne on outer axes
-            mat_xvar = 'rc (phenotypic effectiveness)'
-            mat_yvar = 'd (drive efficiency)'
-            ov_xvar = 'sne (fitness cost)'
-            ov_yvar = 'rr0 (initial resistance)'
+            mat_xvar = 'rc'
+            mat_yvar = 'd'
+            ov_xvar = 'sne'
+            ov_yvar = 'rr0'
     elif drive_type == 'integral':
         if outer_axes == 'rc_dord1':
             # - rc/d1 on outer axes
-            mat_xvar = 'rr20 (initial resistance)'
-            mat_yvar = 'se2 (fitness cost)'
-            ov_xvar = 'rc (phenotypic effectiveness)'
-            ov_yvar = 'd1 (drive efficiency)'
+            mat_xvar = 'rr20'
+            mat_yvar = 'se2'
+            ov_xvar = 'rc'
+            ov_yvar = 'd1'
         elif outer_axes == 'rr0orrr20_sneorse2':
             # - rr0/sne on outer axes
-            mat_xvar = 'rc (phenotypic effectiveness)'
-            mat_yvar = 'd1 (drive efficiency)'
-            ov_xvar = 'se2 (fitness cost)'
-            ov_yvar = 'rr20 (initial resistance)'
+            mat_xvar = 'rc'
+            mat_yvar = 'd1'
+            ov_xvar = 'se2'
+            ov_yvar = 'rr20'
 
+    # - Set variable title strings
+    if ov_xvar == 'rc':
+        ov_xvar_strnow = ov_xvar + ' (phenotypic' + '<br>' + 'effectiveness) = '
+    elif (ov_xvar == 'd') or (ov_xvar == 'd1'):
+        ov_xvar_strnow = ov_xvar + ' (drive' + '<br>' + 'efficiency) = '
+    elif (ov_xvar == 'sne') or (ov_xvar == 'se2'):
+        ov_xvar_strnow = ov_xvar + ' (fitness' + '<br>' + 'cost) = '
+    elif (ov_xvar == 'rr0') or (ov_xvar == 'rr20'):
+        ov_xvar_strnow = ov_xvar + ' (initial' + '<br>' + 'resistance) = '
+    else:
+        ov_xvar_strnow = ov_xvar + ' ='
+
+    if ov_yvar == 'rc':
+        ov_yvar_strnow = ov_yvar + ' (phenotypic' + '<br>' + 'effectiveness) = '
+    elif (ov_yvar == 'd') or (ov_yvar == 'd1'):
+        ov_yvar_strnow = ov_yvar + ' (drive' + '<br>' + 'efficiency) = '
+    elif (ov_yvar == 'sne') or (ov_yvar == 'se2'):
+        ov_yvar_strnow = ov_yvar + ' (fitness' + '<br>' + 'cost) = '
+    elif (ov_yvar == 'rr0') or (ov_yvar == 'rr20'):
+        ov_yvar_strnow = ov_yvar + ' (initial' + '<br>' + 'resistance) = '
+    else:
+        ov_yvar_strnow = ov_yvar + ' ='
+
+    if mat_xvar == 'rc':
+        mat_xvar_strnow = mat_xvar + ' (phenotypic effectiveness) = '
+    elif (mat_xvar == 'd') or (mat_xvar == 'd1'):
+        mat_xvar_strnow = mat_xvar + ' (drive efficiency) = '
+    elif (mat_xvar == 'sne') or (mat_xvar == 'se2'):
+        mat_xvar_strnow = mat_xvar + ' (fitness cost) = '
+    elif (mat_xvar == 'rr0') or (mat_xvar == 'rr20'):
+        mat_xvar_strnow = mat_xvar + ' (initial resistance) = '
+    else:
+        mat_xvar_strnow = mat_xvar + ' ='
+
+    if mat_yvar == 'rc':
+        mat_yvar_strnow = mat_yvar + ' (phenotypic effectiveness) = '
+    elif (mat_yvar == 'd') or (mat_yvar == 'd1'):
+        mat_yvar_strnow = mat_yvar + ' (drive efficiency) = '
+    elif (mat_yvar == 'sne') or (mat_yvar == 'se2'):
+        mat_yvar_strnow = mat_yvar + ' (fitness cost) = '
+    elif (mat_yvar == 'rr0') or (mat_yvar == 'rr20'):
+        mat_yvar_strnow = mat_yvar + ' (initial resistance) = '
+    else:
+        mat_yvar_strnow = mat_yvar + ' ='
+
+    # - Set over variable values
     ov_xvar_vals = allvarvals[ov_xvar]
     ov_yvar_vals = allvarvals[ov_yvar]
 
@@ -267,13 +315,17 @@ for iwi, wi_name in enumerate(wi_names_ls):
             rows=len(ov_yvar_vals), cols=len(ov_xvar_vals),
             shared_xaxes=True,
             shared_yaxes=True,
-            column_titles=[ov_xvar + '=' + str(val) for val in ov_xvar_vals],
-            row_titles=[ov_yvar + '=' + str(val) for val in ov_yvar_vals],
-            x_title=mat_xvar,
-            y_title=mat_yvar,
+            column_titles=[ov_xvar_strnow + str(val) for val in ov_xvar_vals],
+            row_titles=[ov_yvar_strnow + str(val) for val in ov_yvar_vals],
+            x_title=mat_xvar_strnow,
+            y_title=mat_yvar_strnow,
             horizontal_spacing=0.015,
             vertical_spacing=0.02
         )
+
+        # - Change font size for row_titles/column_titles/x_title/y_title only
+        for i in fig['layout']['annotations']:
+            i['font'] = dict(size=20, color='black')
 
         # - Create each subplot
         isp = 0
@@ -383,14 +435,24 @@ for iwi, wi_name in enumerate(wi_names_ls):
         fig.update_xaxes(
             tickmode='array',
             tickvals=list(range(len(allvarvals[mat_xvar]))),
-            ticktext=[str(val) for val in allvarvals[mat_xvar]]
+            ticktext=[str(val) for val in allvarvals[mat_xvar]],
+            # titlefont=dict(size=20),
+            # tickfont=dict(size=18)
         )
         fig.update_yaxes(
             tickmode='array',
             tickvals=list(range(len(allvarvals[mat_yvar]))),
-            ticktext=[str(val) for val in allvarvals[mat_yvar]]
+            ticktext=[str(val) for val in allvarvals[mat_yvar]],
+            # titlefont=dict(size=20),
+            # tickfont=dict(size=18)
         )
-        fig.update_layout(margin=dict(l=60, r=50, b=50, t=30))
+        fig.update_layout(
+            # margin=dict(l=60, r=50, b=50, t=30),
+            # titlefont=dict(size=24),
+            font=dict(size=18),
+            # yaxis=dict(tickfont=dict(size=20)),
+            # xaxis=dict(tickfont=dict(size=20)),
+        )
 
         fig.show()
         fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7 * 300, height=4 * 300, scale=5)
