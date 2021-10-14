@@ -11,7 +11,7 @@ plot_elim_probs = 1
 anno_ep_all_cols = 1  # 0 = don't annotate, 1 = only annotate bottom square, 2 = annotate all squares in column
 anno_ep_all_rows = 0  # 0 = don't annotate, 1 = only annotate left square, 2 = annotate all squares in row
 
-plot_elim_days = 0
+plot_elim_days = 1
 
 outer_axes = 'rc_dord1'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
 
@@ -50,29 +50,29 @@ def wiggly(x):
 # -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
     4,
-    # 4,
-    # 4,
-    # 4,
-    # 4, 4, 4, 4, 4, 4
+    4,
+    4,
+    4,
+    4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
     'classic',
-    # 'integral',
-    # 'classic',
-    # 'integral',
-    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'integral',
+    'classic',
+    'integral',
+    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
