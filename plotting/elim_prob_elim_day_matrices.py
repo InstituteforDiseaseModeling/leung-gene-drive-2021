@@ -131,29 +131,6 @@ for iwi, wi_name in enumerate(wi_names_ls):
         dfed = dfed[dfed['rd'] == allvardefs['rd']]
         dfed = dfed[dfed['nn'] == allvardefs['nn']]
 
-    # if drive_type == 'classic':
-    #     dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-    #                         'd': 'd (drive efficiency)',
-    #                         'rr0': 'rr0 (initial resistance)',
-    #                         'sne': 'sne (fitness cost)',
-    #                         }, inplace=True)
-    #     dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-    #                          'd': 'd (drive efficiency)',
-    #                          'rr0': 'rr0 (initial resistance)',
-    #                          'sne': 'sne (fitness cost)',
-    #                          }, inplace=True)
-    # elif drive_type == 'integral':
-    #     dfe.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-    #                         'd1': 'd1 (drive efficiency)',
-    #                         'rr20': 'rr20 (initial resistance)',
-    #                         'se2': 'se2 (fitness cost)',
-    #                         }, inplace=True)
-    #     dfed.rename(columns={'rc': 'rc (phenotypic effectiveness)',
-    #                          'd1': 'd1 (drive efficiency)',
-    #                          'rr20': 'rr20 (initial resistance)',
-    #                          'se2': 'se2 (fitness cost)',
-    #                          }, inplace=True)
-
     ##
     # -------- Set up x/y axes
     # - Set matrix x/y vars, overall x/y vars
@@ -208,26 +185,26 @@ for iwi, wi_name in enumerate(wi_names_ls):
         ov_yvar_strnow = ov_yvar + ' ='
 
     if mat_xvar == 'rc':
-        mat_xvar_strnow = mat_xvar + ' (phenotypic effectiveness) = '
+        mat_xvar_strnow = mat_xvar + ' (phenotypic effectiveness)'
     elif (mat_xvar == 'd') or (mat_xvar == 'd1'):
-        mat_xvar_strnow = mat_xvar + ' (drive efficiency) = '
+        mat_xvar_strnow = mat_xvar + ' (drive efficiency)'
     elif (mat_xvar == 'sne') or (mat_xvar == 'se2'):
-        mat_xvar_strnow = mat_xvar + ' (fitness cost) = '
+        mat_xvar_strnow = mat_xvar + ' (fitness cost)'
     elif (mat_xvar == 'rr0') or (mat_xvar == 'rr20'):
-        mat_xvar_strnow = mat_xvar + ' (initial resistance) = '
+        mat_xvar_strnow = mat_xvar + ' (initial resistance)'
     else:
-        mat_xvar_strnow = mat_xvar + ' ='
+        mat_xvar_strnow = mat_xvar
 
     if mat_yvar == 'rc':
-        mat_yvar_strnow = mat_yvar + ' (phenotypic effectiveness) = '
+        mat_yvar_strnow = mat_yvar + ' (phenotypic effectiveness)'
     elif (mat_yvar == 'd') or (mat_yvar == 'd1'):
-        mat_yvar_strnow = mat_yvar + ' (drive efficiency) = '
+        mat_yvar_strnow = mat_yvar + ' (drive efficiency)'
     elif (mat_yvar == 'sne') or (mat_yvar == 'se2'):
-        mat_yvar_strnow = mat_yvar + ' (fitness cost) = '
+        mat_yvar_strnow = mat_yvar + ' (fitness cost)'
     elif (mat_yvar == 'rr0') or (mat_yvar == 'rr20'):
-        mat_yvar_strnow = mat_yvar + ' (initial resistance) = '
+        mat_yvar_strnow = mat_yvar + ' (initial resistance)'
     else:
-        mat_yvar_strnow = mat_yvar + ' ='
+        mat_yvar_strnow = mat_yvar
 
     # - Set over variable values
     ov_xvar_vals = allvarvals[ov_xvar]
@@ -325,7 +302,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
         # - Change font size for row_titles/column_titles/x_title/y_title only
         for i in fig['layout']['annotations']:
-            i['font'] = dict(size=20, color='black')
+            i['font'] = dict(size=24, color='black')
 
         # - Create each subplot
         isp = 0
@@ -436,22 +413,15 @@ for iwi, wi_name in enumerate(wi_names_ls):
             tickmode='array',
             tickvals=list(range(len(allvarvals[mat_xvar]))),
             ticktext=[str(val) for val in allvarvals[mat_xvar]],
-            # titlefont=dict(size=20),
-            # tickfont=dict(size=18)
         )
         fig.update_yaxes(
             tickmode='array',
             tickvals=list(range(len(allvarvals[mat_yvar]))),
             ticktext=[str(val) for val in allvarvals[mat_yvar]],
-            # titlefont=dict(size=20),
-            # tickfont=dict(size=18)
         )
         fig.update_layout(
             # margin=dict(l=60, r=50, b=50, t=30),
-            # titlefont=dict(size=24),
-            font=dict(size=18),
-            # yaxis=dict(tickfont=dict(size=20)),
-            # xaxis=dict(tickfont=dict(size=20)),
+            font=dict(size=20)
         )
 
         fig.show()
@@ -511,13 +481,17 @@ for iwi, wi_name in enumerate(wi_names_ls):
             rows=len(ov_yvar_vals), cols=len(ov_xvar_vals),
             shared_xaxes=True,
             shared_yaxes=True,
-            column_titles=[ov_xvar + '=' + str(val) for val in ov_xvar_vals],
-            row_titles=[ov_yvar + '=' + str(val) for val in ov_yvar_vals],
-            x_title=mat_xvar,
-            y_title=mat_yvar,
+            column_titles=[ov_xvar_strnow + str(val) for val in ov_xvar_vals],
+            row_titles=[ov_yvar_strnow + str(val) for val in ov_yvar_vals],
+            x_title=mat_xvar_strnow,
+            y_title=mat_yvar_strnow,
             horizontal_spacing=0.015,
             vertical_spacing=0.02
         )
+
+        # - Change font size for row_titles/column_titles/x_title/y_title only
+        for i in fig['layout']['annotations']:
+            i['font'] = dict(size=24, color='black')
 
         # - Create each subplot
         isp = 0
@@ -543,7 +517,10 @@ for iwi, wi_name in enumerate(wi_names_ls):
             tickvals=list(range(len(allvarvals[mat_yvar]))),
             ticktext=[str(val) for val in allvarvals[mat_yvar]]
         )
-        fig.update_layout(margin=dict(l=60, r=50, b=50, t=30))
+        fig.update_layout(
+            # margin=dict(l=60, r=50, b=50, t=30),
+            font=dict(size=20)
+        )
 
         fig.show()
         fig.write_image(fig_dir + '/' + wi_name + '_elim_days.pdf', width=7 * 300, height=4 * 300, scale=5)
