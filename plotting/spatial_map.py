@@ -1,17 +1,12 @@
 import json
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-import matplotlib.colors as colors
 from matplotlib import rcParams
-import numpy as np
 import os
 import pandas as pd
 import shapefile
 
 rcParams['pdf.fonttype'] = 42
-# rcParams['font.family'] = 'Myriad Pro'
-# rcParams.update({'font.size': 21})
-# rcParams.update({'font.size': 12})
 
 # ------ Set fig path
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
@@ -109,7 +104,9 @@ ax.set_xlim([minmaxes[0], minmaxes[1]])
 scatter_size = 690
 sc = ax.scatter(dfg['lon'], dfg['lat'], zorder=2, marker='s',
                 s=scatter_size, c=dfg['pop'], cmap=cmap, edgecolor='silver')
-fig.colorbar(sc, ax=ax, fraction=0.033, pad=0.04)
+cb = fig.colorbar(sc, ax=ax, fraction=0.033, pad=0.04)
+for t in cb.ax.get_yticklabels():
+     t.set_fontsize(18)
 
 # - Highlight gene drive release nodes
 dfg_rn = dfg.sort_values(by=['pop'], ascending=False)
@@ -134,8 +131,10 @@ ax.axes.get_xaxis().set_visible(False)
 ax.axes.get_yaxis().set_visible(False)
 
 # - Save plot
-fig_file = os.path.join(fig_dir, 'spatialinside_human_pop.png')
-plt.savefig(fig_file, dpi=300)
+fig_file_png = os.path.join(fig_dir, 'spatialinside_human_pop.png')
+fig_file_pdf = os.path.join(fig_dir, 'spatialinside_human_pop.pdf')
+plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
+plt.savefig(fig_file_pdf, bbox_inches="tight", dpi=300)
 plt.show()
 
 ##
