@@ -22,6 +22,13 @@ greens = greens_full[1:]
 for i in range(0, len(greens)):
     greens[i][0] = i / (len(greens) - 1)
 
+anno_size_1 = 18
+anno_size_2 = 16
+anno_y_offset_1 = -0.26
+anno_y_offset_2 = -0.3
+anno_x_offset_1 = -0.35
+anno_x_offset_2 = -0.3
+
 
 def monotonic_increasing(x):
     if len(np.unique(x)) > 1:
@@ -163,46 +170,48 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
     # - Set variable title strings
     if ov_xvar == 'rc':
-        ov_xvar_strnow = ov_xvar + ' (phenotypic' + '<br>' + 'effectiveness) = '
+        # ov_xvar_strnow = 'Phenotypic <br>effectiveness (' + ov_xvar + ') = '
+        ov_xvar_strnow = 'Phenotypic effectiveness<br>(' + ov_xvar + ') = '
     elif (ov_xvar == 'd') or (ov_xvar == 'd1'):
-        ov_xvar_strnow = ov_xvar + ' (drive' + '<br>' + 'efficiency) = '
+        ov_xvar_strnow = 'Drive efficiency<br>(' + ov_xvar + ') = '
     elif (ov_xvar == 'sne') or (ov_xvar == 'se2'):
-        ov_xvar_strnow = ov_xvar + ' (fitness' + '<br>' + 'cost) = '
+        ov_xvar_strnow = 'Fitness cost<br>(' + ov_xvar + ') = '
     elif (ov_xvar == 'rr0') or (ov_xvar == 'rr20'):
-        ov_xvar_strnow = ov_xvar + ' (initial' + '<br>' + 'resistance) = '
+        ov_xvar_strnow = 'Initial resistance<br> (' + ov_xvar + ') = '
     else:
         ov_xvar_strnow = ov_xvar + ' ='
 
     if ov_yvar == 'rc':
-        ov_yvar_strnow = ov_yvar + ' (phenotypic' + '<br>' + 'effectiveness) = '
+        # ov_yvar_strnow = 'Phenotypic <br>effectiveness (' + ov_yvar + ') = '
+        ov_yvar_strnow = 'Phenotypic effectiveness<br>(' + ov_yvar + ') = '
     elif (ov_yvar == 'd') or (ov_yvar == 'd1'):
-        ov_yvar_strnow = ov_yvar + ' (drive' + '<br>' + 'efficiency) = '
+        ov_yvar_strnow = 'Drive efficiency<br>(' + ov_yvar + ') = '
     elif (ov_yvar == 'sne') or (ov_yvar == 'se2'):
-        ov_yvar_strnow = ov_yvar + ' (fitness' + '<br>' + 'cost) = '
+        ov_yvar_strnow = 'Fitness cost<br>(' + ov_yvar + ') = '
     elif (ov_yvar == 'rr0') or (ov_yvar == 'rr20'):
-        ov_yvar_strnow = ov_yvar + ' (initial' + '<br>' + 'resistance) = '
+        ov_yvar_strnow = 'Initial resistance<br> (' + ov_yvar + ') = '
     else:
         ov_yvar_strnow = ov_yvar + ' ='
 
     if mat_xvar == 'rc':
-        mat_xvar_strnow = mat_xvar + ' (phenotypic effectiveness)'
+        mat_xvar_strnow = 'Phenotypic effectiveness (' + mat_xvar + ')'
     elif (mat_xvar == 'd') or (mat_xvar == 'd1'):
-        mat_xvar_strnow = mat_xvar + ' (drive efficiency)'
+        mat_xvar_strnow = 'Drive efficiency (' + mat_xvar + ')'
     elif (mat_xvar == 'sne') or (mat_xvar == 'se2'):
-        mat_xvar_strnow = mat_xvar + ' (fitness cost)'
+        mat_xvar_strnow = 'Fitness cost (' + mat_xvar + ')'
     elif (mat_xvar == 'rr0') or (mat_xvar == 'rr20'):
-        mat_xvar_strnow = mat_xvar + ' (initial resistance)'
+        mat_xvar_strnow = 'Initial resistance (' + mat_xvar + ')'
     else:
         mat_xvar_strnow = mat_xvar
 
     if mat_yvar == 'rc':
-        mat_yvar_strnow = mat_yvar + ' (phenotypic effectiveness)'
+        mat_yvar_strnow = 'Phenotypic effectiveness (' + mat_yvar + ')'
     elif (mat_yvar == 'd') or (mat_yvar == 'd1'):
-        mat_yvar_strnow = mat_yvar + ' (drive efficiency)'
+        mat_yvar_strnow = 'Drive efficiency (' + mat_yvar + ')'
     elif (mat_yvar == 'sne') or (mat_yvar == 'se2'):
-        mat_yvar_strnow = mat_yvar + ' (fitness cost)'
+        mat_yvar_strnow = 'Fitness cost (' + mat_yvar + ')'
     elif (mat_yvar == 'rr0') or (mat_yvar == 'rr20'):
-        mat_yvar_strnow = mat_yvar + ' (initial resistance)'
+        mat_yvar_strnow = 'Initial resistance (' + mat_yvar + ')'
     else:
         mat_yvar_strnow = mat_yvar
 
@@ -210,6 +219,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
     ov_xvar_vals = allvarvals[ov_xvar]
     ov_yvar_vals = allvarvals[ov_yvar]
 
+    ##
     # -------- Create elim prob matrix
     if plot_elim_probs == 1:
 
@@ -323,43 +333,43 @@ for iwi, wi_name in enumerate(wi_names_ls):
             if anno_ep_all_cols == 1:
                 if len(mono_decr_xs) > 0:
                     for anno_x in mono_decr_xs:
-                        fig.add_annotation(x=anno_x, y=-0.3,
+                        fig.add_annotation(x=anno_x, y=anno_y_offset_1,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text=r'$\blacktriangledown$', showarrow=False)
                 if len(mono_incr_xs) > 0:
                     for anno_x in mono_incr_xs:
-                        fig.add_annotation(x=anno_x, y=-0.3,
+                        fig.add_annotation(x=anno_x, y=anno_y_offset_1,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text=r'$\blacktriangle$', showarrow=False)
                 if len(wiggly_xs) > 0:
                     for anno_x in wiggly_xs:
-                        fig.add_annotation(x=anno_x, y=-0.3,
+                        fig.add_annotation(x=anno_x, y=anno_y_offset_1,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text='<b>~</b>', showarrow=False)
             elif anno_ep_all_cols == 2:
                 if len(mono_decr_xs) > 0:
                     for anno_x in mono_decr_xs:
                         for anno_y in range(0, len(allvarvals[mat_yvar])):
-                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                            fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text=r'$\blacktriangledown$', showarrow=False)
                 if len(mono_incr_xs) > 0:
                     for anno_x in mono_incr_xs:
                         for anno_y in range(0, len(allvarvals[mat_yvar])):
-                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                            fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text=r'$\blacktriangle$', showarrow=False)
                 if len(wiggly_xs) > 0:
                     for anno_x in wiggly_xs:
                         for anno_y in range(0, len(allvarvals[mat_yvar])):
-                            fig.add_annotation(x=anno_x, y=anno_y-0.3,
+                            fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text='<b>~</b>', showarrow=False)
 
             # - Annotate rows (mt increasing, mt decreasing, wiggly)
@@ -369,43 +379,43 @@ for iwi, wi_name in enumerate(wi_names_ls):
             if anno_ep_all_rows == 1:
                 if len(mono_decr_ys) > 0:
                     for anno_y in mono_decr_ys:
-                        fig.add_annotation(x=-0.35, y=anno_y,
+                        fig.add_annotation(x=anno_x_offset_1, y=anno_y,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text=r'$\blacktriangledown$', showarrow=False)
                 if len(mono_incr_ys) > 0:
                     for anno_y in mono_incr_ys:
-                        fig.add_annotation(x=-0.35, y=anno_y,
+                        fig.add_annotation(x=anno_x_offset_1, y=anno_y,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text=r'$\blacktriangle$', showarrow=False)
                 if len(wiggly_ys) > 0:
                     for anno_y in wiggly_ys:
-                        fig.add_annotation(x=-0.35, y=anno_y,
+                        fig.add_annotation(x=anno_x_offset_1, y=anno_y,
                                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                           font=dict(size=16, color=symbol_anno_color),
+                                           font=dict(size=anno_size_1, color=symbol_anno_color),
                                            text='<b>~</b>', showarrow=False)
             elif anno_ep_all_rows == 2:
                 if len(mono_decr_ys) > 0:
                     for anno_y in mono_decr_ys:
                         for anno_x in range(0, len(allvarvals[mat_xvar])):
-                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                            fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text=r'$\blacktriangledown$', showarrow=False)
                 if len(mono_incr_ys) > 0:
                     for anno_y in mono_incr_ys:
                         for anno_x in range(0, len(allvarvals[mat_xvar])):
-                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                            fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text=r'$\blacktriangle$', showarrow=False)
                 if len(wiggly_ys) > 0:
                     for anno_y in wiggly_ys:
                         for anno_x in range(0, len(allvarvals[mat_xvar])):
-                            fig.add_annotation(y=anno_y, x=anno_x-0.3,
+                            fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
                                                xref='x' + str(isp+1), yref='y' + str(isp+1),
-                                               font=dict(size=14, color=symbol_anno_color),
+                                               font=dict(size=anno_size_2, color=symbol_anno_color),
                                                text='<b>~</b>', showarrow=False)
 
         # - Update fig layout and subplot axes
