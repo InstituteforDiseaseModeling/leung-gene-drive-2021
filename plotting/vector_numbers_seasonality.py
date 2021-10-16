@@ -51,21 +51,31 @@ os.makedirs(fig_dir, exist_ok=True)
 # ---- Plot adult vectors, infectious vectors (frac), infectious vectors (number), daily EIR
 fig, ax = plt.subplots(1, 1, figsize=(12, 6))
 
-for ieir, adult_vector_mean in enumerate(adult_vector_means):
-    ax.plot(list(range(0, 365)), adult_vector_mean,
-            label=eir_labels[ieir], lw=3)
-ax.axvline(x=released_day, color='k', linestyle='--')
+for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
+    ax.fill_between(list(range(0, 365)), adult_vector_mean,
+                    label=eir_labels[::-1][ieir])
+# for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
+#     ax.plot(list(range(0, 365)), adult_vector_mean,
+#             label=eir_labels[ieir], lw=3)
+# ax.axvline(x=released_day, color='k', linestyle='--')
 
 ax.set_ylim([0, 8900])
 ax.set_xlim([0, 365])
-ax.set_ylabel('Adult Vectors Per Node')
+ax.set_ylabel('Adult Vectors')
+ax.yaxis.set_ticklabels([])
 ax.set_xticks([0.0, 30.417, 60.833, 91.25, 121.667, 152.083,
                182.5, 212.917, 243.333, 273.75, 304.167, 334.583])
 ax.set_xticklabels(['Jan 1', 'Feb 1', 'Mar 1', 'Apr 1', 'May 1', 'Jun 1',
                     'Jul 1', 'Aug 1', 'Sep 1', 'Oct 1', 'Nov 1', 'Dec 1'],
                    rotation=45)
 handles, labels = ax.get_legend_handles_labels()
-ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
+# ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
+ax.legend(loc='upper left', frameon=False)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+# ax.spines['left'].set_visible(False)
+# ax.get_yaxis().set_ticks([])
 
 fig.tight_layout()
 fig_file_png = os.path.join(fig_dir, 'vector_numbers_seasonality.png')
