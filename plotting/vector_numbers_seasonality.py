@@ -4,13 +4,12 @@ import json
 import matplotlib.pylab as pylab
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
-import numpy as np
 import os
 import pandas as pd
 
-params = {'legend.fontsize': 16,  # 'x-large',
+params = {'legend.fontsize': 16,
           'axes.labelsize': 20,
-          'xtick.labelsize': 18,  # 'x-large',
+          'xtick.labelsize': 18,
           'ytick.labelsize': 18}
 pylab.rcParams.update(params)
 
@@ -51,12 +50,16 @@ os.makedirs(fig_dir, exist_ok=True)
 # ---- Plot adult vectors, infectious vectors (frac), infectious vectors (number), daily EIR
 fig, ax = plt.subplots(1, 1, figsize=(12, 6))
 
+# - Filled time series
 for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
     ax.fill_between(list(range(0, 365)), adult_vector_mean,
                     label=eir_labels[::-1][ieir])
+# - Non-filled time series
 # for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
 #     ax.plot(list(range(0, 365)), adult_vector_mean,
 #             label=eir_labels[ieir], lw=3)
+
+# - Release day vertical line
 # ax.axvline(x=released_day, color='k', linestyle='--')
 
 ax.set_ylim([0, 8900])
@@ -68,14 +71,13 @@ ax.set_xticks([0.0, 30.417, 60.833, 91.25, 121.667, 152.083,
 ax.set_xticklabels(['Jan 1', 'Feb 1', 'Mar 1', 'Apr 1', 'May 1', 'Jun 1',
                     'Jul 1', 'Aug 1', 'Sep 1', 'Oct 1', 'Nov 1', 'Dec 1'],
                    rotation=45)
-handles, labels = ax.get_legend_handles_labels()
-# ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
 ax.legend(loc='upper left', frameon=False)
+# - Or reverse order of handles/labels if desired
+# handles, labels = ax.get_legend_handles_labels()
+# ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
-# ax.spines['left'].set_visible(False)
-# ax.get_yaxis().set_ticks([])
 
 fig.tight_layout()
 fig_file_png = os.path.join(fig_dir, 'vector_numbers_seasonality.png')
