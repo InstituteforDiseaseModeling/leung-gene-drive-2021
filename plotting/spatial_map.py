@@ -14,7 +14,7 @@ rcParams['pdf.fonttype'] = 42
 # rcParams.update({'font.size': 12})
 
 # ------ Set fig path
-fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentation_writeups\\gene_drive_paper\\figures'
+fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\gene_drive_paper\\figures'
 os.makedirs(fig_dir, exist_ok=True)
 
 ##
@@ -137,3 +137,10 @@ ax.axes.get_yaxis().set_visible(False)
 fig_file = os.path.join(fig_dir, 'spatialinside_human_pop.png')
 plt.savefig(fig_file, dpi=300)
 plt.show()
+
+##
+# ------ Calculate total and release nodes populations
+print(dfg['pop'].sum())
+# 3670
+print(dfg_rn['pop'].sum())
+# 833
