@@ -174,7 +174,7 @@ if plotnow == 1:
             ax.set_ylabel('# of migrations')
         elif iax == 1:
             hist, bins = np.histogram(dfm['Distance'], bins=np.linspace(0, max_bin_edge, max_bin_edge + 1))
-            ax.bar(bins[:-1] + 0.5, hist.astype(np.float32) / hist.sum(),
+            ax.bar(bins[:-1] + 0.5, 100 * hist.astype(np.float32) / hist.sum(),
                    width=(bins[1] - bins[0]))
             ax.set_ylabel('% of migrations')
         ax.set_xlabel('Distance (km)')
