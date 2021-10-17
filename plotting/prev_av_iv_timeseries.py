@@ -5,6 +5,12 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
+params = {'axes.labelsize': 11,
+          'axes.titlesize': 16,
+          'xtick.labelsize': 11,
+          'ytick.labelsize': 11}
+mpl.rcParams.update(params)
+
 mpl.rcParams['pdf.fonttype'] = 42
 
 # -------- Setup params/datasets
@@ -21,31 +27,31 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # ---- FITNESS COST ----
 
 # --- classic exps
-# drive_type = 'classic'
-# eff_allele = 'a1'
-# sweep_var = 'sne'
-# sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+drive_type = 'classic'
+eff_allele = 'a1'
+sweep_var = 'sne'
+sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
 # -- EIR = 30
 
 # - GM only
-# distrib_itns = False
-# wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-# sweep_type_ls = ['increase', 'increase',
-#                  'decrease', 'decrease',
-#                  'incdec', 'incdec', 'incdec']
-# const_var_vals_ls = [
-#     # - increase
-#     {'rr0': 0.0, 'd': 1.0, 'rc': 0.8},
-#     {'rr0': 0.001, 'd': 1.0, 'rc': 0.7},
-#     # - decrease
-#     {'rr0': 0.01, 'd': 0.9, 'rc': 0.9},
-#     {'rr0': 0.1, 'd': 1.0, 'rc': 1.0},
-#     # - incdec
-#     {'rr0': 0.01, 'd': 0.95, 'rc': 0.9},
-#     {'rr0': 0, 'd': 0.9, 'rc': 0.9},
-#     {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
-# ]
+distrib_itns = False
+wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+sweep_type_ls = ['increase', 'increase',
+                 'decrease', 'decrease',
+                 'incdec', 'incdec', 'incdec']
+const_var_vals_ls = [
+    # - increase
+    {'rr0': 0.0, 'd': 1.0, 'rc': 0.8},
+    {'rr0': 0.001, 'd': 1.0, 'rc': 0.7},
+    # - decrease
+    {'rr0': 0.01, 'd': 0.9, 'rc': 0.9},
+    {'rr0': 0.1, 'd': 1.0, 'rc': 1.0},
+    # - incdec
+    {'rr0': 0.01, 'd': 0.95, 'rc': 0.9},
+    {'rr0': 0, 'd': 0.9, 'rc': 0.9},
+    {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
+]
 
 
 # ---- INITIAL RESISTANCE ----
@@ -149,21 +155,21 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # ---- PHENOTYPIC EFFECTIVENESS ----
 
 # --- classic exps
-drive_type = 'classic'
-eff_allele = 'a1'
-sweep_var = 'rc'
-sweep_vals = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+# drive_type = 'classic'
+# eff_allele = 'a1'
+# sweep_var = 'rc'
+# sweep_vals = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 # -- EIR = 30
 
 # - GM only
-distrib_itns = False
-wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-sweep_type_ls = ['increase']
-const_var_vals_ls = [
-    # - increase
-    {'d': 1, 'sne': 0.4, 'rr0': 0.01}
-]
+# distrib_itns = False
+# wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+# sweep_type_ls = ['increase']
+# const_var_vals_ls = [
+#     # - increase
+#     {'d': 1, 'sne': 0.4, 'rr0': 0.01}
+# ]
 
 
 ##
@@ -223,14 +229,14 @@ for isweep in range(0, len(sweep_type_ls)):
 
         # Offset the right spine of twin2.  The ticks and label have already been
         # placed on the right by twinx above.
-        twin2.spines['right'].set_position(("axes", 1.1))
-        twin3.spines['right'].set_position(("axes", 1.2))
-        twin4.spines['right'].set_position(("axes", 1.3))
+        twin2.spines['right'].set_position(("axes", 1.105))
+        twin3.spines['right'].set_position(("axes", 1.22))
+        twin4.spines['right'].set_position(("axes", 1.32))
 
-        p1, = ax.plot(dfinow['Time'], dfinow['PfHRP2 Prevalence'], color='k', label='Prev')
+        p1, = ax.plot(dfinow['Time'], dfinow['True Prevalence'], color='k', label='Prev')
         ax.fill_between(dfinow['Time'],
-                        dfinow['PfHRP2 Prevalence'] - 1.96 * dfinow['PfHRP2 Prevalence_std'] / np.sqrt(num_seeds),
-                        dfinow['PfHRP2 Prevalence'] + 1.96 * dfinow['PfHRP2 Prevalence_std'] / np.sqrt(num_seeds),
+                        dfinow['True Prevalence'] - 1.96 * dfinow['True Prevalence_std'] / np.sqrt(num_seeds),
+                        dfinow['True Prevalence'] + 1.96 * dfinow['True Prevalence_std'] / np.sqrt(num_seeds),
                         alpha=0.3, color='k')
         p2, = twin1.plot(dfinow['Time'], dfinow['Adult Vectors'], color='tab:orange', label="AV")
         twin1.fill_between(dfinow['Time'],
@@ -250,14 +256,15 @@ for isweep in range(0, len(sweep_type_ls)):
                            alpha=0.3, color='tab:blue')
 
         ax.set_xlim(0, 365 * num_yrs)
-        ax.set_ylim(0, 0.6)
+        # ax.set_ylim(0, 0.6)
+        ax.set_ylim(0, 1)
         twin1.set_ylim(0, 4000)
         twin2.set_ylim(0, 0.1)
         twin3.set_ylim(0, 100)
         twin4.set_ylim(0, 1)
 
-        ax.set_xlabel("Time")
-        ax.set_ylabel("PfHRP2 Prevalence")
+        ax.set_xlabel("Time (days)")
+        ax.set_ylabel("Prevalence")
         twin1.set_ylabel("Adult Vectors")
         twin2.set_ylabel("Infectious Vectors")
         twin3.set_ylabel("Infectious Vectors #")
