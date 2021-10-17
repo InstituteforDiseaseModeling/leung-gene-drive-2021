@@ -27,31 +27,31 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # ---- FITNESS COST ----
 
 # --- classic exps
-drive_type = 'classic'
-eff_allele = 'a1'
-sweep_var = 'sne'
-sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+# drive_type = 'classic'
+# eff_allele = 'a1'
+# sweep_var = 'sne'
+# sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
 # -- EIR = 30
 
 # - GM only
-distrib_itns = False
-wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
-sweep_type_ls = ['increase', 'increase',
-                 'decrease', 'decrease',
-                 'incdec', 'incdec', 'incdec']
-const_var_vals_ls = [
-    # - increase
-    {'rr0': 0.0, 'd': 1.0, 'rc': 0.8},
-    {'rr0': 0.001, 'd': 1.0, 'rc': 0.7},
-    # - decrease
-    {'rr0': 0.01, 'd': 0.9, 'rc': 0.9},
-    {'rr0': 0.1, 'd': 1.0, 'rc': 1.0},
-    # - incdec
-    {'rr0': 0.01, 'd': 0.95, 'rc': 0.9},
-    {'rr0': 0, 'd': 0.9, 'rc': 0.9},
-    {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
-]
+# distrib_itns = False
+# wi_name = 'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne'
+# sweep_type_ls = ['increase', 'increase',
+#                  'decrease', 'decrease',
+#                  'incdec', 'incdec', 'incdec']
+# const_var_vals_ls = [
+#     # - increase
+#     {'rr0': 0.0, 'd': 1.0, 'rc': 0.8},
+#     {'rr0': 0.001, 'd': 1.0, 'rc': 0.7},
+#     # - decrease
+#     {'rr0': 0.01, 'd': 0.9, 'rc': 0.9},
+#     {'rr0': 0.1, 'd': 1.0, 'rc': 1.0},
+#     # - incdec
+#     {'rr0': 0.01, 'd': 0.95, 'rc': 0.9},
+#     {'rr0': 0, 'd': 0.9, 'rc': 0.9},
+#     {'rr0': 0.01, 'd': 1.0, 'rc': 0.8},
+# ]
 
 
 # ---- INITIAL RESISTANCE ----
@@ -86,36 +86,36 @@ const_var_vals_ls = [
 
 # ---- DRIVE EFFICIENCY ----
 
-# # --- integral exps
-# drive_type = 'integral'
-# eff_allele = 'b1'
-# sweep_var = 'd1'
-# sweep_vals = [0.9, 0.95, 1]
-#
-# # -- EIR = 30
-#
-# # - VC and GM
-# distrib_itns = True
-# wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2'
-# sweep_type_ls = ['increase', 'increase', 'increase',
-#                  'decrease', 'decrease', 'decrease',
-#                  'wiggle', 'wiggle', 'wiggle', 'wiggle', 'wiggle']
-# const_var_vals_ls = [
-#     # - increase
-#     {'rc': 0.7, 'se2': 0.2, 'rr20': 0.1},
-#     {'rc': 0.7, 'se2': 0.5, 'rr20': 0.1},
-#     {'rc': 0.6, 'se2': 0.5, 'rr20': 0.01},
-#     # - decrease
-#     {'rc': 0.7, 'se2': 0.0, 'rr20': 0.0},
-#     {'rc': 0.7, 'se2': 0.1, 'rr20': 0.0},
-#     {'rc': 0.7, 'se2': 0.3, 'rr20': 0.1},
-#     # - wiggle
-#     {'rc': 0.5, 'se2': 0.2, 'rr20': 0.0},
-#     {'rc': 0.6, 'se2': 0.1, 'rr20': 0.001},
-#     {'rc': 0.5, 'se2': 0.2, 'rr20': 0.001},
-#     {'rc': 0.6, 'se2': 0.1, 'rr20': 0.01},
-#     {'rc': 0.7, 'se2': 0.0, 'rr20': 0.01}
-# ]
+# --- integral exps
+drive_type = 'integral'
+eff_allele = 'b1'
+sweep_var = 'd1'
+sweep_vals = [0.9, 0.95, 1]
+
+# -- EIR = 30
+
+# - VC and GM
+distrib_itns = True
+wi_name = 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2'
+sweep_type_ls = ['increase', 'increase', 'increase',
+                 'decrease', 'decrease', 'decrease',
+                 'wiggle', 'wiggle', 'wiggle', 'wiggle', 'wiggle']
+const_var_vals_ls = [
+    # - increase
+    {'rc': 0.7, 'se2': 0.2, 'rr20': 0.1},
+    {'rc': 0.7, 'se2': 0.5, 'rr20': 0.1},
+    {'rc': 0.6, 'se2': 0.5, 'rr20': 0.01},
+    # - decrease
+    {'rc': 0.7, 'se2': 0.0, 'rr20': 0.0},
+    {'rc': 0.7, 'se2': 0.1, 'rr20': 0.0},
+    {'rc': 0.7, 'se2': 0.3, 'rr20': 0.1},
+    # - wiggle
+    {'rc': 0.5, 'se2': 0.2, 'rr20': 0.0},
+    {'rc': 0.6, 'se2': 0.1, 'rr20': 0.001},
+    {'rc': 0.5, 'se2': 0.2, 'rr20': 0.001},
+    {'rc': 0.6, 'se2': 0.1, 'rr20': 0.01},
+    {'rc': 0.7, 'se2': 0.0, 'rr20': 0.01}
+]
 
 # --- classic exps
 # drive_type = 'classic'
@@ -231,7 +231,7 @@ for isweep in range(0, len(sweep_type_ls)):
         # placed on the right by twinx above.
         twin2.spines['right'].set_position(("axes", 1.105))
         twin3.spines['right'].set_position(("axes", 1.22))
-        twin4.spines['right'].set_position(("axes", 1.32))
+        twin4.spines['right'].set_position(("axes", 1.315))
 
         p1, = ax.plot(dfinow['Time'], dfinow['True Prevalence'], color='k', label='Prev')
         ax.fill_between(dfinow['Time'],
