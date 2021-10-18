@@ -104,7 +104,8 @@ ax.set_xlim([minmaxes[0], minmaxes[1]])
 scatter_size = 690
 sc = ax.scatter(dfg['lon'], dfg['lat'], zorder=2, marker='s',
                 s=scatter_size, c=dfg['pop'], cmap=cmap, edgecolor='silver')
-cb = fig.colorbar(sc, ax=ax, fraction=0.033, pad=0.04)
+cb = fig.colorbar(sc, ax=[ax], fraction=0.033, pad=0.025, location='left')
+cb.set_label(label='Human population', size=18)
 for t in cb.ax.get_yticklabels():
      t.set_fontsize(18)
 
@@ -121,7 +122,7 @@ ax.scatter(dfg_rn['lon'], dfg_rn['lat'], zorder=2, marker='s',
 
 # - Plot scalebar
 ax.plot([-1.57267, -1.52673], [12.02, 12.02], 'k', lw=2)
-ax.text(-1.57267, 12.01, r'5 km', fontsize=21)
+ax.text(-1.57267, 12.012, r'5 km', fontsize=21)
 
 # - Make plot square
 ax.set_aspect('equal', adjustable='box')
