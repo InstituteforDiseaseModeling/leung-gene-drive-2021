@@ -2,16 +2,16 @@
 import pandas as pd
 import numpy as np
 import os
+from matplotlib import rcParams
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 
 params = {'axes.labelsize': 11,
           'axes.titlesize': 16,
           'xtick.labelsize': 11,
           'ytick.labelsize': 11}
-mpl.rcParams.update(params)
+rcParams.update(params)
 
-mpl.rcParams['pdf.fonttype'] = 42
+rcParams['pdf.fonttype'] = 42
 
 # -------- Setup params/datasets
 data_dir = '..\\csvs'
