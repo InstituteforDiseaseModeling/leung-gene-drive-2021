@@ -7,10 +7,16 @@ import pandas as pd
 import numpy as np
 import os
 import json
+from matplotlib import rcParams
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 
-mpl.rcParams['pdf.fonttype'] = 42
+params = {'axes.labelsize': 16,
+          'axes.titlesize': 16,
+          'xtick.labelsize': 16,
+          'ytick.labelsize': 16}
+rcParams.update(params)
+
+rcParams['pdf.fonttype'] = 42
 
 # ----------------------------------------------------------------------
 # Set paths
@@ -67,12 +73,16 @@ dfm.rename(columns={' ID': 'ID',
                     ' FromNodeID': 'FromNodeID',
                     ' ToNodeID': 'ToNodeID'}, inplace=True)
 
+##
+# ------ Reduce data
+# dfm = dfm[dfm['Time'] < 243]
+# dfs = dfs[dfs['Time'] < 243]
+
 # ----------------------------------------------------------------------
-# Calc distance btwn nodes
+# Calculate
 # ----------------------------------------------------------------------
 ##
 # ------ Create array of discrete distances
-# HARDCODE
 max_grid_dim = 20  # km; 20 km wide, 14 km high
 discrete_dists = np.array([0])
 discrete_max_dyxs = np.array([0])
@@ -124,9 +134,7 @@ def find_discrete_max_dyx(fromNodeID, toNodeID):
 # ------ Set node characteristics
 calcnow = 1
 if calcnow == 1:
-
     dbndf = pd.DataFrame(columns=['FromNodeID', 'ToNodeID', 'Distance', 'Max Distxy'])
-
     for fromnode in nodes:
         for tonode in nodes:
             dbndf = dbndf.append({'FromNodeID': fromnode, 'ToNodeID': tonode,
@@ -139,12 +147,53 @@ if calcnow == 1:
 dfm = pd.merge(dfm, dbndf, how='left', on=['FromNodeID', 'ToNodeID'])
 dfm['Discrete Distance'] = dfm.apply(find_nearest_discrete_dist, axis=1)
 
+##
+# ------ Calculate individual mosquito movements
+calcnow = 1
+if calcnow == 1:
+    indiv_dist_means = dfm.groupby(['ID'])['Distance'].mean()
+    indiv_dist_sums = dfm.groupby(['ID'])['Distance'].sum()
+    indiv_mvs = dfm.groupby(['ID'])['Distance'].count()
+
 # ----------------------------------------------------------------------
-# Plots
+# Plot
 # ----------------------------------------------------------------------
 ##
-# ------ Plot total # of migrations vs. distance (over reported number of days)
-# (#1 plot type in notebook for 2/2/21)
+# ------ Plot summed distances of individual mosq movements
+plotnow = 1
+if plotnow == 1:
+    fig, ax = plt.subplots(1, 1, figsize=(6, 6))
+
+    hist, bins = np.histogram(indiv_dist_sums, bins=50)
+    ax.bar(bins[:-1] + (bins[1] - bins[0])/2, hist / hist.sum(),
+           width=bins[1] - bins[0])
+    ax.set_xlabel('Total distance migrated [km]')
+    ax.set_ylabel('Fraction of migrating vectors')
+    ax.set_xlim([0, indiv_dist_sums.max()])
+    ax.set_ylim([0, (hist / hist.sum()).max()])
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    fig_file_png = os.path.join(fig_dir, 'indiv_vector_distances_rn' + str(rn)
+                                + '_' + vmig_dir + '_vmigmul' + str(migration_mul) + '.png')
+    plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
+    fig_file_pdf = os.path.join(fig_dir, 'indiv_vector_distances_rn' + str(rn)
+                                + '_' + vmig_dir + '_vmigmul' + str(migration_mul) + '.pdf')
+    plt.savefig(fig_file_pdf, bbox_inches="tight", dpi=300)
+    plt.show()
+
+# ----------------------------------------------------------------------
+# Extra
+# ----------------------------------------------------------------------
+##
+# ------ Calculate individual mosquito movements
+calcnow = 1
+if calcnow == 1:
+    indiv_dist_means = dfm.groupby(['ID'])['Distance'].mean()
+    indiv_mvs = dfm.groupby(['ID'])['Distance'].count()
+
+##
+# ------ Plot total # of migrations vs. distance over reported number of days
 plotnow = 1
 if plotnow == 1:
     max_bin_edge = np.ceil(dfm['Distance'].max()) + 1
@@ -185,23 +234,7 @@ if plotnow == 1:
     plt.show()
 
 ##
-# ------ Calculate individual mosquito movements
-calcnow = 1
-if calcnow == 1:
-    indiv_dist_means = np.full(len(dfm['ID'].unique()), np.nan)
-    indiv_dist_stds = np.full(len(dfm['ID'].unique()), np.nan)
-    indiv_dist_sums = np.full(len(dfm['ID'].unique()), np.nan)
-    indiv_mvs = np.full(len(dfm['ID'].unique()), np.nan)
-
-    for ivid, vid in enumerate(dfm['ID'].unique()):
-        dfmnow = dfm[dfm['ID'] == vid]
-        indiv_dist_means[ivid] = dfmnow['Distance'].mean()
-        indiv_dist_stds[ivid] = dfmnow['Distance'].std()
-        indiv_dist_sums[ivid] = dfmnow['Distance'].sum()
-        indiv_mvs[ivid] = len(dfmnow)
-
-##
-# ------ Plot mean and std of individual mosq movements
+# ------ Plot summary of individual mosq movements
 plotnow = 1
 if plotnow == 1:
     fig, axes = plt.subplots(5, 1, figsize=(11, 25))
@@ -237,7 +270,7 @@ if plotnow == 1:
     ax.set_xlabel('# of moves')
     ax.set_ylabel('# of indiv vectors')
 
-    fig_file = os.path.join(fig_dir, 'indiv_vector_distances_rn' + str(rn)
+    fig_file = os.path.join(fig_dir, 'indiv_vector_summary_rn' + str(rn)
                             + '_' + vmig_dir + '_vmigmul' + str(migration_mul) + '.png')
     plt.savefig(fig_file, dpi=300)
     plt.show()
