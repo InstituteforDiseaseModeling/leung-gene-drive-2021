@@ -11,7 +11,7 @@ plot_elim_probs = 1
 anno_ep_all_cols = 1  # 0 = don't annotate, 1 = only annotate bottom square, 2 = annotate all squares in column
 anno_ep_all_rows = 0  # 0 = don't annotate, 1 = only annotate left square, 2 = annotate all squares in row
 
-plot_elim_days = 1
+plot_elim_days = 0
 
 outer_axes = 'rc_dord1'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
 
@@ -57,29 +57,29 @@ def wiggly(x):
 # -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
     4,
-    4,
-    4,
-    4,
-    4, 4, 4, 4, 4, 4
+    # 4,
+    # 4,
+    # 4,
+    # 4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
     'classic',
-    'integral',
-    'classic',
-    'integral',
-    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    # 'integral',
+    # 'classic',
+    # 'integral',
+    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
@@ -435,8 +435,10 @@ for iwi, wi_name in enumerate(wi_names_ls):
         )
 
         fig.show()
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7 * 300, height=4 * 300, scale=5)
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7 * 300, height=4 * 300, scale=5)
+        # fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7 * 300, height=4 * 300, scale=5)
+        # fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7 * 300, height=4 * 300, scale=5)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.pdf', width=7 * 300, height=4 * 300, scale=1)
+        fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7 * 300, height=4 * 300, scale=1)
 
     # -------- Create elim day matrix
     if plot_elim_days == 1:
