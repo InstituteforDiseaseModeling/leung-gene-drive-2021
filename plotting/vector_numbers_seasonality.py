@@ -48,12 +48,20 @@ os.makedirs(fig_dir, exist_ok=True)
 
 ##
 # ---- Plot adult vectors, infectious vectors (frac), infectious vectors (number), daily EIR
+colors = [(87/255, 69/255, 93/255), (163/255, 33/255, 109/255), (97/255, 130/255, 193/255)]
+alpha = 0.8
+
 fig, ax = plt.subplots(1, 1, figsize=(12, 6))
 
 # - Filled time series
-for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
-    ax.fill_between(list(range(0, 365)), adult_vector_mean,
-                    label=eir_labels[::-1][ieir])
+for ieir in range(0, len(adult_vector_means[::-1])):
+    if ieir == 0:
+        ax.fill_between(list(range(0, 365)), adult_vector_means[ieir],
+                        label=eir_labels[ieir], color=colors[ieir], alpha=alpha)
+    elif ieir > 0:
+        ax.fill_between(list(range(0, 365)), adult_vector_means[ieir-1], adult_vector_means[ieir],
+                        label=eir_labels[ieir], color=colors[ieir], alpha=alpha)
+
 # - Non-filled time series
 # for ieir, adult_vector_mean in enumerate(adult_vector_means[::-1]):
 #     ax.plot(list(range(0, 365)), adult_vector_mean,
@@ -71,10 +79,10 @@ ax.set_xticks([0.0, 30.417, 60.833, 91.25, 121.667, 152.083,
 ax.set_xticklabels(['Jan 1', 'Feb 1', 'Mar 1', 'Apr 1', 'May 1', 'Jun 1',
                     'Jul 1', 'Aug 1', 'Sep 1', 'Oct 1', 'Nov 1', 'Dec 1'],
                    rotation=45)
-ax.legend(loc='upper left', frameon=False)
+# ax.legend(loc='upper left', frameon=False)
 # - Or reverse order of handles/labels if desired
-# handles, labels = ax.get_legend_handles_labels()
-# ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles[::-1], labels[::-1], loc='upper left', frameon=False)
 
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
