@@ -388,7 +388,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
                 # - Plot heat map
                 ax = axes[iov_yvar][iov_xvar]
-                greens.set_bad('gray')
+                greens.set_bad('gainsboro')
                 im = ax.imshow(matnow, cmap=greens, vmin=(dfed['True_Prevalence_elim_day'] / 365).min(),
                                vmax=(dfed['True_Prevalence_elim_day'] / 365).max(), aspect="auto")  # aspect auto needed for wspace
                 ax.spines['top'].set_visible(False)
@@ -426,7 +426,10 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 anno_textcol_threshold = ((dfed['True_Prevalence_elim_day'] / 365).min() + (dfed['True_Prevalence_elim_day'] / 365).max())/2
                 for i in range(len(allvarvals[mat_yvar])):
                     for j in range(len(allvarvals[mat_xvar])):
-                        colornow = anno_text_colors[int(im.norm(matnow[i, j]) >= anno_textcol_threshold)]
+                        if np.isnan(matnow[i, j]):
+                            colornow = anno_text_colors[1]
+                        else:
+                            colornow = anno_text_colors[int(im.norm(matnow[i, j]) >= anno_textcol_threshold)]
                         annonow = round(round(matnow[i, j] / 0.1) * 0.1, 2)
                         text = ax.text(j, i, str(annonow), ha="center", va="center",
                                        color=colornow, fontsize=8)
