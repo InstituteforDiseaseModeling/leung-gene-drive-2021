@@ -15,11 +15,10 @@ rcParams['pdf.fonttype'] = 42
 
 ##
 # -------- Set figures to plot
-plot_elim_probs = 1
-anno_ep_all_cols = 1  # 0 = don't annotate, 1 = only annotate bottom square, 2 = annotate all squares in column
-anno_ep_all_rows = 0  # 0 = don't annotate, 1 = only annotate left square, 2 = annotate all squares in row
+plot_elim_probs = 0
+anno_ep_all_cols = 1  # 0 = don't annotate, 1 = annotate bottom square
 
-plot_elim_days = 0
+plot_elim_days = 1
 
 outer_axes = 'rc_dord1'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
 
@@ -43,12 +42,13 @@ greens = LinearSegmentedColormap.from_list(name='cmapnow', colors=greensnow, N=2
 greens_rnow = greensnow[::-1]
 greens_r = LinearSegmentedColormap.from_list(name='cmaprnow', colors=greensnow, N=256)
 
-anno_size_1 = 18
-anno_size_2 = 16
-anno_y_offset_1 = -0.26
-anno_y_offset_2 = -0.3
-anno_x_offset_1 = -0.35
-anno_x_offset_2 = -0.3
+# - Define characteristics for matrix text annotations
+anno_text_colors = ["black", "white"]
+
+# - Define characteristics and fxns for symbol annotations
+anno_symbol_size = 10
+anno_symbol_color = 'orange'
+anno_y_offset = -0.65
 
 
 def monotonic_increasing(x):
@@ -245,11 +245,6 @@ for iwi, wi_name in enumerate(wi_names_ls):
         dfesm = dfe[dfe[mat_xvar].isin(allvarvals[mat_xvar]) &
                     dfe[mat_yvar].isin(allvarvals[mat_yvar])]
 
-        # - Set inside matrix annotation characteristics
-        annocolors = ["black", "white"]
-        textcolthreshold = 0.5
-        valfmt = "{x:.1f}"
-
         fig, axes = plt.subplots(nrows=len(ov_yvar_vals), ncols=len(ov_xvar_vals),
                                  figsize=(11, 6), sharex=True, sharey=True)
         fig.subplots_adjust(hspace=0.07, wspace=0.09)  # adjust spacing btwn subplots
@@ -270,8 +265,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 dfenownow = (dfenow.groupby([mat_xvar, mat_yvar])[
                                  'True_Prevalence_elim'].sum() / num_seeds).reset_index()
                 matnow = dfenownow.pivot_table(index=[mat_yvar], columns=[mat_xvar], values='True_Prevalence_elim')
-                matnow = matnow.values
-                matnow = np.flipud(matnow)
+                matnow = np.flipud(matnow.values)
 
                 # - Plot heat map
                 ax = axes[iov_yvar][iov_xvar]
@@ -308,13 +302,13 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
 
                 # - Add elim prob annotations
+                anno_textcol_threshold = 0.5
                 for i in range(len(allvarvals[mat_yvar])):
                     for j in range(len(allvarvals[mat_xvar])):
-                        colornow = annocolors[int(im.norm(matnow[i, j]) > textcolthreshold)]
+                        colornow = anno_text_colors[int(im.norm(matnow[i, j]) >= anno_textcol_threshold)]
                         annonow = round(round(matnow[i, j]/0.05)*0.05, 2)
-                        text = ax.text(j, i, str(annonow),
-                                       ha="center", va="center", color=colornow,
-                                       fontsize=8)
+                        text = ax.text(j, i, str(annonow), ha="center", va="center",
+                                       color=colornow, fontsize=8)
 
                 # - Categorize columns into monotonic increasing, mt decreasing, wiggly
                 incr_cols = []
@@ -325,167 +319,34 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     incr_cols.append(monotonic_increasing(colnow))
                     decr_cols.append(monotonic_decreasing(colnow))
                     wiggly_cols.append(wiggly(colnow))
-                incr_cols.append(incr_cols)
-                decr_cols.append(decr_cols)
-                wiggly_cols.append(wiggly_cols)
-
-                # - Categorize rows into monotonic increasing, mt decreasing, wiggly
-                incr_rows = []
-                decr_rows = []
-                wiggly_rows = []
-                for irow in range(0, matnow.shape[0]):
-                    rownow = matnow[irow, :]
-                    incr_rows.append(monotonic_increasing(rownow))
-                    decr_rows.append(monotonic_decreasing(rownow))
-                    wiggly_rows.append(wiggly(rownow))
 
                 # - Annotate columns (mt increasing, mt decreasing, wiggly)
-                symbol_anno_color = 'orange'
                 mono_decr_xs = np.where(decr_cols)[0]
                 mono_incr_xs = np.where(incr_cols)[0]
                 wiggly_xs = np.where(wiggly_cols)[0]
                 if anno_ep_all_cols == 1:
                     if len(mono_decr_xs) > 0:
                         for anno_x in mono_decr_xs:
-                            text = ax.text(anno_x, anno_y_offset_1, r'$\blacktriangledown$',
-                                           ha="center", va="center", color=symbol_anno_color,
-                                           fontsize=20)
+                            text = ax.text(anno_x, len(allvarvals[mat_yvar]) + anno_y_offset,
+                                           r'$\blacktriangledown$', ha="center", va="center",
+                                           color=anno_symbol_color, fontsize=anno_symbol_size)
+                    if len(mono_incr_xs) > 0:
+                        for anno_x in mono_incr_xs:
+                            text = ax.text(anno_x, len(allvarvals[mat_yvar]) + anno_y_offset,
+                                           r'$\blacktriangle$', ha="center", va="center",
+                                           color=anno_symbol_color, fontsize=anno_symbol_size)
+                    if len(wiggly_xs) > 0:
+                        for anno_x in wiggly_xs:
+                            text = ax.text(anno_x, len(allvarvals[mat_yvar]) + anno_y_offset,
+                                           '~', ha="center", va="center",
+                                           color=anno_symbol_color, fontsize=anno_symbol_size, fontweight='bold')
 
         # - Add colorbar
         fig.subplots_adjust(right=0.9)
         cbar_ax = fig.add_axes([0.95, 0.1, 0.02, 0.8])  # left, bottom, width, height
         fig.colorbar(im, cax=cbar_ax)
 
-        # CONTINUE HERE!!!
-        # - Categorize columns into monotonic increasing, mt decreasing, wiggly
-        incr_cols = []
-        decr_cols = []
-        wiggly_cols = []
-        for icol in range(0, matnow.shape[1]):
-            colnow = matnow[:, icol]
-            incr_cols.append(monotonic_increasing(colnow))
-            decr_cols.append(monotonic_decreasing(colnow))
-            wiggly_cols.append(wiggly(colnow))
-        incr_cols.append(incr_cols)
-        decr_cols.append(decr_cols)
-        wiggly_cols.append(wiggly_cols)
-
-        # - Categorize rows into monotonic increasing, mt decreasing, wiggly
-        incr_rows = []
-        decr_rows = []
-        wiggly_rows = []
-        for irow in range(0, matnow.shape[0]):
-            rownow = matnow[irow, :]
-            incr_rows.append(monotonic_increasing(rownow))
-            decr_rows.append(monotonic_decreasing(rownow))
-            wiggly_rows.append(wiggly(rownow))
-
-        # - Annotate columns (mt increasing, mt decreasing, wiggly)
-        symbol_anno_color = 'orange'
-        # for i in range(len(allvarvals[mat_yvar])):
-        #     for j in range(len(allvarvals[mat_xvar])):
-        #         colornow = annocolors[int(im.norm(matnow[i, j]) > textcolthreshold)]
-        #         annonow = round(round(matnow[i, j] / 0.05) * 0.05, 2)
-        #         text = ax.text(j, i, str(annonow),
-        #                        ha="center", va="center", color=colornow,
-        #                        fontsize=8)
-
-        # -------
-        mono_decr_xs = np.where(decr_cols)[0]
-        mono_incr_xs = np.where(incr_cols)[0]
-        wiggly_xs = np.where(wiggly_cols)[0]
-        if anno_ep_all_cols == 1:
-            if len(mono_decr_xs) > 0:
-                for anno_x in mono_decr_xs:
-                    text = ax.text(anno_x, anno_y_offset_1, r'$\blacktriangledown$',
-                                   ha="center", va="center", color=symbol_anno_color,
-                                   fontsize=20)
-                    # fig.add_annotation(x=anno_x, y=anno_y_offset_1,
-                    #                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-                    #                    font=dict(size=anno_size_1, color=symbol_anno_color),
-                    #                    text=r'$\blacktriangledown$', showarrow=False)
-            # if len(mono_incr_xs) > 0:
-            #     for anno_x in mono_incr_xs:
-            #         fig.add_annotation(x=anno_x, y=anno_y_offset_1,
-            #                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-            #                            font=dict(size=anno_size_1, color=symbol_anno_color),
-            #                            text=r'$\blacktriangle$', showarrow=False)
-            # if len(wiggly_xs) > 0:
-            #     for anno_x in wiggly_xs:
-            #         fig.add_annotation(x=anno_x, y=anno_y_offset_1,
-            #                            xref='x' + str(isp+1), yref='y' + str(isp+1),
-            #                            font=dict(size=anno_size_1, color=symbol_anno_color),
-            #                            text='<b>~</b>', showarrow=False)
-        # elif anno_ep_all_cols == 2:
-        #     if len(mono_decr_xs) > 0:
-        #         for anno_x in mono_decr_xs:
-        #             for anno_y in range(0, len(allvarvals[mat_yvar])):
-        #                 fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                    text=r'$\blacktriangledown$', showarrow=False)
-        #     if len(mono_incr_xs) > 0:
-        #         for anno_x in mono_incr_xs:
-        #             for anno_y in range(0, len(allvarvals[mat_yvar])):
-        #                 fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                    text=r'$\blacktriangle$', showarrow=False)
-        #     if len(wiggly_xs) > 0:
-        #         for anno_x in wiggly_xs:
-        #             for anno_y in range(0, len(allvarvals[mat_yvar])):
-        #                 fig.add_annotation(x=anno_x, y=anno_y+anno_y_offset_2,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                    text='<b>~</b>', showarrow=False)
-
-        #     # - Annotate rows (mt increasing, mt decreasing, wiggly)
-        #     mono_decr_ys = np.where(decr_rows[isp])[0]
-        #     mono_incr_ys = np.where(incr_rows[isp])[0]
-        #     wiggly_ys = np.where(wiggly_rows[isp])[0]
-        #     if anno_ep_all_rows == 1:
-        #         if len(mono_decr_ys) > 0:
-        #             for anno_y in mono_decr_ys:
-        #                 fig.add_annotation(x=anno_x_offset_1, y=anno_y,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_1, color=symbol_anno_color),
-        #                                    text=r'$\blacktriangledown$', showarrow=False)
-        #         if len(mono_incr_ys) > 0:
-        #             for anno_y in mono_incr_ys:
-        #                 fig.add_annotation(x=anno_x_offset_1, y=anno_y,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_1, color=symbol_anno_color),
-        #                                    text=r'$\blacktriangle$', showarrow=False)
-        #         if len(wiggly_ys) > 0:
-        #             for anno_y in wiggly_ys:
-        #                 fig.add_annotation(x=anno_x_offset_1, y=anno_y,
-        #                                    xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                    font=dict(size=anno_size_1, color=symbol_anno_color),
-        #                                    text='<b>~</b>', showarrow=False)
-        #     elif anno_ep_all_rows == 2:
-        #         if len(mono_decr_ys) > 0:
-        #             for anno_y in mono_decr_ys:
-        #                 for anno_x in range(0, len(allvarvals[mat_xvar])):
-        #                     fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
-        #                                        xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                        font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                        text=r'$\blacktriangledown$', showarrow=False)
-        #         if len(mono_incr_ys) > 0:
-        #             for anno_y in mono_incr_ys:
-        #                 for anno_x in range(0, len(allvarvals[mat_xvar])):
-        #                     fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
-        #                                        xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                        font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                        text=r'$\blacktriangle$', showarrow=False)
-        #         if len(wiggly_ys) > 0:
-        #             for anno_y in wiggly_ys:
-        #                 for anno_x in range(0, len(allvarvals[mat_xvar])):
-        #                     fig.add_annotation(y=anno_y, x=anno_x+anno_x_offset_2,
-        #                                        xref='x' + str(isp+1), yref='y' + str(isp+1),
-        #                                        font=dict(size=anno_size_2, color=symbol_anno_color),
-        #                                        text='<b>~</b>', showarrow=False)
-
-        # fig.write_image(fig_dir + '/' + wi_name + '_elim_probs.png', width=7 * 300, height=4 * 300, scale=1)
+        # - Save fig
         fig_file_png = os.path.join(fig_dir, wi_name + '_elim_probs.png')
         fig_file_pdf = os.path.join(fig_dir, wi_name + '_elim_probs.pdf')
         plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
@@ -496,15 +357,15 @@ for iwi, wi_name in enumerate(wi_names_ls):
     # -------- Create elim day matrix
     if plot_elim_days == 1:
 
-        # - Initialize subplots/axes
-        iaxis = 1
-        subplots = []
-
         dfedsm = dfed[dfed[mat_xvar].isin(allvarvals[mat_xvar]) &
                       dfed[mat_yvar].isin(allvarvals[mat_yvar])]
 
-        for ov_yvar_val in ov_yvar_vals:
-            for ov_xvar_val in ov_xvar_vals:
+        fig, axes = plt.subplots(nrows=len(ov_yvar_vals), ncols=len(ov_xvar_vals),
+                                 figsize=(11, 6), sharex=True, sharey=True)
+        fig.subplots_adjust(hspace=0.07, wspace=0.09)  # adjust spacing btwn subplots
+
+        for iov_yvar, ov_yvar_val in enumerate(ov_yvar_vals):
+            for iov_xvar, ov_xvar_val in enumerate(ov_xvar_vals):
 
                 # - Compute heatmap values
                 allvardefsnow = {k: v for k, v in allvardefs.items() if k not in [mat_xvar, mat_yvar, ov_xvar, ov_yvar]}
@@ -522,71 +383,62 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 dfednownow = (dfednow.groupby([mat_xvar, mat_yvar])['True_Prevalence_elim_day'].mean()).reset_index()
                 matnow = dfednownow.pivot_table(index=[mat_yvar], columns=[mat_xvar],
                                                 values='True_Prevalence_elim_day', dropna=False)
-                matnow = (matnow / 365).round(1)  # .astype('Int64')
+                matnow = (matnow / 365)
+                matnow = np.flipud(matnow.values)
 
-                # - Create annotated heatmap
-                subplots.append(ff.create_annotated_heatmap(
-                    z=matnow.values,
-                    x=list(range(len(allvarvals[mat_xvar]))),
-                    y=list(range(len(allvarvals[mat_yvar]))),
-                    zmin=(dfed['True_Prevalence_elim_day'] / 365).min(),
-                    zmax=(dfed['True_Prevalence_elim_day'] / 365).max(),
-                    showscale=True,
-                    colorscale=greens)
-                )
+                # - Plot heat map
+                ax = axes[iov_yvar][iov_xvar]
+                greens.set_bad('gray')
+                im = ax.imshow(matnow, cmap=greens, vmin=(dfed['True_Prevalence_elim_day'] / 365).min(),
+                               vmax=(dfed['True_Prevalence_elim_day'] / 365).max(), aspect="auto")  # aspect auto needed for wspace
+                ax.spines['top'].set_visible(False)
+                ax.spines['right'].set_visible(False)
+                ax.spines['bottom'].set_visible(False)
+                ax.spines['left'].set_visible(False)
+                ax.tick_params(axis='both', length=2, which='major')
+                ax.tick_params(axis='x', labelrotation=-45)
 
-                # - Update annotation axes
-                for annot in subplots[-1]['layout']['annotations']:
-                    annot['xref'] = 'x' + str(iaxis)
-                    annot['yref'] = 'y' + str(iaxis)
-                iaxis = iaxis + 1
+                # - Set ticks, ticklabels, overall x and y var labels
+                if iov_yvar == 0:
+                    # Column titles (overall x labels)
+                    ax.set_title(ov_xvar_strnow + str(ov_xvar_val))
+                    ax.axes.xaxis.set_visible(False)
+                elif iov_yvar == len(ov_yvar_vals) - 1:
+                    ax.set_xticks(np.arange(len(allvarvals[mat_xvar])))
+                    ax.set_xticklabels(allvarvals[mat_xvar])
+                else:
+                    ax.axes.xaxis.set_visible(False)
 
-        # - Set up subplot framework
-        fig = make_subplots(
-            rows=len(ov_yvar_vals), cols=len(ov_xvar_vals),
-            shared_xaxes=True,
-            shared_yaxes=True,
-            column_titles=[ov_xvar_strnow + str(val) for val in ov_xvar_vals],
-            row_titles=[ov_yvar_strnow + str(val) for val in ov_yvar_vals],
-            x_title=mat_xvar_strnow,
-            y_title=mat_yvar_strnow,
-            horizontal_spacing=0.015,
-            vertical_spacing=0.02
-        )
+                if iov_xvar == 0:
+                    ax.set_yticks(np.arange(len(allvarvals[mat_yvar])))
+                    ax.set_yticklabels(allvarvals[mat_yvar][::-1])
+                    # Row titles (overall y labels)
+                    ax.set_ylabel(ov_yvar_strnow + str(ov_yvar_val), rotation=-90, labelpad=542)
+                    ax.yaxis.set_label_position("right")
+                else:
+                    ax.axes.yaxis.set_visible(False)
 
-        # - Change font size for row_titles/column_titles/x_title/y_title only
-        for i in fig['layout']['annotations']:
-            i['font'] = dict(size=24, color='black')
+                # - Set matrix x and y var labels
+                fig.text(0.5, 0.015, mat_xvar_strnow, ha='center', va='center')
+                fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
 
-        # - Create each subplot
-        isp = 0
-        for irow, ov_yvar_val in enumerate(ov_yvar_vals):
-            for icol, ov_xvar_val in enumerate(ov_xvar_vals):
-                fig.add_trace(subplots[isp].data[0], row=irow + 1, col=icol + 1)
-                isp = isp + 1
+                # - Add elim time annotations
+                anno_textcol_threshold = ((dfed['True_Prevalence_elim_day'] / 365).min() + (dfed['True_Prevalence_elim_day'] / 365).max())/2
+                for i in range(len(allvarvals[mat_yvar])):
+                    for j in range(len(allvarvals[mat_xvar])):
+                        colornow = anno_text_colors[int(im.norm(matnow[i, j]) >= anno_textcol_threshold)]
+                        annonow = round(round(matnow[i, j] / 0.1) * 0.1, 2)
+                        text = ax.text(j, i, str(annonow), ha="center", va="center",
+                                       color=colornow, fontsize=8)
 
-        # - Update annotations for all subplots
-        for isp, subplot in enumerate(subplots):
-            fig.layout.annotations += subplots[isp].layout.annotations
+        # - Add colorbar
+        fig.subplots_adjust(right=0.9)
+        cbar_ax = fig.add_axes([0.95, 0.1, 0.02, 0.8])  # left, bottom, width, height
+        fig.colorbar(im, cax=cbar_ax)
 
-        # - Update fig layout and subplot axes
-        fig.update_xaxes(
-            ticklen=10,
-            tickmode='array',
-            tickvals=list(range(len(allvarvals[mat_xvar]))),
-            ticktext=[str(val) for val in allvarvals[mat_xvar]]
-        )
-        fig.update_yaxes(
-            ticklen=10,
-            tickmode='array',
-            tickvals=list(range(len(allvarvals[mat_yvar]))),
-            ticktext=[str(val) for val in allvarvals[mat_yvar]]
-        )
-        fig.update_layout(
-            # margin=dict(l=60, r=50, b=50, t=30),
-            font=dict(size=20)
-        )
-
-        fig.show()
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.pdf', width=7 * 300, height=4 * 300, scale=5)
-        fig.write_image(fig_dir + '/' + wi_name + '_elim_days.png', width=7 * 300, height=4 * 300, scale=5)
+        # - Save fig
+        fig_file_png = os.path.join(fig_dir, wi_name + '_elim_days.png')
+        fig_file_pdf = os.path.join(fig_dir, wi_name + '_elim_days.pdf')
+        plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
+        plt.savefig(fig_file_pdf, bbox_inches="tight", dpi=300)
+        plt.show()
