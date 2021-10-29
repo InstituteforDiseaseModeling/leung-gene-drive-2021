@@ -15,7 +15,7 @@ rcParams['pdf.fonttype'] = 42
 
 ##
 # -------- Set figures to plot
-plot_elim_probs = 0
+plot_elim_probs = 1
 anno_ep_all_cols = 1  # 0 = don't annotate, 1 = annotate bottom square
 
 plot_elim_days = 1
@@ -48,7 +48,7 @@ anno_text_colors = ["black", "white"]
 # - Define characteristics and fxns for symbol annotations
 anno_symbol_size = 10
 anno_symbol_color = 'orange'
-anno_y_offset = -0.65
+anno_y_offset = -0.67
 
 
 def monotonic_increasing(x):
@@ -78,33 +78,33 @@ def wiggly(x):
 # -------- Setup datasets and sweep var values
 wi_names_ls = [
     'spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
-    # 'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
-    # 'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
+    'spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2',
+    'spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne',
+    'spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2'
 ]
 num_sweep_vars_ls = [
     4,
-    # 4,
-    # 4,
-    # 4,
-    # 4, 4, 4, 4, 4, 4
+    4,
+    4,
+    4,
+    4, 4, 4, 4, 4, 4
 ]
 drive_types_ls = [
     'classic',
-    # 'integral',
-    # 'classic',
-    # 'integral',
-    # 'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'integral',
+    'classic',
+    'integral',
+    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
-          'gene_drive_paper\\figures\\elim_prob_day_matrices'  # \\' + outer_axes + '_outside'
+          'gene_drive_paper\\figures\\elim_prob_day_matrices\\' + outer_axes + '_outside'
 num_seeds = 20  # num of seeds per sim
 
 for iwi, wi_name in enumerate(wi_names_ls):
@@ -429,7 +429,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                         if np.isnan(matnow[i, j]):
                             colornow = anno_text_colors[1]
                         else:
-                            colornow = anno_text_colors[int(im.norm(matnow[i, j]) >= anno_textcol_threshold)]
+                            colornow = anno_text_colors[int(matnow[i, j] >= anno_textcol_threshold)]
                         annonow = round(round(matnow[i, j] / 0.1) * 0.1, 2)
                         text = ax.text(j, i, str(annonow), ha="center", va="center",
                                        color=colornow, fontsize=8)
