@@ -11,8 +11,7 @@ from simtools.ExperimentManager.ExperimentManagerFactory import ExperimentManage
 from simtools.ModBuilder import ModBuilder, ModFn
 from simtools.SetupParser import SetupParser
 
-from helper_functions import set_classic_genes, set_integral_genes, \
-    add_daily_vmigin_release, add_daily_vmigout_ATSB, update_vmig_mul
+from helper_functions import set_classic_genes, set_integral_genes, update_vmig_mul
 
 if __name__ == "__main__":
 

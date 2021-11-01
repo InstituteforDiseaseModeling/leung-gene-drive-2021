@@ -14,27 +14,29 @@ if __name__ == "__main__":
     ######################################
     # Set exp name
     ######################################
-    # - more follow up gene drive paper runs for completion
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newse2"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2"
+
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newse2"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newse2"
+
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR80_sweep_rc_d_rr0_sne_newsne"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR80_sweep_rc_d1_rr20_se2_newse2"
+
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newrr0"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newrr0"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
+
     exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20"
 
-    # - follow up gene drive paper runs
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newrr0"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newrr20"
@@ -48,25 +50,13 @@ if __name__ == "__main__":
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_se2_newse2"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_se2_newse2"
 
-    # - sweeping over genetic params in diff transmission regimes, spatialinside
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_release_node_num"
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_release_day_release_node_num"
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_release_day_release_node_num"
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne"
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_release_node_num"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2"
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2"
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2"
-
-    # - sweeping over genetic params in diff transmission regimes, single node
-    # exp_name = "single_node_vector_genetics_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_release_day_number"
-    # exp_name = "single_node_vector_genetics_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_number"
-    # exp_name = "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_release_day_number"
-    # exp_name = "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_release_day_number"
-    # exp_name = "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_number"
 
     ######################################
     # Set run options
@@ -86,12 +76,6 @@ if __name__ == "__main__":
     drive_type = "classic"  # choose: classic, integral, none
     genes_type = "classic"  # choose: classic, integral, none
 
-    # TO ADD IN VECTOR MIGRATION INTO/OUT OF SIM REGION:
-    # 1.) Set Vector_Sugar_Feeding_Frequency to VECTOR_SUGAR_FEEDING_EVERYDAY
-    # in standard_cb_updates from configure_interventions
-    # 2.) Uncomment add_daily_vmigin_release and add_daily_vmigout_ATSB
-    # in relevant section below
-
     ######################################
     # Setup config file and serialized file
     ######################################
@@ -108,17 +92,10 @@ if __name__ == "__main__":
             # serialized_exp_id = ['36a7b1c0-fbd5-eb11-a9ec-b88303911bc1']
         elif spatial_type == "spatial":
             # - spatialinside_classic3allele_aeir10_sweep_rr0_serialization
-            # serialized_exp_id = ['752e0f20-cde8-eb11-a9ec-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, 5 cores, windows/belegost
-            # serialized_exp_id = ['6c7ffe6d-5904-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, 15 cores, linux/calculon
             # serialized_exp_id = ['6086e4f3-f811-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, oldrr0 + new rr0, 15 cores, linux/calculon
             # - spatialinside_classic3allele_aeir30_sweep_rr0_serialization
-            # serialized_exp_id = ['987dc107-cde8-eb11-a9ec-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, 5 cores, windows/belegost
-            # serialized_exp_id = ['f108c2a4-76f9-eb11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, 15 cores, windows/belegost
-            # serialized_exp_id = ['c39ac742-5904-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, 15 cores, linux/calculon
-            # serialized_exp_id = ['0deadfae-330a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, newrr0, 15 cores, linux/calculon
             # serialized_exp_id = ['16d77f12-f911-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, oldrr0 + newrr0, 15 cores, linux/calculon
             # - spatialinside_classic3allele_aeir80_sweep_rr0_serialization
-            # serialized_exp_id = ['3d00fcb3-bcdf-eb11-a9ec-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, 5 cores, windows/belegost
             serialized_exp_id = ['ba15bf3e-f911-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, oldrr0 + newrr0, 15 cores, linux/calculon
     elif genes_type == "integral":
         if spatial_type == "single_node":
@@ -126,14 +103,10 @@ if __name__ == "__main__":
             serialized_exp_id = ['7ca49772-a6cf-eb11-a9ec-b88303911bc1']
         elif spatial_type == "spatial":
             # - spatialinside_integral2l4a_aeir10_sweep_rr10_rr20_serialization
-            # serialized_exp_id = ['21dae42b-e701-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, 15 cores, linux/calculon
             # serialized_exp_id = ['2b699ff7-f80a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, oldrr1/20 + new rr1/20, 15 cores, linux/calculon
             # - spatialinside_integral2l4a_aeir30_sweep_rr10_rr20_serialization
-            # serialized_exp_id = ['3cb08063-8efc-eb11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, 15 cores, windows/belegost
-            # serialized_exp_id = ['ac84eece-fe01-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, 15 cores, linux/calculon
             # serialized_exp_id = ['b9a133f5-330a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, oldrr1/20 + newrr1/20, 15 cores, linux/calculon
             # - spatialinside_integral2l4a_aeir80_sweep_rr10_rr20_serialization
-            # serialized_exp_id = ['ed7673bb-e701-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, 15 cores, linux/calculon
             serialized_exp_id = ['bf2fcc45-f90a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, oldrr1/20 + new rr1/20, 15 cores, linux/calculon
 
     sim_map = []
@@ -281,20 +254,6 @@ if __name__ == "__main__":
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_release_day_number") \
-                    or (exp_name == "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_release_day_number") \
-                    or (exp_name == "single_node_vector_genetics_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_number"):
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100, 1000]
-                release_node_nums = [1]
-                release_days = [180, 240, 300, 360, 420, 480, 545]
-                rr0s = [0, 0.1, 0.2]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
 
             VC_and_GM = [
                 [ModFn(DTKConfigBuilder.set_param, "Run_Number", seed),

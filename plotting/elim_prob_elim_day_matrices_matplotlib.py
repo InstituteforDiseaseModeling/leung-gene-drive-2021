@@ -190,19 +190,18 @@ for iwi, wi_name in enumerate(wi_names_ls):
             ov_yvar = 'rr20'
 
     # - Set variable title strings
+    ov_xvar_strnow = ov_xvar + ' = '
     if ov_xvar == 'rc':
-        ov_xvar_strnow = 'Transm.-blocking\neffectiveness (' + ov_xvar + ') = '
+        ov_xvar_titlestrnow = 'Transmission-blocking effectiveness (' + ov_xvar + ')'
     elif (ov_xvar == 'd') or (ov_xvar == 'd1'):
-        ov_xvar_strnow = 'Drive efficiency\n(' + ov_xvar + ') = '
+        ov_xvar_titlestrnow = 'Drive efficiency (' + ov_xvar + ')'
     elif (ov_xvar == 'sne') or (ov_xvar == 'se2'):
-        ov_xvar_strnow = 'Fitness cost\n(' + ov_xvar + ') = '
+        ov_xvar_titlestrnow = 'Fitness cost (' + ov_xvar + ')'
     elif (ov_xvar == 'rr0') or (ov_xvar == 'rr20'):
-        ov_xvar_strnow = 'Initial resistance\n (' + ov_xvar + ') = '
-    else:
-        ov_xvar_strnow = ov_xvar + ' ='
+        ov_xvar_strnow = 'Pre-existing resistance (' + ov_xvar + ') = '
 
     if ov_yvar == 'rc':
-        ov_yvar_strnow = 'Transm.-blocking\neffectiveness (' + ov_yvar + ') = '
+        ov_yvar_strnow = 'Transm.-blocking\neffectiv. (' + ov_yvar + ') = '
     elif (ov_yvar == 'd') or (ov_yvar == 'd1'):
         ov_yvar_strnow = 'Drive efficiency\n(' + ov_yvar + ') = '
     elif (ov_yvar == 'sne') or (ov_yvar == 'se2'):
@@ -213,7 +212,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
         ov_yvar_strnow = ov_yvar + ' ='
 
     if mat_xvar == 'rc':
-        mat_xvar_strnow = 'Transmission-blocking effectiveness (' + mat_xvar + ')'
+        mat_xvar_strnow = 'Transmission-blocking effectiv. (' + mat_xvar + ')'
     elif (mat_xvar == 'd') or (mat_xvar == 'd1'):
         mat_xvar_strnow = 'Drive efficiency (' + mat_xvar + ')'
     elif (mat_xvar == 'sne') or (mat_xvar == 'se2'):
@@ -224,7 +223,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
         mat_xvar_strnow = mat_xvar
 
     if mat_yvar == 'rc':
-        mat_yvar_strnow = 'Transmission-blocking effectiveness (' + mat_yvar + ')'
+        mat_yvar_strnow = 'Transmission-blocking effectiv. (' + mat_yvar + ')'
     elif (mat_yvar == 'd') or (mat_yvar == 'd1'):
         mat_yvar_strnow = 'Drive efficiency (' + mat_yvar + ')'
     elif (mat_yvar == 'sne') or (mat_yvar == 'se2'):
@@ -299,6 +298,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
 
                 # - Set matrix x and y var labels
                 fig.text(0.5, 0.015, mat_xvar_strnow, ha='center', va='center')
+                fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
                 fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
 
                 # - Add elim prob annotations

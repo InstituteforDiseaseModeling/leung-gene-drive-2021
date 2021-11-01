@@ -244,7 +244,7 @@ elif drive_type == 'classic':
                    ]]
 
 # -------- Save out data
-dfi.to_csv('csvs/dfi_' + wi_name + '.csv', index=False)
-dfa.to_csv('csvs/dfa_' + wi_name + '.csv', index=False)
-dfe.to_csv('csvs/dfe_' + wi_name + '.csv', index=False)
-dfed.to_csv('csvs/dfed_' + wi_name + '.csv', index=False)
+dfi.to_csv('../csvs/dfi_' + wi_name + '.csv', index=False)
+dfa.to_csv('../csvs/dfa_' + wi_name + '.csv', index=False)
+dfe.to_csv('../csvs/dfe_' + wi_name + '.csv', index=False)
+dfed.to_csv('../csvs/dfed_' + wi_name + '.csv', index=False)
