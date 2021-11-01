@@ -18,18 +18,12 @@ if __name__ == "__main__":
     ######################################
     # Set exp name
     ######################################
-    # - spatial, varying eir
-    # exp_name = "spatialinside_integral2l4a_aeir30_sweep_rr10_rr20_serialization"  # max larvhab=pow(10, 8.6)/4.5
-    # exp_name = "spatialinside_integral2l4a_aeir10_sweep_rr10_rr20_serialization"  # max larvhab=pow(10, 8.6)/11
-    # exp_name = "spatialinside_integral2l4a_aeir80_sweep_rr10_rr20_serialization"  # max larvhab=pow(10, 8.6)/2
-    # exp_name = "spatialinside_classic3allele_aeir30_sweep_rr0_serialization"  # max larvhab=pow(10, 8.6)/5, /4 2nd time, /4.5 3rd time
-    # exp_name = "spatialinside_classic3allele_aeir10_sweep_rr0_serialization"  # max larvhab=pow(10, 8.6)/15, /8 2nd time, /11 3rd time
-    exp_name = "spatialinside_classic3allele_aeir80_sweep_rr0_serialization"  # max larvhab=pow(10, 8.6)/2
-
-    # - single node, varying eir
-    # exp_name = "single_node_classic3allele_aeir30_constbiting_sweep_rr0_serialization" # max larvhab=pow(10, 8.6)/5
-    # exp_name = "single_node_classic3allele_aeir10_constbiting_sweep_rr0_serialization" # max larvhab=pow(10, 8.6)/16
-    # exp_name = "single_node_classic3allele_aeir80_constbiting_sweep_rr0_serialization" # max larvhab=pow(10, 8.6)/2
+    # exp_name = "spatialinside_integral2l4a_aeir30_sweep_rr10_rr20_serialization"
+    # exp_name = "spatialinside_integral2l4a_aeir10_sweep_rr10_rr20_serialization"
+    # exp_name = "spatialinside_integral2l4a_aeir80_sweep_rr10_rr20_serialization"
+    # exp_name = "spatialinside_classic3allele_aeir30_sweep_rr0_serialization"
+    # exp_name = "spatialinside_classic3allele_aeir10_sweep_rr0_serialization"
+    exp_name = "spatialinside_classic3allele_aeir80_sweep_rr0_serialization"
 
     ######################################
     # Set run options
