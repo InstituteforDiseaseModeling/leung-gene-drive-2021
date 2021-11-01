@@ -47,6 +47,14 @@ if __name__ == "__main__":
     hmig_dir = "gm_def"
     vmig_dir = "thomas2013negexpovnn_b05"
 
+    aeir = 80
+    if aeir == 80:
+        lhfactor = 2
+    elif aeir == 30:
+        lhfactor = 4.5
+    elif aeir == 10:
+        lhfactor = 11
+
     genes_type = "classic"  # choose: classic, integral
 
     ######################################
@@ -156,7 +164,7 @@ if __name__ == "__main__":
                               'Values': [3, 0.8, 1.25, 0.1, 2.7, 10, 6, 35, 2.8, 1.5, 1.6, 2.1]
                           },
                           'Capacity_Distribution_Number_Of_Years': 1,
-                          'Max_Larval_Capacity': pow(10, 8.6)/2
+                          'Max_Larval_Capacity': pow(10, 8.6)/lhfactor
                       }}
                       )
     set_species_param(cb, "gambiae", "Adult_Life_Expectancy", 20)
