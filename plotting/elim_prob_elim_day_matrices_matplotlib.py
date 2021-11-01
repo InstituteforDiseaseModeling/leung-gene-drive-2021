@@ -23,7 +23,7 @@ plot_elim_days = 1
 outer_axes = 'rc_dord1'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
 
 ##
-# -------- Define fxns and colormaps
+# -------- Define colormaps, appearances
 
 # - Define colors maps
 # --> Plotly colors
@@ -32,7 +32,7 @@ outer_axes = 'rc_dord1'  # choose: 'rc_dord1', 'rr0orrr20_sneorse2'
 # greens = greens_full[1:]
 # for i in range(0, len(greens)):
 #     greens[i][0] = i / (len(greens) - 1)
-# --> The following uses the rgb values from "greens" above
+# --> The following uses the rgb values from truncated Plotly "greens" above to match Dash app
 greensnow = [(229, 245, 224), (199, 233, 192),
              (161, 217, 155), (116, 196, 118),
              (65, 171, 93), (35, 139, 69),
@@ -42,15 +42,16 @@ greens = LinearSegmentedColormap.from_list(name='cmapnow', colors=greensnow, N=2
 greens_rnow = greensnow[::-1]
 greens_r = LinearSegmentedColormap.from_list(name='cmaprnow', colors=greensnow, N=256)
 
-# - Define characteristics for matrix text annotations
+# - Define characteristics for elim prob and timing matrix text annotations
 anno_text_colors = ["black", "white"]
 
-# - Define characteristics and fxns for symbol annotations
+# - Define characteristics and fxns for elim prob matrix symbol annotations
 anno_symbol_size = 10
 anno_symbol_color = 'orange'
 anno_y_offset = -0.67
 
 
+# -------- Define fxns for elim prob matrix symbol annotations
 def monotonic_increasing(x):
     if len(np.unique(x)) > 1:
         dx = np.diff(x)
@@ -90,17 +91,13 @@ wi_names_ls = [
 ]
 num_sweep_vars_ls = [
     4,
-    4,
-    4,
-    4,
-    4, 4, 4, 4, 4, 4
+    4, 4, 4, 4,
+    4, 4, 4, 4, 4
 ]
 drive_types_ls = [
     'classic',
-    'integral',
-    'classic',
-    'integral',
-    'classic', 'integral', 'classic', 'integral', 'classic', 'integral'
+    'integral', 'classic', 'integral', 'classic',
+    'integral', 'classic', 'integral', 'classic', 'integral'
 ]
 data_dir = '..\\csvs'
 fig_dir = 'C:\\Users\\sleung\\OneDrive - Institute for Disease Modeling\\presentations_writeups\\' \
@@ -198,21 +195,20 @@ for iwi, wi_name in enumerate(wi_names_ls):
     elif (ov_xvar == 'sne') or (ov_xvar == 'se2'):
         ov_xvar_titlestrnow = 'Fitness cost (' + ov_xvar + ')'
     elif (ov_xvar == 'rr0') or (ov_xvar == 'rr20'):
-        ov_xvar_strnow = 'Pre-existing resistance (' + ov_xvar + ') = '
+        ov_xvar_titlestrnow = 'Pre-existing resistance (' + ov_xvar + ')'
 
+    ov_yvar_strnow = ov_yvar + ' = '
     if ov_yvar == 'rc':
-        ov_yvar_strnow = 'Transm.-blocking\neffectiv. (' + ov_yvar + ') = '
+        ov_yvar_titlestrnow = 'Transmission-blocking effectiveness (' + ov_yvar + ')'
     elif (ov_yvar == 'd') or (ov_yvar == 'd1'):
-        ov_yvar_strnow = 'Drive efficiency\n(' + ov_yvar + ') = '
+        ov_yvar_titlestrnow = 'Drive efficiency (' + ov_yvar + ')'
     elif (ov_yvar == 'sne') or (ov_yvar == 'se2'):
-        ov_yvar_strnow = 'Fitness cost\n(' + ov_yvar + ') = '
+        ov_yvar_titlestrnow = 'Fitness cost (' + ov_yvar + ')'
     elif (ov_yvar == 'rr0') or (ov_yvar == 'rr20'):
-        ov_yvar_strnow = 'Initial resistance\n (' + ov_yvar + ') = '
-    else:
-        ov_yvar_strnow = ov_yvar + ' ='
+        ov_yvar_titlestrnow = 'Pre-existing resistance (' + ov_yvar + ')'
 
     if mat_xvar == 'rc':
-        mat_xvar_strnow = 'Transmission-blocking effectiv. (' + mat_xvar + ')'
+        mat_xvar_strnow = 'Transmission-blocking effectiveness (' + mat_xvar + ')'
     elif (mat_xvar == 'd') or (mat_xvar == 'd1'):
         mat_xvar_strnow = 'Drive efficiency (' + mat_xvar + ')'
     elif (mat_xvar == 'sne') or (mat_xvar == 'se2'):
@@ -223,7 +219,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
         mat_xvar_strnow = mat_xvar
 
     if mat_yvar == 'rc':
-        mat_yvar_strnow = 'Transmission-blocking effectiv. (' + mat_yvar + ')'
+        mat_yvar_strnow = 'Transmission-blocking effectiveness (' + mat_yvar + ')'
     elif (mat_yvar == 'd') or (mat_yvar == 'd1'):
         mat_yvar_strnow = 'Drive efficiency (' + mat_yvar + ')'
     elif (mat_yvar == 'sne') or (mat_yvar == 'se2'):
@@ -291,7 +287,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     ax.set_yticks(np.arange(len(allvarvals[mat_yvar])))
                     ax.set_yticklabels(allvarvals[mat_yvar][::-1])
                     # Row titles (overall y labels)
-                    ax.set_ylabel(ov_yvar_strnow + str(ov_yvar_val), rotation=-90, labelpad=542)
+                    ax.set_ylabel(ov_yvar_strnow + str(ov_yvar_val), rotation=-90, labelpad=530)
                     ax.yaxis.set_label_position("right")
                 else:
                     ax.axes.yaxis.set_visible(False)
@@ -299,7 +295,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 # - Set matrix x and y var labels
                 fig.text(0.5, 0.015, mat_xvar_strnow, ha='center', va='center')
                 fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
-                fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
+                fig.text(0.5, 0.93, ov_xvar_titlestrnow, ha='center', va='center')
+                fig.text(0.925, 0.5, ov_yvar_titlestrnow, ha='center', va='center', rotation=-90)
 
                 # - Add elim prob annotations
                 anno_textcol_threshold = 0.5
@@ -413,7 +410,7 @@ for iwi, wi_name in enumerate(wi_names_ls):
                     ax.set_yticks(np.arange(len(allvarvals[mat_yvar])))
                     ax.set_yticklabels(allvarvals[mat_yvar][::-1])
                     # Row titles (overall y labels)
-                    ax.set_ylabel(ov_yvar_strnow + str(ov_yvar_val), rotation=-90, labelpad=542)
+                    ax.set_ylabel(ov_yvar_strnow + str(ov_yvar_val), rotation=-90, labelpad=530)
                     ax.yaxis.set_label_position("right")
                 else:
                     ax.axes.yaxis.set_visible(False)
@@ -421,6 +418,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
                 # - Set matrix x and y var labels
                 fig.text(0.5, 0.015, mat_xvar_strnow, ha='center', va='center')
                 fig.text(0.085, 0.5, mat_yvar_strnow, ha='center', va='center', rotation='vertical')
+                fig.text(0.5, 0.93, ov_xvar_titlestrnow, ha='center', va='center')
+                fig.text(0.925, 0.5, ov_yvar_titlestrnow, ha='center', va='center', rotation=-90)
 
                 # - Add elim time annotations
                 anno_textcol_threshold = ((dfed['True_Prevalence_elim_day'] / 365).min() + (dfed['True_Prevalence_elim_day'] / 365).max())/2
@@ -437,7 +436,8 @@ for iwi, wi_name in enumerate(wi_names_ls):
         # - Add colorbar
         fig.subplots_adjust(right=0.9)
         cbar_ax = fig.add_axes([0.95, 0.1, 0.02, 0.8])  # left, bottom, width, height
-        fig.colorbar(im, cax=cbar_ax)
+        cb = fig.colorbar(im, cax=cbar_ax)
+        cb.set_label('Years', rotation=-90, labelpad=-17)
 
         # - Save fig
         fig_file_png = os.path.join(fig_dir, wi_name + '_elim_days.png')
