@@ -5,10 +5,10 @@ import os
 from matplotlib import rcParams
 import matplotlib.pyplot as plt
 
-params = {'axes.labelsize': 11,
-          'axes.titlesize': 16,
-          'xtick.labelsize': 11,
-          'ytick.labelsize': 11}
+params = {'axes.labelsize': 10,
+          'axes.titlesize': 12,
+          'xtick.labelsize': 10,
+          'ytick.labelsize': 10}
 rcParams.update(params)
 
 rcParams['pdf.fonttype'] = 42
@@ -30,6 +30,7 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # drive_type = 'classic'
 # eff_allele = 'a1'
 # sweep_var = 'sne'
+# sweep_var_ln = 'Fitness cost (sne)'
 # sweep_vals = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
 # -- EIR = 30
@@ -54,12 +55,13 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 # ]
 
 
-# ---- INITIAL RESISTANCE ----
+# ---- PRE-EXISTING RESISTANCE ----
 
 # --- classic exps
 # drive_type = 'classic'
 # eff_allele = 'a1'
 # sweep_var = 'rr0'
+# sweep_var_ln = 'Pre-existing resistance (rr0)'
 # sweep_vals = [0.0, 0.001, 0.01, 0.1]
 
 # -- EIR = 30
@@ -90,6 +92,7 @@ itn_distrib_days = [180, 180 + 3 * 365, 180 + 6 * 365]
 drive_type = 'integral'
 eff_allele = 'b1'
 sweep_var = 'd1'
+sweep_var_ln = 'Drive efficiency (d1)'
 sweep_vals = [0.9, 0.95, 1]
 
 # -- EIR = 30
@@ -121,6 +124,7 @@ const_var_vals_ls = [
 # drive_type = 'classic'
 # eff_allele = 'a1'
 # sweep_var = 'd'
+# sweep_var_ln = 'Drive efficiency (d)'
 # sweep_vals = [0.9, 0.95, 1]
 
 # -- EIR = 30
@@ -152,12 +156,13 @@ const_var_vals_ls = [
 #     {'rc': 0.9, 'sne': 0.5, 'rr0': 0.1}
 # ]
 
-# ---- PHENOTYPIC EFFECTIVENESS ----
+# ---- TRANSMISSION-BLOCKING EFFECTIVENESS ----
 
 # --- classic exps
 # drive_type = 'classic'
 # eff_allele = 'a1'
 # sweep_var = 'rc'
+# sweep_var_ln = 'Transmission-blocking effectiveness (rc)'
 # sweep_vals = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 # -- EIR = 30
@@ -210,8 +215,8 @@ for isweep in range(0, len(sweep_type_ls)):
 
     ##
     # ---- Plot
-    fig, axes = plt.subplots(len(sweep_vals), 1, figsize=(12, 12), sharex=True)
-    fig.subplots_adjust(right=0.9)
+    fig, axes = plt.subplots(len(sweep_vals), 1, figsize=(7.5, 9), sharex=True)
+    fig.subplots_adjust(right=0.95, hspace=0.4)
 
     for iax, ax in enumerate(axes):
         sweepnow = sweep_vals[iax]
@@ -256,18 +261,16 @@ for isweep in range(0, len(sweep_type_ls)):
                            alpha=0.3, color='tab:blue')
 
         ax.set_xlim(0, 365 * num_yrs)
-        # ax.set_ylim(0, 0.6)
         ax.set_ylim(0, 1)
         twin1.set_ylim(0, 4000)
         twin2.set_ylim(0, 0.1)
         twin3.set_ylim(0, 100)
         twin4.set_ylim(0, 1)
 
-        ax.set_xlabel("Time (days)")
         ax.set_ylabel("Prevalence")
         twin1.set_ylabel("Adult Vectors")
-        twin2.set_ylabel("Infectious Vectors")
-        twin3.set_ylabel("Infectious Vectors #")
+        twin2.set_ylabel("Inf. Vector Frac.")
+        twin3.set_ylabel("Inf. Vectors")
         twin4.set_ylabel("Effector Freq")
 
         ax.yaxis.label.set_color(p1.get_color())
@@ -276,11 +279,11 @@ for isweep in range(0, len(sweep_type_ls)):
         twin3.yaxis.label.set_color(p4.get_color())
         twin4.yaxis.label.set_color(p5.get_color())
 
-        ax.set_title(sweep_var + ' = ' + str(sweepnow) +
-                     ', ' + 'ep = ' + str(epnow) +
-                     ', ' + 'ed = ' + "{:.1f}".format(ednow))
+        ax.set_title(sweep_var_ln + ' = ' + str(sweepnow) +
+                     ', ' + 'e.p. = ' + str(epnow) +
+                     ', ' + 'e.d. = ' + "{:.1f}".format(ednow))
 
-        tkw = dict(size=4, width=1.5)
+        tkw = dict(size=2.5, width=1.5)
         ax.tick_params(axis='y', colors=p1.get_color(), **tkw)
         twin1.tick_params(axis='y', colors=p2.get_color(), **tkw)
         twin2.tick_params(axis='y', colors=p3.get_color(), **tkw)
@@ -297,7 +300,10 @@ for isweep in range(0, len(sweep_type_ls)):
             for itn_day in itn_distrib_days:
                 ax.axvline(x=itn_day, color='gray', linestyle=':')
 
-    fig.tight_layout()
+    fig.text(0.5, 0.07, "Time (days)", ha='center', va='center')
+
     fig_file_png = os.path.join(fig_dir, file_prefix + 'prev_av_ivf_ef.png')
+    fig_file_pdf = os.path.join(fig_dir, file_prefix + 'prev_av_ivf_ef.pdf')
     plt.savefig(fig_file_png, bbox_inches="tight", dpi=300)
+    plt.savefig(fig_file_pdf, bbox_inches="tight", dpi=300)
     plt.show()
