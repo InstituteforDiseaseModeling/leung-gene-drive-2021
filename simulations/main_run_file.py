@@ -14,49 +14,45 @@ if __name__ == "__main__":
     ######################################
     # Set exp name
     ######################################
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newse2"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2"
-
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newse2"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newse2"
-
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR80_sweep_rc_d_rr0_sne_newsne"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR80_sweep_rc_d1_rr20_se2_newse2"
-
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newrr0"
+    # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne"
     # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newrr0"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
-
-    exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20"
-
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newrr0"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newrr20"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20"
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_release_number"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_release_number"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_release_number"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_release_number"
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_sne_newsne"
-    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_sne_newsne"
-    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_se2_newse2"
-    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_se2_newse2"
+    # exp_name = "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne"
 
     # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne"
-    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne"
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newrr0"
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newsne"
+
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2"
+    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
+    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newse2"
+
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newrr20"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newse2"
+
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne"
+    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newrr0"
+    # exp_name = "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newsne"
+
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne"
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0"
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne"
+
     # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2"
+    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20"
+    # exp_name = "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2"
+
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newrr20"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newse2"
+
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne"
+    exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0"
+    # exp_name = "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne"
+
     # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20"
+    # exp_name = "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2"
 
     ######################################
     # Set run options
@@ -68,7 +64,7 @@ if __name__ == "__main__":
     num_years = 8
 
     geography = "Burkina Faso"
-    spatial_type = "spatial"  # choose: single_node, spatial
+    spatial_type = "spatial"
     input_file_dir = "BurkinaFasoSpatialInsideNodes"
     hmig_dir = "gm_def"
 
@@ -83,31 +79,21 @@ if __name__ == "__main__":
                                              num_cores=num_cores, num_years=num_years)
 
     if genes_type == "classic" or genes_type == "none":
-        if spatial_type == "single_node":
-            # - single_node_classic3allele_aeir10_constbiting_sweep_rr0_serialization
-            # serialized_exp_id = ['82c07050-4bd8-eb11-a9ec-b88303911bc1']
-            # - single_node_classic3allele_aeir30_constbiting_sweep_rr0_serialization
-            serialized_exp_id = ['3d9e74ad-4bd8-eb11-a9ec-b88303911bc1']
-            # - single_node_classic3allele_aeir80_constbiting_sweep_rr0_serialization
-            # serialized_exp_id = ['36a7b1c0-fbd5-eb11-a9ec-b88303911bc1']
-        elif spatial_type == "spatial":
+        if spatial_type == "spatial":
             # - spatialinside_classic3allele_aeir10_sweep_rr0_serialization
-            # serialized_exp_id = ['6086e4f3-f811-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, oldrr0 + new rr0, 15 cores, linux/calculon
+            # serialized_exp_id = ['6086e4f3-f811-ec11-a9ed-b88303911bc1']
             # - spatialinside_classic3allele_aeir30_sweep_rr0_serialization
-            # serialized_exp_id = ['16d77f12-f911-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, oldrr0 + newrr0, 15 cores, linux/calculon
+            # serialized_exp_id = ['16d77f12-f911-ec11-a9ed-b88303911bc1']
             # - spatialinside_classic3allele_aeir80_sweep_rr0_serialization
-            serialized_exp_id = ['ba15bf3e-f911-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, oldrr0 + newrr0, 15 cores, linux/calculon
+            serialized_exp_id = ['ba15bf3e-f911-ec11-a9ed-b88303911bc1']
     elif genes_type == "integral":
-        if spatial_type == "single_node":
-            # - single_node_integraldrive2l4a_constbiting_sweep_rr10_rr20_serialization
-            serialized_exp_id = ['7ca49772-a6cf-eb11-a9ec-b88303911bc1']
-        elif spatial_type == "spatial":
+        if spatial_type == "spatial":
             # - spatialinside_integral2l4a_aeir10_sweep_rr10_rr20_serialization
-            # serialized_exp_id = ['2b699ff7-f80a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/11, oldrr1/20 + new rr1/20, 15 cores, linux/calculon
+            # serialized_exp_id = ['2b699ff7-f80a-ec11-a9ed-b88303911bc1']
             # - spatialinside_integral2l4a_aeir30_sweep_rr10_rr20_serialization
-            # serialized_exp_id = ['b9a133f5-330a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/4.5, oldrr1/20 + newrr1/20, 15 cores, linux/calculon
+            # serialized_exp_id = ['b9a133f5-330a-ec11-a9ed-b88303911bc1']
             # - spatialinside_integral2l4a_aeir80_sweep_rr10_rr20_serialization
-            serialized_exp_id = ['bf2fcc45-f90a-ec11-a9ed-b88303911bc1']  # max larvhab = pow(10, 8.6)/2, oldrr1/20 + new rr1/20, 15 cores, linux/calculon
+            serialized_exp_id = ['bf2fcc45-f90a-ec11-a9ed-b88303911bc1']
 
     sim_map = []
     for exp in serialized_exp_id:
@@ -117,22 +103,18 @@ if __name__ == "__main__":
         else:
             sim_map = pd.concat([sim_map, temp_sim_map])
 
-    if spatial_type == "single_node":
-        serialized_file_list = ["state-14600.dtk"]
-    elif spatial_type == "spatial":
-        # serialized_file_list = ["state-18250-%03d.dtk" % i for i in range(0, num_cores)]
+    if spatial_type == "spatial":
         serialized_file_list = ["state-14600-%03d.dtk" % i for i in range(0, num_cores)]
 
     cb.update_params({
 
         # - Serialization params
         'Serialization_Precision': "REDUCED",
-        'Serialized_Population_Reading_Type': "READ",  # comment for no serialization
-        # 'Serialized_Population_Reading_Type': "NONE",  # uncomment for no serialization
+        'Serialized_Population_Reading_Type': "READ",
         'Serialized_Population_Writing_Type': "NONE",
         'Serialization_Mask_Node_Read': 0,
         'Enable_Random_Generator_From_Serialized_Population': 0,
-        'Serialized_Population_Filenames': serialized_file_list,  # comment for no serialization
+        'Serialized_Population_Filenames': serialized_file_list,
 
         # - Logging
         'logLevel_default': "ERROR",
@@ -152,80 +134,24 @@ if __name__ == "__main__":
 
         if exp_type == "VC_and_GM":
 
-            if (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_release_day_release_node_num") \
-                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_release_day_release_node_num"):
+            if (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne") \
+                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne") \
+                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne"):
                 net_coverages = [0.7]
                 itn_start_days = [180]
                 release_numbers = [100]
-                release_node_nums = [6, 12]
-                release_days = [180, 240, 300, 360, 420, 480, 545]
-                rr0s = [0, 0.1, 0.2]
+                release_node_nums = [6]
+                release_days = [180]
+                rr0s = [0, 0.1]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
+                snes = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
-            elif (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne") \
-                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne"):
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0, 0.1, 0.2]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.001, 0.01]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_release_number":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [1000, 10000]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sds = [0]
-                snes = [0.1]
-                infect_by_human_red_fracs = [0.7, 0.6]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_sne_newsne":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sds = [0]
-                snes = [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne") \
-                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newsne") \
+            elif (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newsne") \
+                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newsne") \
                     or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newsne"):
                 net_coverages = [0.7]
                 itn_start_days = [180]
@@ -241,6 +167,7 @@ if __name__ == "__main__":
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
             elif (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR10_sweep_rc_d_rr0_sne_newrr0") \
+                    or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR30_sweep_rc_d_rr0_sne_newrr0") \
                     or (exp_name == "spatialinside_classic3allele_VC_and_GM_aEIR80_sweep_rc_d_rr0_sne_newrr0"):
                 net_coverages = [0.7]
                 itn_start_days = [180]
@@ -250,7 +177,7 @@ if __name__ == "__main__":
                 rr0s = [0.001, 0.01]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
+                snes = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
@@ -286,58 +213,22 @@ if __name__ == "__main__":
 
         elif exp_type == "GM_only":
 
-            if (exp_name == "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_release_node_num") \
-                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_release_day_release_node_num"):
+            if (exp_name == "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne") \
+                 or (exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne"):
                 release_numbers = [100]
-                release_node_nums = [6, 12]
-                release_days = [180, 240, 300, 360, 420, 480, 545]
-                rr0s = [0, 0.1, 0.2]
+                release_node_nums = [6]
+                release_days = [180]
+                rr0s = [0, 0.1]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
+                snes = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
+                frs = [0]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
-            elif exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newrr0":
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.001, 0.01]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_release_number":
-                release_numbers = [1000, 10000]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sds = [0]
-                snes = [0.1]
-                infect_by_human_red_fracs = [0.8]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_sne_newsne":
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr0s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sds = [0]
-                snes = [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
-                infect_by_human_red_fracs = [1, 0.9, 0.8]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newsne") \
-                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne") \
-                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR80_sweep_rc_d_rr0_sne_newsne"):
+            elif (exp_name == "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newsne") \
+                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newsne"):
                 release_numbers = [100]
                 release_node_nums = [6]
                 release_days = [180]
@@ -350,28 +241,17 @@ if __name__ == "__main__":
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
             elif (exp_name == "spatialinside_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_newrr0") \
-                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR80_sweep_rc_d_rr0_sne_newrr0"):
+                    or (exp_name == "spatialinside_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_newrr0"):
                 release_numbers = [100]
                 release_node_nums = [6]
                 release_days = [180]
                 rr0s = [0.001, 0.01]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
+                snes = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "single_node_vector_genetics_classic3allele_GM_only_aEIR10_sweep_rc_d_rr0_sne_release_day_number") \
-                    or (exp_name == "single_node_vector_genetics_classic3allele_GM_only_aEIR30_sweep_rc_d_rr0_sne_release_day_number"):
-                release_numbers = [100, 1000]
-                release_node_nums = [1]
-                release_days = [180, 240, 300, 360, 420, 480, 545]
-                rr0s = [0, 0.1, 0.2]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sds = [0]
-                snes = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
 
             GM_only = [
                 [ModFn(DTKConfigBuilder.set_param, "Run_Number", seed),
@@ -412,61 +292,16 @@ if __name__ == "__main__":
                 release_node_nums = [6]
                 release_days = [180]
                 rr10s = [0]
-                rr20s = [0, 0.1, 0.2]
+                rr20s = [0, 0.1]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
+                se2s = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
-            elif exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_release_number":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [1000, 10000]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sns = [0.05]
-                se2s = [0.1]
-                infect_by_human_red_fracs = [0.7, 0.6]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newrr20":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.001, 0.01]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_se2_newse2":
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sns = [0.05]
-                se2s = [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newse2") \
-                    or (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newse2") \
+            elif (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newse2") \
+                    or (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newse2") \
                     or (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newse2"):
                 net_coverages = [0.7]
                 itn_start_days = [180]
@@ -483,6 +318,7 @@ if __name__ == "__main__":
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
             elif (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR10_sweep_rc_d1_rr20_se2_newrr20") \
+                    or (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR30_sweep_rc_d1_rr20_se2_newrr20") \
                     or (exp_name == "spatialinside_integral2l4a_VC_and_GM_aEIR80_sweep_rc_d1_rr20_se2_newrr20"):
                 net_coverages = [0.7]
                 itn_start_days = [180]
@@ -493,7 +329,7 @@ if __name__ == "__main__":
                 rr20s = [0.001, 0.01]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
+                se2s = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
@@ -536,56 +372,16 @@ if __name__ == "__main__":
                 release_node_nums = [6]
                 release_days = [180]
                 rr10s = [0]
-                rr20s = [0, 0.1, 0.2]
+                rr20s = [0, 0.1]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
+                se2s = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
-            elif exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_release_number":
-                release_numbers = [1000, 10000]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sns = [0.05]
-                se2s = [0.1]
-                infect_by_human_red_fracs = [0.8]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20":
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.001, 0.01]
-                copy_to_likelihoods = [1, 0.95, 0.9]
-                sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
-                infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_se2_newse2":
-                release_numbers = [100]
-                release_node_nums = [6]
-                release_days = [180]
-                rr10s = [0]
-                rr20s = [0.01]
-                copy_to_likelihoods = [0.95]
-                sns = [0.05]
-                se2s = [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
-                infect_by_human_red_fracs = [1, 0.9, 0.8]
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b05"]
-
-            elif (exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2") \
-                    or (exp_name == "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newse2") \
-                    or (exp_name == "spatialinside_integral2l4a_GM_only_aEIR80_sweep_rc_d1_rr20_se2_newse2"):
+            elif (exp_name == "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newse2") \
+                    or (exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newse2"):
                 release_numbers = [100]
                 release_node_nums = [6]
                 release_days = [180]
@@ -599,7 +395,7 @@ if __name__ == "__main__":
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
 
             elif (exp_name == "spatialinside_integral2l4a_GM_only_aEIR10_sweep_rc_d1_rr20_se2_newrr20") \
-                    or (exp_name == "spatialinside_integral2l4a_GM_only_aEIR80_sweep_rc_d1_rr20_se2_newrr20"):
+                    or (exp_name == "spatialinside_integral2l4a_GM_only_aEIR30_sweep_rc_d1_rr20_se2_newrr20"):
                 release_numbers = [100]
                 release_node_nums = [6]
                 release_days = [180]
@@ -607,7 +403,7 @@ if __name__ == "__main__":
                 rr20s = [0.001, 0.01]
                 copy_to_likelihoods = [1, 0.95, 0.9]
                 sns = [0.05]
-                se2s = [0, 0.05, 0.1, 0.15, 0.2]
+                se2s = [0, 0.1, 0.2]
                 infect_by_human_red_fracs = [1, 0.9, 0.8, 0.7, 0.6, 0.5]
                 vmig_muls = [1]
                 vmig_dirs = ["thomas2013negexpovnn_b05"]
@@ -645,12 +441,13 @@ if __name__ == "__main__":
 
             if genes_type == "classic":
 
-                # - spatialinside_vector_genetics_classic3allele_VC_only_sweep_rr0_vmigdir"
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                rr0s = [0, 0.05, 0.1, 0.25, 0.4]
-                vmig_muls = [1]
-                vmig_dirs = ["gm_def", "thomas2013negexpovnn_b05"]
+                if (exp_name == "spatialinside_classic3allele_VC_only_aEIR10") \
+                        or (exp_name == "spatialinside_classic3allele_VC_only_aEIR30"):
+                    net_coverages = [0.7]
+                    itn_start_days = [180]
+                    rr0s = [0]
+                    vmig_muls = [1]
+                    vmig_dirs = ["thomas2013negexpovnn_b05"]
 
                 VC_only = [
                     [ModFn(DTKConfigBuilder.set_param, "Run_Number", seed),
@@ -668,93 +465,12 @@ if __name__ == "__main__":
                     for rr0 in rr0s
                     for vmig_mul in vmig_muls
                     for vmig_dir in vmig_dirs
-                ]
-
-            elif genes_type == "integral":
-
-                # - spatialinside_vector_genetics_integral2l4a_VC_only_sweep_rr10_rr20_vmigdir"
-                net_coverages = [0.7]
-                itn_start_days = [180]
-                rr10s = [0, 0.05, 0.1, 0.25, 0.4]
-                rr20s = [0, 0.05, 0.1, 0.25, 0.4]
-                vmig_muls = [1]
-                vmig_dirs = ["gm_def", "thomas2013negexpovnn_b05"]
-
-                VC_only = [
-                    [ModFn(DTKConfigBuilder.set_param, "Run_Number", seed),
-                     ModFn(DTKConfigBuilder.set_param, "Serialized_Population_Path",
-                           "{path}/output".format(path=get_outpath_for_serialized_file(
-                               sim_map, comps_platform=comps_platform, genes_type=genes_type, rr10=rr10, rr20=rr20, seed=0))),
-                     ModFn(add_nets, num_years=num_years, coverage=net_coverage, start_day=itn_start_day),
-                     ModFn(set_integral_genes, rr10=rr10, rr20=rr20),
-                     ModFn(update_vmig_mul, vmig_mul=vmig_mul),
-                     ModFn(update_vmig_dir, input_file_dir=input_file_dir, vmig_dir=vmig_dir)
-                     ]
-                    for seed in range(num_seeds)
-                    for itn_start_day in itn_start_days
-                    for net_coverage in net_coverages
-                    for rr10 in rr10s
-                    for rr20 in rr20s
-                    for vmig_mul in vmig_muls
-                    for vmig_dir in vmig_dirs
-                ]
-
-        elif exp_type == "no_interventions":
-
-            if genes_type == "none":
-
-                # - spatialinsidenodeID71LH_no_srlztn_vmigthomas2013negexpovnn_sweep_vmig_dir
-                vmig_muls = [1]
-                vmig_dirs = ["thomas2013negexpovnn_b03", "thomas2013negexpovnn_b04",
-                             "thomas2013negexpovnn_b05", "thomas2013negexpovnn_b06",
-                             "thomas2013negexpovnn_b07", "thomas2013negexpovnn_b1"]
-
-                no_interventions = [
-                    [ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
-                     # ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
-                     #       "{path}/output".format(path=get_outpath_for_serialized_file(
-                     #           sim_map, comps_platform=comps_platform, genes_type=genes_type, rr0=0, seed=0))),
-                     ModFn(update_vmig_mul, vmig_mul=vmig_mul),
-                     ModFn(update_vmig_dir, input_file_dir=input_file_dir, vmig_dir=vmig_dir),
-                     ]
-                    for seed in range(num_seeds)
-                    for vmig_mul in vmig_muls
-                    for vmig_dir in vmig_dirs
-                ]
-
-            elif genes_type == "classic":
-
-                no_interventions = [
-                    [ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
-                     ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
-                           "{path}/output".format(path=get_outpath_for_serialized_file(
-                               sim_map, comps_platform=comps_platform, genes_type=genes_type, rr0=rr0, seed=0))),
-                     ModFn(set_classic_genes, rr0=rr0),
-                     ]
-                    for seed in range(num_seeds)
-                    for rr0 in rr0s
-                ]
-
-            elif genes_type == "integral":
-
-                no_interventions = [
-                    [ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed),
-                     ModFn(DTKConfigBuilder.set_param, 'Serialized_Population_Path',
-                           "{path}/output".format(path=get_outpath_for_serialized_file(
-                               sim_map, comps_platform=comps_platform, genes_type=genes_type, rr10=rr10, rr20=rr20, seed=0))),
-                     ModFn(set_integral_genes, rr10=rr10, rr20=rr20),
-                     ]
-                    for seed in range(num_seeds)
-                    for rr10 in rr10s
-                    for rr20 in rr20s
                 ]
 
     ######################################
     # Define model builder
     ######################################
-    if exp_type == "no_interventions":
-        builder = ModBuilder.from_list(no_interventions)
-    elif exp_type == "GM_only":
+    if exp_type == "GM_only":
         builder = ModBuilder.from_list(GM_only)
     elif exp_type == "VC_only":
         builder = ModBuilder.from_list(VC_only)
